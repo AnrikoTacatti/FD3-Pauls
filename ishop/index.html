@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+<div id="root"></div>
+<script src="https://unpkg.com/@babel/standalone/babel.js"></script>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+
+
+
+
+  <script type="text/babel">
+        const tableName = "Таблица продуктов";
+
+        const tableColName = {
+            name : "название", 
+            price:"цена", 
+            src:"фотография", 
+            quality:"кол-во ед"
+        };
+
+        const product = [
+            {
+            id: 1,
+            name: "товар 1",
+            price: "10",
+            src:"https://via.placeholder.com/150/0000FF/808080?Text=Digital.com",
+            quality: 10
+            },
+            {
+            id: 2,
+            name: "товар 2",
+            price: "20",
+            src:"https://via.placeholder.com/150/FF0000/FFFFFF?Text=Down.com",
+            quality: 15
+            },
+            {
+            id: 3,
+            name: "товар 3",
+            price: "30",
+            src:"https://via.placeholder.com/150/FFFF00/000000?Text=WebsiteBuilders.com ",
+            quality: 20
+            },
+            {
+            id: 4,
+            name: "товар 4",
+            price: "40",
+            src:"https://via.placeholder.com/150/000000/FFFFFF/?text=IPaddress.net",
+            quality: 25
+            }
+        ];
+
+        function ProductRow(props){
+                return (
+                    <tr>
+                        <td>{props.name}</td>
+                        <td>{props.price}</td>
+                        <td><img src={props.src} alt={props.name}/></td>
+                        <td>{props.quality}</td>
+                    </tr>  
+                );
+            };
+
+        function ProductList(props){
+             return (
+                <table border="1" width="100%" cellpadding="5">
+                    <caption>{props.name}</caption>
+                    <tr>
+                    <th>{props.colname.name}</th>
+                    <th>{props.colname.price}</th>
+                    <th>{props.colname.src}</th>
+                    <th>{props.colname.quality}</th>
+                    </tr>
+                    {
+                        product.map(function (el) {
+
+                        return <ProductRow name={el.name} price={el.price} src={el.src} quality={el.quality} key={el.id}/>;
+                        })
+                    }
+                </table>
+                    );
+            };
+
+
+            ReactDOM.render(<ProductList name={tableName} colname={tableColName} />, document.getElementById('root'));
+        </script>
+</body>
+</html>
