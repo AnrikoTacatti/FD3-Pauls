@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+<div id="root"></div>
+<script src="https://unpkg.com/@babel/standalone/babel.js"></script>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+
+
+
+
+  <script type="text/babel">
+
+ const SelectListarr = [
+            "частнопредпринимательский", 
+           "переосвидетельствоваться", 
+           "высокопревосходительство", 
+           "делопроизводительница"
+  ];
+// как лучше передавать масив? через конструктор ?
+
+class NameForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        value: '',
+        sortab: false,
+        listarr : SelectListarr,
+        // можно ли обойтись не создавая дополниткльеую переменную ?
+        listarrfiltered: SelectListarr
+    },
+    
+    this.handleText = this.handleText.bind(this);
+    this.Search = this.Search.bind(this);
+    this.abSort = this.abSort.bind(this);
+    this.Reset = this.Reset.bind(this);
+    
+  }
+
+
+  handleText(val) {
+    this.setState({value: event.target.value});
+    this.Search(event.target.value);
+
+  }
+
+  /*почему стейт обновляется с запозданием ?*/
+
+  Search(text) {
+    debugger;
+    let listarrfiltered =  this.state.listarr;
+    listarrfiltered = listarrfiltered.filter((val) => {       
+                    return val.indexOf(text.toLowerCase()) != -1
+                }); 
+   this.setState((prevState) => ( { listarrfiltered:  listarrfiltered }));
+  }
+
+  abSort(){
+    this.setState({sortab: !this.state.sortab});
+    if(!this.state.sortab){
+      var listarrfiltered = this.state.listarrfiltered.slice().sort();
+      this.setState({listarrfiltered: listarrfiltered});
+    }
+    else{
+      this.Search(this.state.value);
+    }
+    
+  }
+
+  Reset(){
+    this.setState({value:''});
+    this.setState({listarrfiltered: this.state.listarr});
+  }
+  
+  render() {
+    return (
+      <div >
+        <select>
+            {
+              this.state.listarrfiltered.map(function (el) {
+                    return <option key={Math.floor(Math.random() * 1000)}>{el}</option>
+                })     
+            }
+        </select>
+        <input type="checkbox" onChange={this.abSort} />
+        <input type="text" value={this.state.value} onChange={this.handleText} />
+        <input type="button" value="Cброс" onClick={this.Reset}  />
+      </div>
+    );
+  }
+
+}
+
+
+
+ReactDOM.render(
+  <NameForm  />,
+  document.getElementById('root')
+);
+
+        </script>
+</body>
+</html>
