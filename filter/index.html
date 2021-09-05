@@ -20,10 +20,19 @@
   <script type="text/babel">
 
  const SelectListarr = [
-            "частнопредпринимательский", 
-           "переосвидетельствоваться", 
-           "высокопревосходительство", 
-           "делопроизводительница"
+    "частнопредпринимательский", 
+    "переосвидетельствоваться", 
+    "высокопревосходительство", 
+    "делопроизводительница",
+    'сдача',
+    'офицер',
+    'препарат',
+    'год',
+    'покупатель',
+    'фирма',
+    'хозяйство',
+    'счет'
+    
   ];
 // как лучше передавать масив? через конструктор ?
 
@@ -35,7 +44,8 @@ class NameForm extends React.Component {
         sortab: false,
         listarr : SelectListarr,
         // можно ли обойтись не создавая дополниткльеую переменную ?
-        listarrfiltered: SelectListarr
+        listarrfiltered: SelectListarr,
+        listarrnotsort: "",
     },
     
     this.handleText = this.handleText.bind(this);
@@ -60,39 +70,52 @@ class NameForm extends React.Component {
     listarrfiltered = listarrfiltered.filter((val) => {       
                     return val.indexOf(text.toLowerCase()) != -1
                 }); 
-   this.setState((prevState) => ( { listarrfiltered:  listarrfiltered }));
+   
+    this.setState((prevState) => ({listarrnotsort: listarrfiltered }));      
+    if(this.state.sortab){
+      let listarrfilteredsort = listarrfiltered.slice().sort();
+      this.setState((prevState) => ( { listarrfiltered: listarrfilteredsort }));
+    }
+   else{
+      this.setState((prevState) => ( { listarrfiltered: listarrfiltered }));
+   }
   }
 
-  abSort(){
-    this.setState({sortab: !this.state.sortab});
-    if(!this.state.sortab){
-      var listarrfiltered = this.state.listarrfiltered.slice().sort();
+  abSort(e){
+    debugger;
+    this.setState({sortab: e.target.checked});
+    this.setState((prevState) => ({listarrnotsort:this.state.listarrfiltered })); 
+    if(e.target.checked){
+      let  listarrfiltered = this.state.listarrfiltered.slice().sort();
       this.setState({listarrfiltered: listarrfiltered});
     }
     else{
-      this.Search(this.state.value);
-    }
+      this.setState((prevState) => ( { listarrfiltered: this.state.listarrnotsort }));
     
+    }
   }
 
   Reset(){
     this.setState({value:''});
+    this.setState({sortab: false});
     this.setState({listarrfiltered: this.state.listarr});
   }
   
   render() {
     return (
       <div >
-        <select>
-            {
-              this.state.listarrfiltered.map(function (el) {
-                    return <option key={Math.floor(Math.random() * 1000)}>{el}</option>
-                })     
-            }
-        </select>
-        <input type="checkbox" onChange={this.abSort} />
+        <input type="checkbox" checked={this.state.sortab} onChange={this.abSort}  />
         <input type="text" value={this.state.value} onChange={this.handleText} />
         <input type="button" value="Cброс" onClick={this.Reset}  />
+        <div>
+            {
+              this.state.listarrfiltered.map(function (el, index) {
+                /* Math.random не делать*/
+                debugger;
+                    return <p key={index}>{el}</p>
+                })     
+            }
+        </div>
       </div>
     );
   }
