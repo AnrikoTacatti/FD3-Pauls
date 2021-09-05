@@ -17,7 +17,6 @@ function ProductList(props) {
     }
     function Selected(productid, e) {
         debugger;
-        console.log(prod);
         setSelectid(productid);
     }
     return (
@@ -32,6 +31,7 @@ function ProductList(props) {
             </tr>
             {
                 stproduct.map(function (el) {
+                    debugger;
                     return <ProductRow name={el.name} price={el.price} src={el.src} quality={el.quality} select={el.id === selectid} id={el.id} key={el.id} fbSelected={Selected} fbDelete={Delete} stproduct={stproduct} />;
                 })
             }
