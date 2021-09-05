@@ -1,6 +1,7 @@
 
 function ProductList(props) {
     const [stproduct, setProduct] = React.useState(props.product);
+    const [selectid, setSelectid] = React.useState(null);
 
     function Delete(productid, e) {
         e.stopPropagation();
@@ -16,13 +17,8 @@ function ProductList(props) {
     }
     function Selected(productid, e) {
         debugger;
-
-        let prod = stproduct.map((val) => {
-            val.id === productid ? val.select = true : val.select = false;
-            return val;
-        });
         console.log(prod);
-        setProduct(prod);
+        setSelectid(productid);
     }
     return (
         <table border="1" width="100%" cellpadding="5">
@@ -36,7 +32,7 @@ function ProductList(props) {
             </tr>
             {
                 stproduct.map(function (el) {
-                    return <ProductRow name={el.name} price={el.price} src={el.src} quality={el.quality} select={el.select} id={el.id} key={el.id} fbSelected={Selected} fbDelete={Delete} stproduct={stproduct} />;
+                    return <ProductRow name={el.name} price={el.price} src={el.src} quality={el.quality} select={el.id === selectid} id={el.id} key={el.id} fbSelected={Selected} fbDelete={Delete} stproduct={stproduct} />;
                 })
             }
         </table>
