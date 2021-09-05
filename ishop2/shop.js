@@ -17,7 +17,13 @@ function ProductList(props) {
     }
     function Selected(productid, e) {
         debugger;
-        setSelectid(productid);
+        if (selectid === productid) {
+            setSelectid(null);
+        }
+        else {
+            setSelectid(productid);
+        }
+
     }
     return (
         <table border="1" width="100%" cellpadding="5">
@@ -31,7 +37,7 @@ function ProductList(props) {
             </tr>
             {
                 stproduct.map(function (el) {
-                    debugger;
+
                     return <ProductRow name={el.name} price={el.price} src={el.src} quality={el.quality} select={el.id === selectid} id={el.id} key={el.id} fbSelected={Selected} fbDelete={Delete} stproduct={stproduct} />;
                 })
             }
