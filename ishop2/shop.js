@@ -44,5 +44,7 @@ function ProductList(props) {
         </table>
     );
 };
+
+
 ReactDOM.render(<ProductList name={tableName} colname={tableColName} product={product} />, document.getElementById('root'));
 
