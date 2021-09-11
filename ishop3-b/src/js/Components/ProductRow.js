@@ -1,6 +1,6 @@
 
 import React from 'react';
-
+import ReactDOM from 'react-dom';
 function ProductRow(props) {
     return (
         <tr onClick={props.fbSelected.bind(null, props.id)} className={props.select ? "select" : null}>
