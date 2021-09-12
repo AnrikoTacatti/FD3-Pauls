@@ -1,5 +1,6 @@
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 import ProductRow from './ProductRow.js';
 
 
@@ -88,7 +89,7 @@ function ProductList(props) {
 
 /*Синтаксис модулей ES6*/
 
-export default ProductLis;
+export default ProductList;
 
 /*
 Синтаксис модулей ES6
