@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "товар 1",
+    "price": "10",
+    "src": "https://via.placeholder.com/150/0000FF/808080?Text=Digital.com",
+    "quality": 10
+  },
+  {
+    "id": 2,
+    "name": "товар 2",
+    "price": "20",
+    "src": "https://via.placeholder.com/150/FF0000/FFFFFF?Text=Down.com",
+    "quality": 15
+  },
+  {
+    "id": 3,
+    "name": "товар 3",
+    "price": "30",
+    "src": "https://via.placeholder.com/150/FFFF00/000000?Text=WebsiteBuilders.com ",
+    "quality": 20
+  },
+  {
+    "id": 4,
+    "name": "товар 4",
+    "price": "40",
+    "src": "https://via.placeholder.com/150/000000/FFFFFF/?text=IPaddress.net",
+    "quality": 25
+  }
+]
