@@ -41,7 +41,7 @@ render() {
 
 
 
-function ProductList(props) {
+export default function ProductList(props) {
   const [stproduct, setProduct] = React.useState(props.product);
   const [selectid, setSelectid] = React.useState(null);
 
@@ -89,7 +89,6 @@ function ProductList(props) {
 
 /*Синтаксис модулей ES6*/
 
-export default ProductList;
 
 /*
 Синтаксис модулей ES6
