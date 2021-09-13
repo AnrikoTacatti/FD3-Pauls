@@ -128,6 +128,9 @@ export default function ProductList(props) {
   );
 };
 
+
+
+
 /*Синтаксис модулей ES6*/
 
 
