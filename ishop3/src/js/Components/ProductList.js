@@ -1,7 +1,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ProductRow from './ProductRow.js';
+import ProductRow from './ProductRow';
 
 
 /*

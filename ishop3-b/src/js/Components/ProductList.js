@@ -1,7 +1,6 @@
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import ProductRow from './ProductRow.js';
+import ProductRow from './ProductRow';
 
 
 /*
@@ -41,16 +40,36 @@ render() {
 
 
 
-function ProductList(props) {
+export default function ProductList(props) {
   const [stproduct, setProduct] = React.useState(props.product);
   const [selectid, setSelectid] = React.useState(null);
+  const [editid, setEditid] = React.useState(null);
+  const [newproduct, setNewproduct] = React.useState(null);
+
+  function Edit(productid, index, e) {
+    e.stopPropagation();
+    console.log(e.target.value);
+    setEditid(index);
+  }
+
+  function EditProduct(productid, e) {
+    e.stopPropagation();
+    debugger;
+    console.log(e.target.value);
+
+  }
+  function Editfield(productid, field, e) {
+    e.stopPropagation();
+    setNewproduct({ field: e.target.value });
+
+  }
+
 
   function Delete(productid, e) {
     e.stopPropagation();
     let isDelete = window.confirm("Вы действительно хотите удалить?");
     if (isDelete) {
       let prod = stproduct.filter((val) => {
-
         return val.id != productid
       });
 
@@ -68,28 +87,50 @@ function ProductList(props) {
 
   }
   return (
-    <table border="1" width="100%" cellpadding="5">
-      <caption>{props.name}</caption>
-      <tr>
-        <th>{props.colname.name}</th>
-        <th>{props.colname.price}</th>
-        <th>{props.colname.src}</th>
-        <th>{props.colname.quality}</th>
-        <th>контроль</th>
-      </tr>
-      {
-        stproduct.map(function (el) {
+    <React.Fragment>
+      <table border="1" width="100%" cellPadding="5">
+        <caption>{props.name}</caption>
+        <tbody>
+          <tr>
+            <th>{props.colname.name}</th>
+            <th>{props.colname.price}</th>
+            <th>{props.colname.src}</th>
+            <th>{props.colname.quality}</th>
+            <th>контроль</th>
+          </tr>
+          {
+            stproduct.map(function (el, index) {
 
-          return <ProductRow name={el.name} price={el.price} src={el.src} quality={el.quality} select={el.id === selectid} id={el.id} key={el.id} fbSelected={Selected} fbDelete={Delete} stproduct={stproduct} />;
-        })
+              return <ProductRow name={el.name} price={el.price} src={el.src} quality={el.quality} select={el.id === selectid} id={el.id} key={el.id} fbSelected={Selected} fbEdit={Edit.bind(null, index)} fbDelete={Delete} stproduct={stproduct} />;
+            })
+          }
+        </tbody>
+      </table>
+      {
+
+        editid &&
+        <div>
+          <h1>Edit {console.log(newproduct)}</h1>
+          <div> name    <input type="text" defaultValue={stproduct[editid].name} onChange={Editfield.bind(null, props.id, "name")} /></div>
+          <div> price   <input type="text" defaultValue={stproduct[editid].price} onChange={Editfield.bind(null, props.id, "price")} /></div>
+          <div> src     <input type="text" defaultValue={stproduct[editid].src} onChange={Editfield.bind(null, props.id, "src")} /></div>
+          <div> quality <input type="text" defaultValue={stproduct[editid].quality} onChange={Editfield.bind(null, props.id, "quality")} /></div>
+          <div>
+            <input type="button" value="Edit Product" onClick={EditProduct.bind(null, props.id)} />
+            <input type="button" value="Censel" onClick={EditProduct.bind(null, props.id)} />
+          </div>
+
+        </div>
+
       }
-    </table>
+
+    </React.Fragment>
   );
 };
 
 /*Синтаксис модулей ES6*/
 
-export default ProductList;
+
 
 /*
 Синтаксис модулей ES6
