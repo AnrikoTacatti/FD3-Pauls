@@ -9,7 +9,7 @@ export default function ProductRow(props) {
             <td><img src={props.src} alt={props.name} /></td>
             <td>{props.quality}</td>
             <td>
-                <input type="button" value="редактировать" onClick={props.fbEdit.bind(null, props.id)} />
+                <input type="button" value="редактировать" onClick={props.fbEdit.bind(null)} />
                 <input type="button" value="удалить" onClick={props.fbDelete.bind(null, props.id)} />
             </td>
         </tr>

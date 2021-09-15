@@ -1,7 +1,7 @@
 
 "use strict";
 import React from 'react';
-import ReactDOM from 'react-dom'; /* для работы с веб страницами */  // модуль React для работы с веб-страницами 
+import ReactDOM from 'react-dom'; /* для работы с веб страницами */  // модуль React для работы с веб-страницами  import {render} from 'react-dom';
 import ProductList from './js/Components/ProductList.js';
 
 const tableName = "Таблица продуктов";
