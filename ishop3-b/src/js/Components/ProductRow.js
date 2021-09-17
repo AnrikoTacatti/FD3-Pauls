@@ -27,7 +27,7 @@ export default function ProductRow(props) {
     function Selected(productid, e) {
         debugger;
         if (Object.keys(props.newproduct).length > 0) return false;
-        if (selectid === productid) {
+        if (props.selectid === productid) {
             props.setSelectid(null);
 
         }
