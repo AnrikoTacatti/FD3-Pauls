@@ -50,15 +50,6 @@ export default function ProductList(props) {
   const [filderror, setfildError] = React.useState({ name: null, price: null, src: null, quality: null });
   const [newb, setNew] = React.useState(null);
 
-  function Edit(index, e) {
-    debugger;
-    e.stopPropagation();
-    setSelectid(null);
-    setEditid(index);
-    setNew(null);
-    setfildError({ name: null, price: null, src: null, quality: null });
-  }
-
   function New(e) {
     debugger;
     e.stopPropagation();
@@ -68,63 +59,11 @@ export default function ProductList(props) {
     setfildError({ name: null, price: null, src: null, quality: null });
   }
 
-
   function Censel() {
     setEditid(null);
     setNew(null);
     setNewproduct({});
   }
-
-
-  function NewProduct(e) {
-    debugger;
-    e.stopPropagation();
-    let product = { ...newproduct };
-    console.log(stproduct);
-    let reqired = true;
-    let objerror = {};
-
-    Object.keys(filderror).forEach(function (key) {
-      if (filderror[key] !== false) {
-        reqired = false;
-        objerror[key] = true;
-      }
-    });
-
-    if (reqired) {
-      setProduct((prevState) => {
-        debugger;
-        if (!product.id) product.id = stproduct.length;
-        let newprevState = [...prevState];
-        newprevState[newprevState.length] = product;
-        return prevState = newprevState;
-      });
-      setNewproduct({});
-    }
-    else {
-      setfildError((prevState) => {
-        debugger;
-        let newprevState = { ...filderror, ...objerror };
-        return prevState = newprevState;
-      });
-    }
-  }
-
-
-  function EditProduct(index, oldproduct, e) {
-    debugger;
-    e.stopPropagation();
-    let product = { ...oldproduct, ...newproduct };
-    console.log(stproduct);
-    setProduct((prevState) => {
-      debugger;
-      let newprevState = [...prevState];
-      newprevState[index] = product;
-      return prevState = newprevState;
-    });
-    setNewproduct({});
-  }
-
 
   function Editfield(field, e) {
     debugger;
@@ -187,30 +126,7 @@ export default function ProductList(props) {
   }
 
 
-  function Delete(productid, e) {
-    e.stopPropagation();
-    let isDelete = window.confirm("Вы действительно хотите удалить?");
-    if (isDelete) {
-      let prod = stproduct.filter((val) => {
-        return val.id != productid
-      });
 
-      setProduct(prod);
-    }
-  }
-  function Selected(productid, e) {
-    debugger;
-    if (Object.keys(newproduct).length > 0) return false;
-    if (selectid === productid) {
-      setSelectid(null);
-
-    }
-    else {
-      setSelectid(productid);
-
-    }
-
-  }
   return (
     <React.Fragment>
       <table border="1" width="100%" cellPadding="5">
@@ -225,8 +141,10 @@ export default function ProductList(props) {
             <th>{console.log(stproduct[0])}</th>
           </tr>
           {
+
+
             stproduct.map(function (el, index) {
-              return <ProductRow {...el} select={index === selectid} key={el.id} editid={editid} newproduct={newproduct} stproduct={stproduct} index={index} fbSelected={Selected} fbEdit={Edit} fbDelete={Delete} />;
+              return <ProductRow {...el} select={index === selectid} id={el.id} editid={editid} stproduct={stproduct} newproduct={newproduct} selectid={selectid} index={index} setProduct={setProduct} setEditid={setEditid} setSelectid={setSelectid} setfildError={setfildError} setNew={setNew} />;
             })
           }
         </tbody>
@@ -238,13 +156,13 @@ export default function ProductList(props) {
       {
 
         editid !== null && selectid === null &&
-        <EditProductEl key={editid} editid={editid} stproduct={stproduct} filderror={filderror}
-          fbEditfield={Editfield} fbCensel={Censel.bind(null, editid)} fbEditProduct={EditProduct} />
+        <EditProductEl key={editid} editid={editid} stproduct={stproduct} filderror={filderror} newproduct={newproduct}
+          setProduct={setProduct} setEditid={setEditid} setfildError={setfildError} setNewproduct={setNewproduct} fbCensel={Censel} fbEditfield={Editfield} />
       }
       {
         newb === true && selectid === null &&
-        <NewProductEl key={editid} editid={editid} stproduct={stproduct} filderror={filderror}
-          fbEditfield={Editfield} fbCensel={Censel.bind(null, editid)} fbNewProduct={NewProduct} />
+        <NewProductEl key={editid} editid={editid} stproduct={stproduct} filderror={filderror} newproduct={newproduct}
+          setProduct={setProduct} setEditid={setEditid} setfildError={setfildError} setNewproduct={setNewproduct} fbCensel={Censel} fbEditfield={Editfield} />
       }
       {
         selectid !== null &&
