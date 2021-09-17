@@ -10,7 +10,6 @@ export default function NewProductEl(props) {
         debugger;
         e.stopPropagation();
         let product = { ...props.newproduct };
-        console.log(props.stproduct);
         let reqired = true;
         let objerror = {};
 
@@ -22,14 +21,16 @@ export default function NewProductEl(props) {
         });
 
         if (reqired) {
+            if (!product.id) product.id = props.stproduct.reduce((acc, curr) => acc.id > curr.id ? acc : curr).id++;
             props.setProduct((prevState) => {
                 debugger;
-                if (!product.id) product.id = props.stproduct.reduce((acc, curr) => acc.id > curr.id ? acc : curr).id++;
                 let newprevState = [...prevState];
                 newprevState[newprevState.length] = product;
                 return prevState = newprevState;
             });
             props.setNewproduct({});
+            props.setSelectid(product.id);
+
         }
         else {
             props.setfildError((prevState) => {

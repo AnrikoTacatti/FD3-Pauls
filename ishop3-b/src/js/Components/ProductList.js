@@ -138,13 +138,13 @@ export default function ProductList(props) {
             <th>{props.colname.src}</th>
             <th>{props.colname.quality}</th>
             <th>контроль</th>
-            <th>{console.log(stproduct[0])}</th>
+
           </tr>
           {
 
 
             stproduct.map(function (el, index) {
-              return <ProductRow {...el} select={index === selectid} id={el.id} editid={editid} stproduct={stproduct} newproduct={newproduct} selectid={selectid} index={index} setProduct={setProduct} setEditid={setEditid} setSelectid={setSelectid} setfildError={setfildError} setNew={setNew} />;
+              return <ProductRow {...el} key={el.id} select={index === selectid} id={el.id} editid={editid} stproduct={stproduct} newproduct={newproduct} selectid={selectid} index={index} setProduct={setProduct} setEditid={setEditid} setSelectid={setSelectid} setfildError={setfildError} setNew={setNew} />;
             })
           }
         </tbody>
@@ -156,13 +156,13 @@ export default function ProductList(props) {
       {
 
         editid !== null && selectid === null &&
-        <EditProductEl key={editid} editid={editid} stproduct={stproduct} filderror={filderror} newproduct={newproduct}
+        <EditProductEl key={editid} editid={editid} stproductedit={stproduct[editid]} filderror={filderror} newproduct={newproduct}
           setProduct={setProduct} setEditid={setEditid} setfildError={setfildError} setNewproduct={setNewproduct} fbCensel={Censel} fbEditfield={Editfield} />
       }
       {
         newb === true && selectid === null &&
         <NewProductEl key={editid} editid={editid} stproduct={stproduct} filderror={filderror} newproduct={newproduct}
-          setProduct={setProduct} setEditid={setEditid} setfildError={setfildError} setNewproduct={setNewproduct} fbCensel={Censel} fbEditfield={Editfield} />
+          setProduct={setProduct} setEditid={setEditid} setSelectid={setSelectid} setfildError={setfildError} setNewproduct={setNewproduct} fbCensel={Censel} fbEditfield={Editfield} />
       }
       {
         selectid !== null &&

@@ -40,7 +40,7 @@ export default function ProductRow(props) {
 
 
     return (
-        <tr onClick={Selected.bind(null, props.index)} className={props.select ? "select" : null} key={props.id}>
+        <tr onClick={Selected.bind(null, props.index)} className={props.select ? "select" : null} >
             <td>{props.name}</td>
             <td>{props.price}</td>
             <td><img src={props.src} alt={props.name} /></td>
