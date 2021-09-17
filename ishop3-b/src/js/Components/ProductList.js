@@ -157,17 +157,18 @@ export default function ProductList(props) {
 
         editid !== null && selectid === null &&
         <EditProductEl key={editid} editid={editid} stproductedit={stproduct[editid]} filderror={filderror} newproduct={newproduct}
-          newproductid={stproduct.reduce((acc, curr) => acc.id > curr.id ? acc : curr).id++} newproductnumber={stproduct.length}
+
           setProduct={setProduct} setEditid={setEditid} setfildError={setfildError} setNewproduct={setNewproduct} fbCensel={Censel} fbEditfield={Editfield} />
       }
       {
         newb === true && selectid === null &&
-        <NewProductEl key={editid} editid={editid} stproduct={stproduct} filderror={filderror} newproduct={newproduct}
+        <NewProductEl key={editid} editid={editid} filderror={filderror} newproduct={newproduct}
+          newproductid={stproduct.reduce((acc, curr) => acc.id > curr.id ? acc : curr).id + 1} newproductnumber={stproduct.length}
           setProduct={setProduct} setEditid={setEditid} setSelectid={setSelectid} setfildError={setfildError} setNewproduct={setNewproduct} fbCensel={Censel} fbEditfield={Editfield} />
       }
       {
         selectid !== null &&
-        <InfoProductEl key={editid} editid={editid} stproduct={stproduct} selectid={selectid} />
+        <InfoProductEl key={editid} editid={editid} product={stproduct[selectid]} selectid={selectid} />
       }
     </React.Fragment >
   );

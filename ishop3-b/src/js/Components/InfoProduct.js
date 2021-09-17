@@ -8,10 +8,10 @@ export default function EditProductEl(props) {
     return (
         <div>
             <h1>Info Product</h1>
-            <div> name    {props.stproduct[props.selectid].name} </div>
-            <div> price   {props.stproduct[props.selectid].price}  </div>
-            <div> src     {props.stproduct[props.selectid].src}  </div>
-            <div> quality {props.stproduct[props.selectid].quality} </div>
+            <div> name    {props.product.name} </div>
+            <div> price   {props.product.price}  </div>
+            <div> src     {props.product.src}  </div>
+            <div> quality {props.product.quality} </div>
         </div>
     );
 };

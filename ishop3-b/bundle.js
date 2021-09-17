@@ -30708,13 +30708,14 @@ function ProductList(props) {
     _react2.default.createElement('input', { type: 'button', value: 'New Product', onClick: New, disabled: Object.keys(newproduct).length > 0 }),
     console.log("id---" + editid),
     editid !== null && selectid === null && _react2.default.createElement(_EditProduct2.default, { key: editid, editid: editid, stproductedit: stproduct[editid], filderror: filderror, newproduct: newproduct,
+
+      setProduct: setProduct, setEditid: setEditid, setfildError: setfildError, setNewproduct: setNewproduct, fbCensel: Censel, fbEditfield: Editfield }),
+    newb === true && selectid === null && _react2.default.createElement(_NewProduct2.default, { key: editid, editid: editid, filderror: filderror, newproduct: newproduct,
       newproductid: stproduct.reduce(function (acc, curr) {
         return acc.id > curr.id ? acc : curr;
-      }).id++, newproductnumber: stproduct.length,
-      setProduct: setProduct, setEditid: setEditid, setfildError: setfildError, setNewproduct: setNewproduct, fbCensel: Censel, fbEditfield: Editfield }),
-    newb === true && selectid === null && _react2.default.createElement(_NewProduct2.default, { key: editid, editid: editid, stproduct: stproduct, filderror: filderror, newproduct: newproduct,
+      }).id + 1, newproductnumber: stproduct.length,
       setProduct: setProduct, setEditid: setEditid, setSelectid: setSelectid, setfildError: setfildError, setNewproduct: setNewproduct, fbCensel: Censel, fbEditfield: Editfield }),
-    selectid !== null && _react2.default.createElement(_InfoProduct2.default, { key: editid, editid: editid, stproduct: stproduct, selectid: selectid })
+    selectid !== null && _react2.default.createElement(_InfoProduct2.default, { key: editid, editid: editid, product: stproduct[selectid], selectid: selectid })
   );
 };
 
@@ -30882,6 +30883,7 @@ function EditProductEl(props) {
             return prevState = newprevState;
         });
         props.setNewproduct({});
+        props.setEditid(null);
     }
 
     debugger;
@@ -31012,7 +31014,7 @@ function NewProductEl(props) {
         });
 
         if (reqired) {
-            if (!product.id) product.id = product.newproductid;
+            if (!product.id) product.id = props.newproductid;
             props.setProduct(function (prevState) {
                 debugger;
                 var newprevState = [].concat(_toConsumableArray(prevState));
@@ -31020,7 +31022,7 @@ function NewProductEl(props) {
                 return prevState = newprevState;
             });
             props.setNewproduct({});
-            props.setSelectid(product.id);
+            props.setSelectid(props.newproductnumber);
         } else {
             props.setfildError(function (prevState) {
                 debugger;
@@ -31150,28 +31152,28 @@ function EditProductEl(props) {
             'div',
             null,
             ' name    ',
-            props.stproduct[props.selectid].name,
+            props.product.name,
             ' '
         ),
         _react2.default.createElement(
             'div',
             null,
             ' price   ',
-            props.stproduct[props.selectid].price,
+            props.product.price,
             '  '
         ),
         _react2.default.createElement(
             'div',
             null,
             ' src     ',
-            props.stproduct[props.selectid].src,
+            props.product.src,
             '  '
         ),
         _react2.default.createElement(
             'div',
             null,
             ' quality ',
-            props.stproduct[props.selectid].quality,
+            props.product.quality,
             ' '
         )
     );

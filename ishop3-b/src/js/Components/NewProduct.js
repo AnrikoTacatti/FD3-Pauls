@@ -21,7 +21,7 @@ export default function NewProductEl(props) {
         });
 
         if (reqired) {
-            if (!product.id) product.id = product.newproductid;
+            if (!product.id) product.id = props.newproductid;
             props.setProduct((prevState) => {
                 debugger;
                 let newprevState = [...prevState];
@@ -29,7 +29,7 @@ export default function NewProductEl(props) {
                 return prevState = newprevState;
             });
             props.setNewproduct({});
-            props.setSelectid(product.id);
+            props.setSelectid(props.newproductnumber);
 
         }
         else {

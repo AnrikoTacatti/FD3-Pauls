@@ -15,6 +15,7 @@ export default function EditProductEl(props) {
             return prevState = newprevState;
         });
         props.setNewproduct({});
+        props.setEditid(null);
     }
 
     debugger;
