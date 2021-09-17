@@ -157,6 +157,7 @@ export default function ProductList(props) {
 
         editid !== null && selectid === null &&
         <EditProductEl key={editid} editid={editid} stproductedit={stproduct[editid]} filderror={filderror} newproduct={newproduct}
+          newproductid={stproduct.reduce((acc, curr) => acc.id > curr.id ? acc : curr).id++} newproductnumber={stproduct.length}
           setProduct={setProduct} setEditid={setEditid} setfildError={setfildError} setNewproduct={setNewproduct} fbCensel={Censel} fbEditfield={Editfield} />
       }
       {
