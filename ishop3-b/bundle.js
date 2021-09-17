@@ -30697,25 +30697,23 @@ function ProductList(props) {
             'th',
             null,
             '\u043A\u043E\u043D\u0442\u0440\u043E\u043B\u044C'
-          ),
-          _react2.default.createElement(
-            'th',
-            null,
-            console.log(stproduct[0])
           )
         ),
         stproduct.map(function (el, index) {
-          return _react2.default.createElement(_ProductRow2.default, _extends({}, el, { select: index === selectid, id: el.id, editid: editid, stproduct: stproduct, newproduct: newproduct, selectid: selectid, index: index, setProduct: setProduct, setEditid: setEditid, setSelectid: setSelectid, setfildError: setfildError, setNew: setNew }));
+          return _react2.default.createElement(_ProductRow2.default, _extends({}, el, { key: el.id, select: index === selectid, id: el.id, editid: editid, stproduct: stproduct, newproduct: newproduct, selectid: selectid, index: index, setProduct: setProduct, setEditid: setEditid, setSelectid: setSelectid, setfildError: setfildError, setNew: setNew }));
         })
       )
     ),
     _react2.default.createElement('br', null),
     _react2.default.createElement('input', { type: 'button', value: 'New Product', onClick: New, disabled: Object.keys(newproduct).length > 0 }),
     console.log("id---" + editid),
-    editid !== null && selectid === null && _react2.default.createElement(_EditProduct2.default, { key: editid, editid: editid, stproduct: stproduct, filderror: filderror, newproduct: newproduct,
+    editid !== null && selectid === null && _react2.default.createElement(_EditProduct2.default, { key: editid, editid: editid, stproductedit: stproduct[editid], filderror: filderror, newproduct: newproduct,
+      newproductid: stproduct.reduce(function (acc, curr) {
+        return acc.id > curr.id ? acc : curr;
+      }).id++, newproductnumber: stproduct.length,
       setProduct: setProduct, setEditid: setEditid, setfildError: setfildError, setNewproduct: setNewproduct, fbCensel: Censel, fbEditfield: Editfield }),
     newb === true && selectid === null && _react2.default.createElement(_NewProduct2.default, { key: editid, editid: editid, stproduct: stproduct, filderror: filderror, newproduct: newproduct,
-      setProduct: setProduct, setEditid: setEditid, setfildError: setfildError, setNewproduct: setNewproduct, fbCensel: Censel, fbEditfield: Editfield }),
+      setProduct: setProduct, setEditid: setEditid, setSelectid: setSelectid, setfildError: setfildError, setNewproduct: setNewproduct, fbCensel: Censel, fbEditfield: Editfield }),
     selectid !== null && _react2.default.createElement(_InfoProduct2.default, { key: editid, editid: editid, stproduct: stproduct, selectid: selectid })
   );
 };
@@ -30817,7 +30815,7 @@ function ProductRow(props) {
 
     return _react2.default.createElement(
         'tr',
-        { onClick: Selected.bind(null, props.index), className: props.select ? "select" : null, key: props.id },
+        { onClick: Selected.bind(null, props.index), className: props.select ? "select" : null },
         _react2.default.createElement(
             'td',
             null,
@@ -30877,7 +30875,6 @@ function EditProductEl(props) {
         debugger;
         e.stopPropagation();
         var product = _extends({}, oldproduct, props.newproduct);
-        console.log(props.stproduct);
         props.setProduct(function (prevState) {
             debugger;
             var newprevState = [].concat(_toConsumableArray(prevState));
@@ -30905,7 +30902,7 @@ function EditProductEl(props) {
                 'name '
             ),
             '   ',
-            _react2.default.createElement('input', { type: 'text', defaultValue: props.stproduct[props.editid].name, onBlur: props.fbEditfield.bind(null, "name"), key: props.editid }),
+            _react2.default.createElement('input', { type: 'text', defaultValue: props.stproductedit.name, onBlur: props.fbEditfield.bind(null, "name"), key: props.editid }),
             ' ',
             props.filderror["name"] && _react2.default.createElement(
                 'p',
@@ -30922,7 +30919,7 @@ function EditProductEl(props) {
                 ' price '
             ),
             '  ',
-            _react2.default.createElement('input', { type: 'text', defaultValue: props.stproduct[props.editid].price, onBlur: props.fbEditfield.bind(null, "price"), key: props.editid }),
+            _react2.default.createElement('input', { type: 'text', defaultValue: props.stproductedit.price, onBlur: props.fbEditfield.bind(null, "price"), key: props.editid }),
             '  ',
             props.filderror["price"] && _react2.default.createElement(
                 'p',
@@ -30939,7 +30936,7 @@ function EditProductEl(props) {
                 ' src   '
             ),
             '  ',
-            _react2.default.createElement('input', { type: 'text', defaultValue: props.stproduct[props.editid].src, onBlur: props.fbEditfield.bind(null, "src"), key: props.editid }),
+            _react2.default.createElement('input', { type: 'text', defaultValue: props.stproductedit.src, onBlur: props.fbEditfield.bind(null, "src"), key: props.editid }),
             ' ',
             props.filderror["src"] && _react2.default.createElement(
                 'p',
@@ -30956,7 +30953,7 @@ function EditProductEl(props) {
                 ' quality '
             ),
             ' ',
-            _react2.default.createElement('input', { type: 'text', defaultValue: props.stproduct[props.editid].quality, onBlur: props.fbEditfield.bind(null, "quality"), key: props.editid }),
+            _react2.default.createElement('input', { type: 'text', defaultValue: props.stproductedit.quality, onBlur: props.fbEditfield.bind(null, "quality"), key: props.editid }),
             ' ',
             props.filderror["quality"] && _react2.default.createElement(
                 'p',
@@ -30967,7 +30964,7 @@ function EditProductEl(props) {
         _react2.default.createElement(
             'div',
             null,
-            _react2.default.createElement('input', { type: 'button', value: 'Edit Product', onClick: EditProduct.bind(null, props.editid, props.stproduct[props.editid]), disabled: Object.values(props.filderror).indexOf(true) !== -1 }),
+            _react2.default.createElement('input', { type: 'button', value: 'Edit Product', onClick: EditProduct.bind(null, props.editid, props.stproductedit), disabled: Object.values(props.filderror).indexOf(true) !== -1 }),
             _react2.default.createElement('input', { type: 'button', value: 'Censel', onClick: props.fbCensel })
         )
     );
@@ -31004,7 +31001,6 @@ function NewProductEl(props) {
         debugger;
         e.stopPropagation();
         var product = _extends({}, props.newproduct);
-        console.log(props.stproduct);
         var reqired = true;
         var objerror = {};
 
@@ -31016,16 +31012,15 @@ function NewProductEl(props) {
         });
 
         if (reqired) {
+            if (!product.id) product.id = product.newproductid;
             props.setProduct(function (prevState) {
                 debugger;
-                if (!product.id) product.id = props.stproduct.reduce(function (acc, curr) {
-                    return acc.id > curr.id ? acc : curr;
-                }).id++;
                 var newprevState = [].concat(_toConsumableArray(prevState));
                 newprevState[newprevState.length] = product;
                 return prevState = newprevState;
             });
             props.setNewproduct({});
+            props.setSelectid(product.id);
         } else {
             props.setfildError(function (prevState) {
                 debugger;
@@ -31053,7 +31048,7 @@ function NewProductEl(props) {
                 'name '
             ),
             '   ',
-            _react2.default.createElement('input', { type: 'text', onBlur: props.fbEditfield.bind(null, "name"), key: props.stproduct.length }),
+            _react2.default.createElement('input', { type: 'text', onBlur: props.fbEditfield.bind(null, "name"), key: props.newproductnumber }),
             ' ',
             props.filderror["name"] && _react2.default.createElement(
                 'p',
@@ -31070,7 +31065,7 @@ function NewProductEl(props) {
                 ' price '
             ),
             '  ',
-            _react2.default.createElement('input', { type: 'text', onBlur: props.fbEditfield.bind(null, "price"), key: props.stproduct.length }),
+            _react2.default.createElement('input', { type: 'text', onBlur: props.fbEditfield.bind(null, "price"), key: props.newproductnumber }),
             '  ',
             props.filderror["price"] && _react2.default.createElement(
                 'p',
@@ -31087,7 +31082,7 @@ function NewProductEl(props) {
                 ' src   '
             ),
             '  ',
-            _react2.default.createElement('input', { type: 'text', onBlur: props.fbEditfield.bind(null, "src"), key: props.stproduct.length }),
+            _react2.default.createElement('input', { type: 'text', onBlur: props.fbEditfield.bind(null, "src"), key: props.newproductnumber }),
             ' ',
             props.filderror["src"] && _react2.default.createElement(
                 'p',
@@ -31104,7 +31099,7 @@ function NewProductEl(props) {
                 ' quality '
             ),
             ' ',
-            _react2.default.createElement('input', { type: 'text', onBlur: props.fbEditfield.bind(null, "quality"), key: props.stproduct.length }),
+            _react2.default.createElement('input', { type: 'text', onBlur: props.fbEditfield.bind(null, "quality"), key: props.newproductnumber }),
             ' ',
             props.filderror["quality"] && _react2.default.createElement(
                 'p',
