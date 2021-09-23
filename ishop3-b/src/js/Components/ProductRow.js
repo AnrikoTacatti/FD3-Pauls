@@ -17,11 +17,7 @@ export default function ProductRow(props) {
         debugger;
         let isDelete = window.confirm("Вы действительно хотите удалить?");
         if (isDelete) {
-            let prod = props.stproduct.filter((val) => {
-                return val.id != productid
-            });
-
-            props.setProduct(prod);
+            props.fbDelete(productid);
         }
     }
     function Selected(productid, e) {

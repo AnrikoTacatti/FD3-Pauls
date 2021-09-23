@@ -65,6 +65,13 @@ export default function ProductList(props) {
     setNewproduct({});
   }
 
+  function Delete(productid) {
+    let prod = props.stproduct.filter((val) => {
+      return val.id != productid
+    });
+    props.setProduct(prod);
+  }
+
   function Editfield(field, e) {
     debugger;
     e.stopPropagation();
@@ -144,7 +151,8 @@ export default function ProductList(props) {
 
 
             stproduct.map(function (el, index) {
-              return <ProductRow {...el} key={el.id} select={index === selectid} id={el.id} editid={editid} stproduct={stproduct} newproduct={newproduct} selectid={selectid} index={index} setProduct={setProduct} setEditid={setEditid} setSelectid={setSelectid} setfildError={setfildError} setNew={setNew} />;
+              return <ProductRow {...el} key={el.id} select={index === selectid} id={el.id} editid={editid} newproduct={newproduct} selectid={selectid} index={index}
+                setProduct={setProduct} setEditid={setEditid} setSelectid={setSelectid} setfildError={setfildError} setNew={setNew} fbDelete={Delete} />;
             })
           }
         </tbody>

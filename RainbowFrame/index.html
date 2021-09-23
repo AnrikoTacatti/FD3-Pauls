@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+<div id="root"></div>
+<script src="https://unpkg.com/@babel/standalone/babel.js"></script>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+<script type="module" src="https://unpkg.com/prop-types@15.7.2/prop-types.min.js"></script>
+
+<style>
+.color-frame{
+  text-align: center;
+}
+</style>
+
+
+  <script type="text/babel">
+
+
+class ColorFrame extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  static propTypes = {
+    color: PropTypes.string.isRequired,
+  };
+
+  render() {
+    console.log(this.props);
+    
+    return (
+      <div class="color-frame" style={{border:"solid 10px "+ this.props.color ,padding:"10px"}}>
+        {this.props.children}
+      </div>
+    
+    )
+  }
+
+}
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      colors :['red','orange', 'yellow','green', '#00BFFF', 'blue', 'purple']  
+    }
+  }
+
+  render() {
+    let colorRainbow= "hello" ;
+    this.state.colors.map(function (el, index) {
+        colorRainbow = <ColorFrame color={el}>{colorRainbow}</ColorFrame>  
+    });
+
+    return  colorRainbow
+    
+  }
+
+}
+
+
+ReactDOM.render(<App/>, document.getElementById('root'));
+
+</script>
+</body>
+</html>
