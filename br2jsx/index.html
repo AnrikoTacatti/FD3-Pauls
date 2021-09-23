@@ -26,7 +26,7 @@ let text="первый<br>второй<br/>третий<br />последний"
 
             return (
               <div >{textArr.map(function (el, index) {
-                    return <React.Fragment key={index}>{el} <br /></React.Fragment>
+                    return <React.Fragment key={index}>{ index !==0  && <br />} {el}</React.Fragment>
                 })}
             </div>
             )
