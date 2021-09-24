@@ -25,44 +25,45 @@
   <script type="text/babel">
 
 
-class ColorFrame extends React.Component {
+class RainbowFrame extends React.Component {
   constructor(props) {
     super(props);
   }
 
   static propTypes = {
-    color: PropTypes.string.isRequired,
+    colors: PropTypes.array.isRequired,
   };
 
   render() {
-    console.log(this.props);
-    
-    return (
-      <div class="color-frame" style={{border:"solid 10px "+ this.props.color ,padding:"10px"}}>
-        {this.props.children}
+    debugger;
+    let colorRainbow;
+    this.props.colors.forEach( (el, index) => {
+      console.log(this);
+        colorRainbow =  <div class="color-frame" style={{border:"solid 10px "+ el ,padding:"10px"}}>
+          { index === 0 ? this.props.children : colorRainbow}
       </div>
+    });
+    return colorRainbow;
     
-    )
+    
+
   }
 
 }
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      colors :['red','orange', 'yellow','green', '#00BFFF', 'blue', 'purple']  
-    }
-  }
+
 
   render() {
-    let colorRainbow= "hello" ;
-    this.state.colors.map(function (el, index) {
-        colorRainbow = <ColorFrame color={el}>{colorRainbow}</ColorFrame>  
-    });
+  
+  let colors = ['red','orange', 'yellow','green', '#00BFFF', 'blue', 'purple'];
+  return (
+    <RainbowFrame colors={colors}>
+      Hello!
+    </RainbowFrame>
+  );
 
-    return  colorRainbow
-    
+
   }
 
 }
