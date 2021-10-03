@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+<div id="root"></div>
+<script src="https://unpkg.com/@babel/standalone/babel.js"></script>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+<script type="module" src="https://unpkg.com/prop-types@15.7.2/prop-types.min.js"></script>
+
+<style>
+.color-frame{
+  text-align: center;
+}
+</style>
+
+
+  <script type="text/babel">
+
+
+class RainbowFrame extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  static propTypes = {
+    colors: PropTypes.array.isRequired,
+  };
+
+  render() {
+    debugger;
+    let colorRainbow;
+
+    if(this.props.colors == 0) return this.props.children
+    else {
+      return  <div class="color-frame" style={{border:"solid 10px "+ this.props.colors[0] ,padding:"10px"}}>
+      <RainbowFrame colors={this.props.colors.slice(1)}>
+       {this.props.children}
+    </RainbowFrame>
+  </div>
+    }
+   /* this.props.colors.forEach( (el, index) => {
+      console.log(this);
+        colorRainbow =  <div class="color-frame" style={{border:"solid 10px "+ el ,padding:"10px"}}>
+          { index === 0 ? this.props.children : colorRainbow}
+      </div>
+    });*/
+    /*return colorRainbow;*/
+    
+    
+
+  }
+
+}
+
+class App extends React.Component {
+
+
+  render() {
+  
+  let colors = ['red','orange', 'yellow','green', '#00BFFF', 'blue', 'purple'];
+  return (
+    <RainbowFrame colors={colors}>
+      Hello!
+    </RainbowFrame>
+  );
+
+
+  }
+
+}
+
+
+ReactDOM.render(<App/>, document.getElementById('root'));
+
+</script>
+</body>
+</html>
