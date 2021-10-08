@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "surname": "Иванов",
+    "name": "Иван",
+    "patronymic": "Иванович",
+    "balans": 200,
+    "status": "active"
+  },
+  {
+    "id": 2,
+    "surname": "Иванов",
+    "name": "Иван",
+    "patronymic": "Иванович",
+    "balans": 200,
+    "status": "active"
+  },
+  {
+    "id": 3,
+    "surname": "Иванов",
+    "name": "Иван",
+    "patronymic": "Иванович",
+    "balans": 200,
+    "status": "active"
+  },
+  {
+    "id": 4,
+    "surname": "Иванов",
+    "name": "Иван",
+    "patronymic": "Иванович",
+    "balans": 200,
+    "status": "active"
+  }
+]
