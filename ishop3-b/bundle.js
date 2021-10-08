@@ -30598,6 +30598,15 @@ function ProductList(props) {
     setNewproduct({});
   }
 
+  function Delete(productid) {
+    var prod = stproduct.filter(function (val) {
+      return val.id != productid;
+    });
+    setEditid(null);
+    setSelectid(null);
+    setProduct(prod);
+  }
+
   function Editfield(field, e) {
     debugger;
     e.stopPropagation();
@@ -30700,7 +30709,8 @@ function ProductList(props) {
           )
         ),
         stproduct.map(function (el, index) {
-          return _react2.default.createElement(_ProductRow2.default, _extends({}, el, { key: el.id, select: index === selectid, id: el.id, editid: editid, stproduct: stproduct, newproduct: newproduct, selectid: selectid, index: index, setProduct: setProduct, setEditid: setEditid, setSelectid: setSelectid, setfildError: setfildError, setNew: setNew }));
+          return _react2.default.createElement(_ProductRow2.default, _extends({}, el, { key: el.id, select: index === selectid, id: el.id, editid: editid, newproduct: newproduct, selectid: selectid, index: index,
+            setProduct: setProduct, setEditid: setEditid, setSelectid: setSelectid, setfildError: setfildError, setNew: setNew, fbDelete: Delete }));
         })
       )
     ),
@@ -30793,15 +30803,10 @@ function ProductRow(props) {
     }
     function Delete(productid, e) {
         e.stopPropagation();
-        props.setEditid(null);
         debugger;
         var isDelete = window.confirm("Вы действительно хотите удалить?");
         if (isDelete) {
-            var prod = props.stproduct.filter(function (val) {
-                return val.id != productid;
-            });
-
-            props.setProduct(prod);
+            props.fbDelete(productid);
         }
     }
     function Selected(productid, e) {

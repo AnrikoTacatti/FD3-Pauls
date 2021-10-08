@@ -66,11 +66,12 @@ export default function ProductList(props) {
   }
 
   function Delete(productid) {
-    let prod = props.stproduct.filter((val) => {
+    let prod = stproduct.filter((val) => {
       return val.id != productid
     });
-    setProduct(prod);
+    setEditid(null);
     setSelectid(null);
+    setProduct(prod);
   }
 
   function Editfield(field, e) {

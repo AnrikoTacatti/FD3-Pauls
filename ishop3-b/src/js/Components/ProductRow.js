@@ -13,7 +13,6 @@ export default function ProductRow(props) {
     }
     function Delete(productid, e) {
         e.stopPropagation();
-        props.setEditid(null);
         debugger;
         let isDelete = window.confirm("Вы действительно хотите удалить?");
         if (isDelete) {
