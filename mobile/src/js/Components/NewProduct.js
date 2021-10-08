@@ -1,18 +1,11 @@
 
 import React from 'react';
 import '../css/style.css';
-/*
-class NewProductEl extends React.Component
+import { voteEvents } from '../events';
 
-constructor(props) {
-    super(props);
-}*/
 export default function NewProductEl(props) {
 
-
-
     let inputNameRef = null;
-    let InputPiceRef = null;
     let InputSurnameRef = null;
     let InputPatronymicRef = null;
     let InputBalansRef = null;
@@ -35,46 +28,25 @@ export default function NewProductEl(props) {
     }
 
 
-    function NewProduct(e) {
-        debugger;
-        if (inputNameRef) {
-            props.fbEditfield("name", inputNameRef.value);
-        }
-        if (InputBalansRef) {
-            props.fbEditfield("balans", InputBalansRef.value);
-        }
+    function NewClient(e) {
 
-        e.stopPropagation();
-        let product = { ...props.newproduct };
+        let newproduct = {};
         let reqired = true;
         let objerror = {};
 
-        Object.keys(props.filderror).forEach(function (key) {
-            if (props.filderror[key] !== false) {
-                reqired = false;
-                objerror[key] = true;
-            }
-        });
+        newproduct.id = props.newproductid;
+        newproduct.name = inputNameRef.value;
+        newproduct.surname = InputSurnameRef.value;
+        newproduct.patronymic = InputPatronymicRef.value;
+        newproduct.balans = InputBalansRef.value;
+        newproduct.status = InputStatusRef.value;
 
-        if (!reqired) {
-            if (!product.id) product.id = props.newproductid;
-            props.setProduct((prevState) => {
-                debugger;
-                let newprevState = [...prevState];
-                newprevState[newprevState.length] = product;
-                return prevState = newprevState;
-            });
-            props.newproduct = {};
-            props.setSelectid(props.newproductnumber);
 
-        }
-        else {
-            props.setfildError((prevState) => {
-                debugger;
-                let newprevState = { ...props.filderror, ...objerror };
-                return prevState = newprevState;
-            });
-        }
+
+        voteEvents.emit('EsetProduct', newproduct);
+
+
+
     }
 
     debugger;
@@ -87,7 +59,7 @@ export default function NewProductEl(props) {
             <div><label> balans </label> <input type="text" key={props.newproductnumber} ref={setInputBalansRef} /> </div>
             <div><label> status </label> <input type="text" key={props.newproductnumber} ref={setInputStatusRef} /> </div>
             <div>
-                <input type="button" value="New Product" onClick={NewProduct} />
+                <input type="button" value="New Client" onClick={NewClient} />
                 <input type="button" value="Censel" onClick={props.fbCensel} />
             </div>
 

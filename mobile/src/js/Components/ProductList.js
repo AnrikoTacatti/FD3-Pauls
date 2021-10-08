@@ -1,10 +1,9 @@
-
 import React from 'react';
 import ProductRow from './ProductRow';
 import EditProductEl from './EditProduct';
 import NewProductEl from './NewProduct';
 import InfoProductEl from './InfoProduct';
-
+import { voteEvents } from '../events';
 /*
 
 /*
@@ -39,162 +38,152 @@ render() {
 }*/
 
 
+export default class ProductList extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      stproduct: props.product,
+      selectid: null,
+      editid: null,
+      newproduct: {},
+      filderror: { name: null, balans: null },
+      newb: null
+    }
 
-
-
-export default function ProductList(props) {
-  const [stproduct, setProduct] = React.useState(props.product);
-  const [selectid, setSelectid] = React.useState(null);
-  const [editid, setEditid] = React.useState(null);
-  /*const [newproduct, setNewproduct] = React.useState({});*/
-  const [filderror, setfildError] = React.useState({ name: null, price: null });
-  const [newb, setNew] = React.useState(null);
-  let newproduct = {};
-  function setNewproduct(val) {
-    newproduct = val;
+    this.New = this.New.bind(this);
+    this.Censel = this.Censel.bind(this);
+    this.abSort = this.Delete.bind(this);
+    this.EFsetProduct = this.EFsetProduct.bind(this);
+    this.EFsetProduct = this.EFsetProduct.bind(this);
+    this.setProduct = this.setProduct.bind(this);
+    this.setEditid = this.setEditid.bind(this);
+    this.setSelectid = this.setSelectid.bind(this);
+    this.setfildError = this.setfildError.bind(this);
+    this.setNewproduct = this.setNewproduct.bind(this);
+    this.setNew = this.setNew.bind(this);
 
   }
-  function New(e) {
+
+  setProduct(data) {
+    this.setState({ stproduct: data });
+  }
+  setEditid(data) {
+    this.setState({ editid: data });
+  }
+  setSelectid(data) {
+    this.setState({ selectid: data });
+  }
+  setfildError(data) {
+    this.setState({ filderror: data });
+  }
+  setNewproduct(data) {
+    this.setState({ newproduct: data });
+  }
+  setNew(data) {
+    this.setState({ newb: data });
+  }
+
+
+
+
+  New(e) {
     debugger;
     e.stopPropagation();
-    setSelectid(null);
-    setEditid(null);
-    setNew(true);
-    setfildError({ name: null, price: null });
+    this.setState({ selectid: null });
+    this.setState({ editid: null });
+    this.setState({ newb: true });
+    this.setState({ filderror: { name: null, balans: null } });
   }
 
-  function Censel() {
-    setEditid(null);
-    setNew(null);
-    setNewproduct({});
+  Censel() {
+    setState({ editid: null });
+    setState({ newb: null });
+    /*setNewproduct({});*/
   }
 
-  function Delete(productid) {
-    let prod = props.stproduct.filter((val) => {
-      return val.id != productid
+  Delete(productid) {
+    let prod = this.props.stproduct.filter((val) => {
+      return val.id != this.productid
     });
     props.setProduct(prod);
   }
 
-  function Editfield(field, val, e) {
-    debugger;
-    var fieldval;
-    if (e) {
-      e.stopPropagation();
-      fieldval = e.targe.value
-    }
-    if (val) fieldval = val;
-
-
-    if (fieldval) {
-
-      switch (field) {
-        case "name":
-          var str = fieldval;
-          var patt = new RegExp(/^\D+$/);
-          var res = patt.test(str);
-          break;
-        case "balans":
-          var str = fieldval;
-          var patt = new RegExp(/^[0-9]+$/);
-          var res = patt.test(str);
-          break;
-        case "quality":
-          var str = fieldval;
-          var patt = new RegExp(/^[0-9]+$/);
-          var res = patt.test(str);
-          break;
-      }
-      if (res) {
-
-        let newprevState = { ...newproduct };
-        newprevState[field] = fieldval;
-        newproduct = newprevState;
-
-        setfildError((prevState) => {
-          debugger;
-          let newprevState = { ...filderror };
-          newprevState[field] = false;
-          return prevState = newprevState;
-        });
-      }
-      else {
-        setfildError((prevState) => {
-          debugger;
-          let newprevState = { ...filderror };
-          newprevState[field] = true;
-          return prevState = newprevState;
-        });
-      }
-    }
-    else {
-      setfildError((prevState) => {
-        debugger;
-        let newprevState = { ...filderror };
-        newprevState[field] = true;
-        return prevState = newprevState;
-      });
-    }
+  EFsetProduct(newproduct) {
+    this.setState((prevState) => {
+      let newprevState = [...prevState.stproduct];
+      newprevState[newprevState.length] = newproduct;
+      return { stproduct: newprevState }
+    });
   }
 
 
+  componentDidMount = () => {
+    voteEvents.addListener('EsetProduct', this.EFsetProduct);
+  };
 
-  return (
-
-    <React.Fragment>
-      <input type="button" value="Velcom" onClick={New} />
-      <input type="button" value="MTS" onClick={New} />
-      <table border="0" width="100%" cellPadding="5">
-        <caption>{props.name}</caption>
-        <tbody>
-          <tr>
-            <th><input type="button" value="Все" onClick={New} />
-              <input type="button" value="Активные" onClick={New} />
-              <input type="button" value="Заблокированые" onClick={New} />
-            </th>
-          </tr>
-          <tr>
-            <th>{props.colname.surname}</th>
-            <th>{props.colname.name}</th>
-            <th>{props.colname.patronymic}</th>
-            <th>{props.colname.balans}</th>
-            <th>{props.colname.status}</th>
-            <th>редактировать</th>
-            <th>удалить</th>
-          </tr>
-          {
+  componentWillUnmount = () => {
+    voteEvents.removeListener('EsetProduct', this.EFsetProduct);
+  };
 
 
-            stproduct.map(function (el, index) {
-              return <ProductRow {...el} key={el.id} select={index === selectid} id={el.id} editid={editid} newproduct={newproduct} selectid={selectid} index={index}
-                setProduct={setProduct} setEditid={setEditid} setSelectid={setSelectid} setfildError={setfildError} setNew={setNew} fbDelete={Delete} />;
-            })
-          }
-        </tbody>
-      </table>
-      <br />
-      <input type="button" value="New Product" onClick={New} disabled={Object.keys(newproduct).length > 0} />
 
-      {console.log("id---" + editid)}
-      {
+  render() {
+    return (
+      <React.Fragment>
+        <input type="button" value="Velcom" onClick={this.New} />
+        <input type="button" value="MTS" onClick={this.New} />
+        <table border="0" width="100%" cellPadding="5">
+          <caption>{this.props.name}</caption>
+          <tbody>
+            <tr>
+              <th><input type="button" value="Все" onClick={this.New} />
+                <input type="button" value="Активные" onClick={this.New} />
+                <input type="button" value="Заблокированые" onClick={this.New} />
+              </th>
+            </tr>
+            <tr>
+              <th>{this.props.colname.surname}</th>
+              <th>{this.props.colname.name}</th>
+              <th>{this.props.colname.patronymic}</th>
+              <th>{this.props.colname.balans}</th>
+              <th>{this.props.colname.status}</th>
+              <th>редактировать</th>
+              <th>удалить</th>
+            </tr>
+            {
 
-        editid !== null && selectid === null &&
-        <EditProductEl key={editid} editid={editid} stproductedit={stproduct[editid]} filderror={filderror} newproduct={newproduct}
 
-          setProduct={setProduct} setEditid={setEditid} setfildError={setfildError} setNewproduct={setNewproduct} fbCensel={Censel} fbEditfield={Editfield} />
-      }
-      {
-        newb === true && selectid === null &&
-        <NewProductEl key={editid} editid={editid} filderror={filderror} newproduct={newproduct}
-          newproductid={stproduct.reduce((acc, curr) => acc.id > curr.id ? acc : curr).id + 1} newproductnumber={stproduct.length}
-          setProduct={setProduct} setEditid={setEditid} setSelectid={setSelectid} setfildError={setfildError} fbCensel={Censel} fbEditfield={Editfield} />
-      }
-      {
-        selectid !== null &&
-        <InfoProductEl key={editid} editid={editid} product={stproduct[selectid]} selectid={selectid} />
-      }
-    </React.Fragment >
-  );
+              this.state.stproduct.map((el, index) => {
+                return <ProductRow {...el} key={el.id} select={index === this.state.selectid} id={el.id} editid={this.state.editid} newproduct={this.state.newproduct} selectid={this.state.selectid} index={index}
+                  setProduct={this.setProduct} setEditid={this.setEditid} setSelectid={this.setSelectid} setfildError={this.setfildError} setNew={this.setNew} fbDelete={this.Delete} />;
+              })
+            }
+          </tbody>
+        </table>
+        <br />
+        <input type="button" value="New Product" onClick={this.New} disabled={Object.keys(this.state.newproduct).length > 0} />
+
+        {console.log("id---" + this.state.editid)}
+        {
+
+          this.state.editid !== null && this.state.selectid === null &&
+          <EditProductEl key={this.state.editid} editid={this.state.editid} stproductedit={this.state.stproduct[this.state.editid]} filderror={this.state.filderror} newproduct={this.state.newproduct}
+
+            setProduct={this.setProduct} setEditid={this.setEditid} setfildError={this.setfildError} setNewproduct={this.setNewproduct} fbCensel={this.Censel} />
+        }
+        {
+          this.state.newb === true && this.state.selectid === null &&
+          <NewProductEl key={this.state.editid} editid={this.state.editid} filderror={this.state.filderror} newproduct={this.state.newproduct}
+            newproductid={this.state.stproduct.reduce((acc, curr) => acc.id > curr.id ? acc : curr).id + 1} newproductnumber={this.state.stproduct.length}
+            setProduct={this.setProduct} setEditid={this.setEditid} setSelectid={this.setSelectid} setfildError={this.setfildError} fbCensel={this.Censel} />
+        }
+        {
+          this.state.selectid !== null &&
+          <InfoProductEl key={this.editid} editid={this.editid} product={this.stproduct[selectid]} selectid={this.selectid} />
+        }
+      </React.Fragment >
+    );
+  }
 };
 
 

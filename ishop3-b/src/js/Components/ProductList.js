@@ -69,7 +69,8 @@ export default function ProductList(props) {
     let prod = props.stproduct.filter((val) => {
       return val.id != productid
     });
-    props.setProduct(prod);
+    setProduct(prod);
+    setSelectid(null);
   }
 
   function Editfield(field, e) {
