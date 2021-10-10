@@ -23,3 +23,11 @@ table {
 table, td, th {
     border: 1px solid #dee2e6;
 }
+
+td.active{
+    background-color: #28a745;
+}
+
+td.blocked{
+    background-color: #dc3545;
+}

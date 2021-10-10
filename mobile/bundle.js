@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -71,9 +71,9 @@
 /* WEBPACK VAR INJECTION */(function(process) {
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(6);
-} else {
   module.exports = __webpack_require__(7);
+} else {
+  module.exports = __webpack_require__(8);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
@@ -270,6 +270,12 @@ process.umask = function() { return 0; };
 
 /***/ }),
 /* 2 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -366,28 +372,44 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 
 /***/ }),
-/* 3 */
-/***/ (function(module, exports) {
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.voteEvents = undefined;
+
+var _events = __webpack_require__(20);
+
+var voteEvents = new _events.EventEmitter();
+// в потоке voteEvents будут все события, связанные с голосованием
+// событие "EAnswerClicked" - кликнут вариант ответа, его сэмиттирует VotesAnswer и примет VotesBlock
+// событие "EFreeAnswerTextChanged" - изменён текст свободного ответа, его сэмиттирует VotesAnswer и примет VotesBlock
+// лучше работать не с текстовыми литералами, а объявить переменные с соответствующими значениями
+
+exports.voteEvents = voteEvents;
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(10);
-} else {
   module.exports = __webpack_require__(11);
+} else {
+  module.exports = __webpack_require__(12);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -398,32 +420,20 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(9);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _ProductList = __webpack_require__(16);
+var _TabsCompanys = __webpack_require__(17);
 
-var _ProductList2 = _interopRequireDefault(_ProductList);
+var _TabsCompanys2 = _interopRequireDefault(_TabsCompanys);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var tableName = "Таблица продуктов"; /* для работы с веб страницами */ // модуль React для работы с веб-страницами  import {render} from 'react-dom';
-
-
-var tableColName = {
-    name: "название",
-    price: "цена",
-    src: "фотография",
-    quality: "кол-во ед"
-};
-
-var product = __webpack_require__(21);
-
-_reactDom2.default.render(_react2.default.createElement(_ProductList2.default, { name: tableName, colname: tableColName, product: product }), document.getElementById('root'));
+_reactDom2.default.render(_react2.default.createElement(_TabsCompanys2.default, null), document.getElementById('root')); /* для работы с веб страницами */ // модуль React для работы с веб-страницами  import {render} from 'react-dom';
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -435,7 +445,7 @@ _reactDom2.default.render(_react2.default.createElement(_ProductList2.default, {
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-var l=__webpack_require__(2),n=60103,p=60106;exports.Fragment=60107;exports.StrictMode=60108;exports.Profiler=60114;var q=60109,r=60110,t=60112;exports.Suspense=60113;var u=60115,v=60116;
+var l=__webpack_require__(3),n=60103,p=60106;exports.Fragment=60107;exports.StrictMode=60108;exports.Profiler=60114;var q=60109,r=60110,t=60112;exports.Suspense=60113;var u=60115,v=60116;
 if("function"===typeof Symbol&&Symbol.for){var w=Symbol.for;n=w("react.element");p=w("react.portal");exports.Fragment=w("react.fragment");exports.StrictMode=w("react.strict_mode");exports.Profiler=w("react.profiler");q=w("react.provider");r=w("react.context");t=w("react.forward_ref");exports.Suspense=w("react.suspense");u=w("react.memo");v=w("react.lazy")}var x="function"===typeof Symbol&&Symbol.iterator;
 function y(a){if(null===a||"object"!==typeof a)return null;a=x&&a[x]||a["@@iterator"];return"function"===typeof a?a:null}function z(a){for(var b="https://reactjs.org/docs/error-decoder.html?invariant="+a,c=1;c<arguments.length;c++)b+="&args[]="+encodeURIComponent(arguments[c]);return"Minified React error #"+a+"; visit "+b+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}
 var A={isMounted:function(){return!1},enqueueForceUpdate:function(){},enqueueReplaceState:function(){},enqueueSetState:function(){}},B={};function C(a,b,c){this.props=a;this.context=b;this.refs=B;this.updater=c||A}C.prototype.isReactComponent={};C.prototype.setState=function(a,b){if("object"!==typeof a&&"function"!==typeof a&&null!=a)throw Error(z(85));this.updater.enqueueSetState(this,a,b,"setState")};C.prototype.forceUpdate=function(a){this.updater.enqueueForceUpdate(this,a,"forceUpdate")};
@@ -453,7 +463,7 @@ exports.useLayoutEffect=function(a,b){return S().useLayoutEffect(a,b)};exports.u
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -472,7 +482,7 @@ if (process.env.NODE_ENV !== "production") {
   (function() {
 'use strict';
 
-var _assign = __webpack_require__(2);
+var _assign = __webpack_require__(3);
 
 // TODO: this is special because it gets imported during build.
 var ReactVersion = '17.0.2';
@@ -2794,7 +2804,7 @@ exports.version = ReactVersion;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2832,15 +2842,15 @@ if (process.env.NODE_ENV === 'production') {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
-  module.exports = __webpack_require__(9);
+  module.exports = __webpack_require__(10);
 } else {
-  module.exports = __webpack_require__(12);
+  module.exports = __webpack_require__(13);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2855,7 +2865,7 @@ if (process.env.NODE_ENV === 'production') {
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(0),m=__webpack_require__(2),r=__webpack_require__(4);function y(a){for(var b="https://reactjs.org/docs/error-decoder.html?invariant="+a,c=1;c<arguments.length;c++)b+="&args[]="+encodeURIComponent(arguments[c]);return"Minified React error #"+a+"; visit "+b+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}if(!aa)throw Error(y(227));var ba=new Set,ca={};function da(a,b){ea(a,b);ea(a+"Capture",b)}
+var aa=__webpack_require__(0),m=__webpack_require__(3),r=__webpack_require__(5);function y(a){for(var b="https://reactjs.org/docs/error-decoder.html?invariant="+a,c=1;c<arguments.length;c++)b+="&args[]="+encodeURIComponent(arguments[c]);return"Minified React error #"+a+"; visit "+b+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}if(!aa)throw Error(y(227));var ba=new Set,ca={};function da(a,b){ea(a,b);ea(a+"Capture",b)}
 function ea(a,b){ca[a]=b;for(a=0;a<b.length;a++)ba.add(b[a])}
 var fa=!("undefined"===typeof window||"undefined"===typeof window.document||"undefined"===typeof window.document.createElement),ha=/^[:A-Z_a-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD][:A-Z_a-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD\-.0-9\u00B7\u0300-\u036F\u203F-\u2040]*$/,ia=Object.prototype.hasOwnProperty,
 ja={},ka={};function la(a){if(ia.call(ka,a))return!0;if(ia.call(ja,a))return!1;if(ha.test(a))return ka[a]=!0;ja[a]=!0;return!1}function ma(a,b,c,d){if(null!==c&&0===c.type)return!1;switch(typeof b){case "function":case "symbol":return!0;case "boolean":if(d)return!1;if(null!==c)return!c.acceptsBooleans;a=a.toLowerCase().slice(0,5);return"data-"!==a&&"aria-"!==a;default:return!1}}
@@ -3144,7 +3154,7 @@ exports.unstable_renderSubtreeIntoContainer=function(a,b,c,d){if(!rk(c))throw Er
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3171,7 +3181,7 @@ exports.unstable_wrapCallback=function(a){var b=P;return function(){var c=P;P=b;
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3825,7 +3835,7 @@ exports.unstable_wrapCallback = unstable_wrapCallback;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3845,9 +3855,9 @@ if (process.env.NODE_ENV !== "production") {
 'use strict';
 
 var React = __webpack_require__(0);
-var _assign = __webpack_require__(2);
-var Scheduler = __webpack_require__(4);
-var tracing = __webpack_require__(13);
+var _assign = __webpack_require__(3);
+var Scheduler = __webpack_require__(5);
+var tracing = __webpack_require__(14);
 
 var ReactSharedInternals = React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
 
@@ -30095,22 +30105,22 @@ exports.version = ReactVersion;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(14);
-} else {
   module.exports = __webpack_require__(15);
+} else {
+  module.exports = __webpack_require__(16);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30126,7 +30136,7 @@ var b=0;exports.__interactionsRef=null;exports.__subscriberRef=null;exports.unst
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30481,7 +30491,104 @@ exports.unstable_wrap = unstable_wrap;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 16 */
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _ClientsList = __webpack_require__(18);
+
+var _ClientsList2 = _interopRequireDefault(_ClientsList);
+
+__webpack_require__(2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var mtsClients = __webpack_require__(24);
+var veclonClients = __webpack_require__(25);
+
+var tableName = "Таблица ";
+var tableColName = {
+    surname: "Фамилия",
+    name: "Имя",
+    patronymic: "Отчество",
+    balans: "Баланс",
+    status: "Статус"
+};
+
+var TabsCompanys = function (_React$PureComponent) {
+    _inherits(TabsCompanys, _React$PureComponent);
+
+    function TabsCompanys(props) {
+        _classCallCheck(this, TabsCompanys);
+
+        var _this = _possibleConstructorReturn(this, (TabsCompanys.__proto__ || Object.getPrototypeOf(TabsCompanys)).call(this, props));
+
+        _this.state = {
+            company: veclonClients,
+            companykey: "velcom"
+
+        };
+        _this.setCompany = _this.setCompany.bind(_this);
+        return _this;
+    }
+
+    _createClass(TabsCompanys, [{
+        key: 'setCompany',
+        value: function setCompany(data) {
+            debugger;
+            switch (data) {
+                case "velcom":
+                    this.setState({ company: veclonClients });
+                    this.setState({ companykey: data });
+                    break;
+                case "mts":
+                    this.setState({ company: mtsClients });
+                    this.setState({ companykey: data });
+                    break;
+                default:
+                    console.log("Sorry, we are out of " + data + ".");
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            console.log("render TabsCompanys");
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement('input', { type: 'button', value: 'Velcom', onClick: this.setCompany.bind(null, "velcom") }),
+                _react2.default.createElement('input', { type: 'button', value: 'MTS', onClick: this.setCompany.bind(null, "mts") }),
+                _react2.default.createElement(_ClientsList2.default, { key: this.state.companykey, name: tableName, colname: tableColName, clients: this.state.company })
+            );
+        }
+    }]);
+
+    return TabsCompanys;
+}(_react2.default.PureComponent);
+
+exports.default = TabsCompanys;
+;
+
+/***/ }),
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30493,31 +30600,39 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-exports.default = ProductList;
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _ProductRow = __webpack_require__(17);
+var _ClientRow = __webpack_require__(19);
 
-var _ProductRow2 = _interopRequireDefault(_ProductRow);
+var _ClientRow2 = _interopRequireDefault(_ClientRow);
 
-var _EditProduct = __webpack_require__(18);
+var _EditClient = __webpack_require__(21);
 
-var _EditProduct2 = _interopRequireDefault(_EditProduct);
+var _EditClient2 = _interopRequireDefault(_EditClient);
 
-var _NewProduct = __webpack_require__(19);
+var _NewClient = __webpack_require__(22);
 
-var _NewProduct2 = _interopRequireDefault(_NewProduct);
+var _NewClient2 = _interopRequireDefault(_NewClient);
 
-var _InfoProduct = __webpack_require__(20);
+var _InfoClient = __webpack_require__(23);
 
-var _InfoProduct2 = _interopRequireDefault(_InfoProduct);
+var _InfoClient2 = _interopRequireDefault(_InfoClient);
+
+var _events = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /*
 
@@ -30552,172 +30667,236 @@ render() {
 
 }*/
 
-function ProductList(props) {
-  var _React$useState = _react2.default.useState(props.product),
-      _React$useState2 = _slicedToArray(_React$useState, 2),
-      stproduct = _React$useState2[0],
-      setProduct = _React$useState2[1];
+var ProductList = function (_React$PureComponent) {
+  _inherits(ProductList, _React$PureComponent);
 
-  var _React$useState3 = _react2.default.useState(null),
-      _React$useState4 = _slicedToArray(_React$useState3, 2),
-      selectid = _React$useState4[0],
-      setSelectid = _React$useState4[1];
+  function ProductList(props) {
+    _classCallCheck(this, ProductList);
 
-  var _React$useState5 = _react2.default.useState(null),
-      _React$useState6 = _slicedToArray(_React$useState5, 2),
-      editid = _React$useState6[0],
-      setEditid = _React$useState6[1];
+    var _this = _possibleConstructorReturn(this, (ProductList.__proto__ || Object.getPrototypeOf(ProductList)).call(this, props));
 
-  var _React$useState7 = _react2.default.useState({}),
-      _React$useState8 = _slicedToArray(_React$useState7, 2),
-      newproduct = _React$useState8[0],
-      setNewproduct = _React$useState8[1];
+    _this.componentDidMount = function () {
+      _events.voteEvents.addListener('EsetNewProduct', _this.setNewClients);
+      _events.voteEvents.addListener('EsetEditProduct', _this.setEditClients);
+      _events.voteEvents.addListener('EsetEditid', _this.setEditid);
+      _events.voteEvents.addListener('EDelete', _this.Delete);
+      _events.voteEvents.addListener('ECensel', _this.Censel);
+      _events.voteEvents.addListener('EsetSelectid', _this.setSelectid);
+    };
 
-  var _React$useState9 = _react2.default.useState({ name: null, price: null, src: null, quality: null }),
-      _React$useState10 = _slicedToArray(_React$useState9, 2),
-      filderror = _React$useState10[0],
-      setfildError = _React$useState10[1];
+    _this.componentWillUnmount = function () {
+      _events.voteEvents.removeListener('EsetNewProduct', _this.setNewClients);
+      _events.voteEvents.removeListener('EsetEditProduct', _this.setEditClients);
+      _events.voteEvents.removeListener('EsetEditid', _this.setEditid);
+      _events.voteEvents.removeListener('EDelete', _this.Delete);
+      _events.voteEvents.removeListener('ECensel', _this.Censel);
+      _events.voteEvents.removeListener('EsetSelectid', _this.setSelectid);
+    };
 
-  var _React$useState11 = _react2.default.useState(null),
-      _React$useState12 = _slicedToArray(_React$useState11, 2),
-      newb = _React$useState12[0],
-      setNew = _React$useState12[1];
+    _this.state = {
+      strclients: props.clients,
+      selectid: null,
+      editid: null,
+      newproduct: {},
+      filderror: { name: null, balans: null },
+      newForm: null,
+      clientsfilter: true
+    };
 
-  function New(e) {
-    debugger;
-    e.stopPropagation();
-    setSelectid(null);
-    setEditid(null);
-    setNew(true);
-    setfildError({ name: null, price: null, src: null, quality: null });
+    _this.New = _this.New.bind(_this);
+    _this.Censel = _this.Censel.bind(_this);
+    _this.Delete = _this.Delete.bind(_this);
+    _this.abSort = _this.Delete.bind(_this);
+    _this.setNewClients = _this.setNewClients.bind(_this);
+    _this.setEditClients = _this.setEditClients.bind(_this);
+    _this.setEditid = _this.setEditid.bind(_this);
+    _this.setSelectid = _this.setSelectid.bind(_this);
+    _this.setfildError = _this.setfildError.bind(_this);
+    _this.setNew = _this.setNew.bind(_this);
+    _this.clientsFilter = _this.clientsFilter.bind(_this);
+    return _this;
   }
 
-  function Censel() {
-    setEditid(null);
-    setNew(null);
-    setNewproduct({});
-  }
-
-  function Editfield(field, e) {
-    debugger;
-    e.stopPropagation();
-    if (e.target.value) {
-
-      switch (field) {
-        case "name":
-          var str = e.target.value;
-          var patt = new RegExp(/^\D+$/);
-          var res = patt.test(str);
-          break;
-        case "price":
-          var str = e.target.value;
-          var patt = new RegExp(/^[0-9]+$/);
-          var res = patt.test(str);
-          break;
-
-        case "src":
-          var str = e.target.value;
-          var patt = new RegExp("^(https?)://", "i");
-          var res = patt.test(str);
-          break;
-        case "quality":
-          var str = e.target.value;
-          var patt = new RegExp(/^[0-9]+$/);
-          var res = patt.test(str);
-          break;
-      }
-      if (res) {
-        setNewproduct(function (prevState) {
-          var newprevState = _extends({}, prevState);
-          newprevState[field] = e.target.value;
-          return prevState = newprevState;
-        });
-        setfildError(function (prevState) {
-          debugger;
-          var newprevState = _extends({}, filderror);
-          newprevState[field] = false;
-          return prevState = newprevState;
-        });
-      } else {
-        setfildError(function (prevState) {
-          debugger;
-          var newprevState = _extends({}, filderror);
-          newprevState[field] = true;
-          return prevState = newprevState;
-        });
-      }
-    } else {
-      setfildError(function (prevState) {
-        debugger;
-        var newprevState = _extends({}, filderror);
-        newprevState[field] = true;
-        return prevState = newprevState;
+  _createClass(ProductList, [{
+    key: 'setEditClients',
+    value: function setEditClients(data, index) {
+      this.setState(function (prevState) {
+        var newprevState = [].concat(_toConsumableArray(prevState.strclients));
+        newprevState[index] = data;
+        return { strclients: newprevState };
       });
+      this.setState({ newForm: true });
+      this.setState({ editid: null });
     }
-  }
+  }, {
+    key: 'setEditid',
+    value: function setEditid(data) {
+      this.setState({ editid: data });
+      this.setState({ selectid: null });
+      this.setState({ newForm: null });
+    }
+  }, {
+    key: 'setSelectid',
+    value: function setSelectid(data) {
+      this.setState({ selectid: data });
+      this.setState({ editid: null });
+      this.setState({ newForm: false });
+    }
+  }, {
+    key: 'setfildError',
+    value: function setfildError(data) {
+      this.setState({ filderror: data });
+    }
+  }, {
+    key: 'setNewproduct',
+    value: function setNewproduct(data) {
+      this.setState({ newproduct: data });
+    }
+  }, {
+    key: 'setNew',
+    value: function setNew(data) {
+      this.setState({ newForm: data });
+    }
+  }, {
+    key: 'clientsFilter',
+    value: function clientsFilter(data) {
+      this.setState({ clientsfilter: data });
+    }
+  }, {
+    key: 'New',
+    value: function New(e) {
+      e.stopPropagation();
+      this.setState({ newForm: true });
+      this.setState({ selectid: null });
+      this.setState({ editid: null });
+      this.setState({ filderror: { name: null, balans: null } });
+    }
+  }, {
+    key: 'Censel',
+    value: function Censel() {
+      this.setState({ editid: null });
+      this.setState({ newForm: null });
+      this.setState({ newproduct: {} });
+    }
+  }, {
+    key: 'Delete',
+    value: function Delete(productid) {
+      var prod = this.state.strclients.filter(function (val) {
+        return val.id != productid;
+      });
+      this.setState({ strclients: prod });
+      this.setState({ editid: null });
+    }
+  }, {
+    key: 'setNewClients',
+    value: function setNewClients(newproduct) {
+      this.setState(function (prevState) {
+        var newprevState = [].concat(_toConsumableArray(prevState.strclients));
+        newprevState[newprevState.length] = newproduct;
+        return { strclients: newprevState };
+      });
+      this.setState({ newForm: null });
+      this.setState({ selectid: newproduct.id });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
 
-  return _react2.default.createElement(
-    _react2.default.Fragment,
-    null,
-    _react2.default.createElement(
-      'table',
-      { border: '1', width: '100%', cellPadding: '5' },
-      _react2.default.createElement(
-        'caption',
-        null,
-        props.name
-      ),
-      _react2.default.createElement(
-        'tbody',
+      console.log("render ProductList");
+      return _react2.default.createElement(
+        _react2.default.Fragment,
         null,
         _react2.default.createElement(
-          'tr',
-          null,
+          'table',
+          { border: '0', width: '100%', cellPadding: '5' },
           _react2.default.createElement(
-            'th',
+            'caption',
             null,
-            props.colname.name
+            this.props.name
           ),
           _react2.default.createElement(
-            'th',
+            'tbody',
             null,
-            props.colname.price
-          ),
-          _react2.default.createElement(
-            'th',
-            null,
-            props.colname.src
-          ),
-          _react2.default.createElement(
-            'th',
-            null,
-            props.colname.quality
-          ),
-          _react2.default.createElement(
-            'th',
-            null,
-            '\u043A\u043E\u043D\u0442\u0440\u043E\u043B\u044C'
+            _react2.default.createElement(
+              'tr',
+              null,
+              _react2.default.createElement(
+                'th',
+                null,
+                _react2.default.createElement('input', { type: 'button', value: '\u0412\u0441\u0435', onClick: this.clientsFilter.bind(null, true) }),
+                _react2.default.createElement('input', { type: 'button', value: '\u0410\u043A\u0442\u0438\u0432\u043D\u044B\u0435', onClick: this.clientsFilter.bind(null, "active") }),
+                _react2.default.createElement('input', { type: 'button', value: '\u0417\u0430\u0431\u043B\u043E\u043A\u0438\u0440\u043E\u0432\u0430\u043D\u044B\u0435', onClick: this.clientsFilter.bind(null, "blocked") })
+              )
+            ),
+            _react2.default.createElement(
+              'tr',
+              null,
+              _react2.default.createElement(
+                'th',
+                null,
+                this.props.colname.surname
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                this.props.colname.name
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                this.props.colname.patronymic
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                this.props.colname.balans
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                this.props.colname.status
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                '\u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C'
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                '\u0443\u0434\u0430\u043B\u0438\u0442\u044C'
+              )
+            ),
+            this.state.strclients.map(function (el, index) {
+              debugger;
+              if (el.status === _this2.state.clientsfilter || _this2.state.clientsfilter === true) {
+                return _react2.default.createElement(_ClientRow2.default, _extends({}, el, { key: el.id, select: index === _this2.state.selectid, id: el.id, newproduct: _this2.state.newproduct, selectid: _this2.state.selectid, index: index
+                }));
+              }
+            })
           )
         ),
-        stproduct.map(function (el, index) {
-          return _react2.default.createElement(_ProductRow2.default, _extends({}, el, { key: el.id, select: index === selectid, id: el.id, editid: editid, stproduct: stproduct, newproduct: newproduct, selectid: selectid, index: index, setProduct: setProduct, setEditid: setEditid, setSelectid: setSelectid, setfildError: setfildError, setNew: setNew }));
-        })
-      )
-    ),
-    _react2.default.createElement('br', null),
-    _react2.default.createElement('input', { type: 'button', value: 'New Product', onClick: New, disabled: Object.keys(newproduct).length > 0 }),
-    console.log("id---" + editid),
-    editid !== null && selectid === null && _react2.default.createElement(_EditProduct2.default, { key: editid, editid: editid, stproductedit: stproduct[editid], filderror: filderror, newproduct: newproduct,
+        _react2.default.createElement('br', null),
+        _react2.default.createElement('input', { type: 'button', value: 'New Product', onClick: this.New, disabled: Object.keys(this.state.newproduct).length > 0 }),
+        console.log("id---" + this.state.editid),
+        this.state.editid !== null && this.state.selectid === null && _react2.default.createElement(_EditClient2.default, { key: this.state.editid, editid: this.state.editid, strclientsedit: this.state.strclients[this.state.editid], filderror: this.state.filderror, newproduct: this.state.newproduct
+        }),
+        this.state.newForm === true && this.state.selectid === null && _react2.default.createElement(_NewClient2.default, { key: this.state.editid, filderror: this.state.filderror, newproduct: this.state.newproduct,
+          newproductid: this.state.strclients.reduce(function (acc, curr) {
+            return acc.id > curr.id ? acc : curr;
+          }).id + 1, newproductnumber: this.state.strclients.length
+        }),
+        this.state.selectid !== null && _react2.default.createElement(_InfoClient2.default, { key: this.state.editid, product: this.state.strclients[this.state.selectid], selectid: this.state.selectid })
+      );
+    }
+  }]);
 
-      setProduct: setProduct, setEditid: setEditid, setfildError: setfildError, setNewproduct: setNewproduct, fbCensel: Censel, fbEditfield: Editfield }),
-    newb === true && selectid === null && _react2.default.createElement(_NewProduct2.default, { key: editid, editid: editid, filderror: filderror, newproduct: newproduct,
-      newproductid: stproduct.reduce(function (acc, curr) {
-        return acc.id > curr.id ? acc : curr;
-      }).id + 1, newproductnumber: stproduct.length,
-      setProduct: setProduct, setEditid: setEditid, setSelectid: setSelectid, setfildError: setfildError, setNewproduct: setNewproduct, fbCensel: Censel, fbEditfield: Editfield }),
-    selectid !== null && _react2.default.createElement(_InfoProduct2.default, { key: editid, editid: editid, product: stproduct[selectid], selectid: selectid })
-  );
-};
+  return ProductList;
+}(_react2.default.PureComponent);
+
+exports.default = ProductList;
+;
 
 /*Синтаксис модулей ES6*/
 
@@ -30762,217 +30941,6 @@ import имя from "путь/имямодуля";
 */
 
 /***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = ProductRow;
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-__webpack_require__(3);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function ProductRow(props) {
-
-    function Edit(index, e) {
-        debugger;
-        e.stopPropagation();
-        props.setSelectid(null);
-        props.setEditid(index);
-        props.setNew(null);
-        props.setfildError({ name: null, price: null, src: null, quality: null });
-    }
-    function Delete(productid, e) {
-        e.stopPropagation();
-        props.setEditid(null);
-        debugger;
-        var isDelete = window.confirm("Вы действительно хотите удалить?");
-        if (isDelete) {
-            var prod = props.stproduct.filter(function (val) {
-                return val.id != productid;
-            });
-
-            props.setProduct(prod);
-        }
-    }
-    function Selected(productid, e) {
-        debugger;
-        if (Object.keys(props.newproduct).length > 0) return false;
-        if (props.selectid === productid) {
-            props.setSelectid(null);
-        } else {
-            props.setSelectid(productid);
-        }
-    }
-
-    return _react2.default.createElement(
-        'tr',
-        { onClick: Selected.bind(null, props.index), className: props.select ? "select" : null },
-        _react2.default.createElement(
-            'td',
-            null,
-            props.name
-        ),
-        _react2.default.createElement(
-            'td',
-            null,
-            props.price
-        ),
-        _react2.default.createElement(
-            'td',
-            null,
-            _react2.default.createElement('img', { src: props.src, alt: props.name })
-        ),
-        _react2.default.createElement(
-            'td',
-            null,
-            props.quality
-        ),
-        _react2.default.createElement(
-            'td',
-            null,
-            _react2.default.createElement('input', { type: 'button', value: '\u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C', onClick: Edit.bind(null, props.index), disabled: Object.keys(props.newproduct).length > 0 && props.index != props.editid }),
-            _react2.default.createElement('input', { type: 'button', value: '\u0443\u0434\u0430\u043B\u0438\u0442\u044C', onClick: Delete.bind(null, props.id), disabled: Object.keys(props.newproduct).length > 0 })
-        )
-    );
-};
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-exports.default = EditProductEl;
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-__webpack_require__(3);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-function EditProductEl(props) {
-    function EditProduct(index, oldproduct, e) {
-        debugger;
-        e.stopPropagation();
-        var product = _extends({}, oldproduct, props.newproduct);
-        props.setProduct(function (prevState) {
-            debugger;
-            var newprevState = [].concat(_toConsumableArray(prevState));
-            newprevState[index] = product;
-            return prevState = newprevState;
-        });
-        props.setNewproduct({});
-        props.setEditid(null);
-    }
-
-    debugger;
-    return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-            'h1',
-            null,
-            'Edit Product '
-        ),
-        _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-                'label',
-                null,
-                'name '
-            ),
-            '   ',
-            _react2.default.createElement('input', { type: 'text', defaultValue: props.stproductedit.name, onBlur: props.fbEditfield.bind(null, "name"), key: props.editid }),
-            ' ',
-            props.filderror["name"] && _react2.default.createElement(
-                'p',
-                null,
-                ' Please, fill the field.Value must be a string.'
-            )
-        ),
-        _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-                'label',
-                null,
-                ' price '
-            ),
-            '  ',
-            _react2.default.createElement('input', { type: 'text', defaultValue: props.stproductedit.price, onBlur: props.fbEditfield.bind(null, "price"), key: props.editid }),
-            '  ',
-            props.filderror["price"] && _react2.default.createElement(
-                'p',
-                null,
-                ' Please, fill the field.Value must be a number.'
-            )
-        ),
-        _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-                'label',
-                null,
-                ' src   '
-            ),
-            '  ',
-            _react2.default.createElement('input', { type: 'text', defaultValue: props.stproductedit.src, onBlur: props.fbEditfield.bind(null, "src"), key: props.editid }),
-            ' ',
-            props.filderror["src"] && _react2.default.createElement(
-                'p',
-                null,
-                ' Please, fill the field.'
-            )
-        ),
-        _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-                'label',
-                null,
-                ' quality '
-            ),
-            ' ',
-            _react2.default.createElement('input', { type: 'text', defaultValue: props.stproductedit.quality, onBlur: props.fbEditfield.bind(null, "quality"), key: props.editid }),
-            ' ',
-            props.filderror["quality"] && _react2.default.createElement(
-                'p',
-                null,
-                ' Please, fill the field.Value must be a number.'
-            )
-        ),
-        _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement('input', { type: 'button', value: 'Edit Product', onClick: EditProduct.bind(null, props.editid, props.stproductedit), disabled: Object.values(props.filderror).indexOf(true) !== -1 }),
-            _react2.default.createElement('input', { type: 'button', value: 'Censel', onClick: props.fbCensel })
-        )
-    );
-};
-
-/***/ }),
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -30983,143 +30951,428 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-exports.default = NewProductEl;
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-__webpack_require__(3);
+__webpack_require__(2);
+
+var _events = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function NewProductEl(props) {
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function NewProduct(e) {
-        debugger;
-        e.stopPropagation();
-        var product = _extends({}, props.newproduct);
-        var reqired = true;
-        var objerror = {};
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-        Object.keys(props.filderror).forEach(function (key) {
-            if (props.filderror[key] !== false) {
-                reqired = false;
-                objerror[key] = true;
-            }
-        });
+var ProductRow = function (_React$PureComponent) {
+    _inherits(ProductRow, _React$PureComponent);
 
-        if (reqired) {
-            if (!product.id) product.id = props.newproductid;
-            props.setProduct(function (prevState) {
-                debugger;
-                var newprevState = [].concat(_toConsumableArray(prevState));
-                newprevState[newprevState.length] = product;
-                return prevState = newprevState;
-            });
-            props.setNewproduct({});
-            props.setSelectid(props.newproductnumber);
-        } else {
-            props.setfildError(function (prevState) {
-                debugger;
-                var newprevState = _extends({}, props.filderror, objerror);
-                return prevState = newprevState;
-            });
-        }
+    function ProductRow(props) {
+        _classCallCheck(this, ProductRow);
+
+        var _this = _possibleConstructorReturn(this, (ProductRow.__proto__ || Object.getPrototypeOf(ProductRow)).call(this, props));
+
+        _this.Edit = _this.Edit.bind(_this);
+        _this.Delete = _this.Delete.bind(_this);
+        _this.Selected = _this.Selected.bind(_this);
+        return _this;
     }
 
-    debugger;
-    return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-            'h1',
-            null,
-            'New Product'
-        ),
-        _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-                'label',
-                null,
-                'name '
-            ),
-            '   ',
-            _react2.default.createElement('input', { type: 'text', onBlur: props.fbEditfield.bind(null, "name"), key: props.newproductnumber }),
-            ' ',
-            props.filderror["name"] && _react2.default.createElement(
-                'p',
-                null,
-                ' Please, fill the field.Value must be a string.'
-            )
-        ),
-        _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-                'label',
-                null,
-                ' price '
-            ),
-            '  ',
-            _react2.default.createElement('input', { type: 'text', onBlur: props.fbEditfield.bind(null, "price"), key: props.newproductnumber }),
-            '  ',
-            props.filderror["price"] && _react2.default.createElement(
-                'p',
-                null,
-                ' Please, fill the field.Value must be a number.'
-            )
-        ),
-        _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-                'label',
-                null,
-                ' src   '
-            ),
-            '  ',
-            _react2.default.createElement('input', { type: 'text', onBlur: props.fbEditfield.bind(null, "src"), key: props.newproductnumber }),
-            ' ',
-            props.filderror["src"] && _react2.default.createElement(
-                'p',
-                null,
-                ' Please, fill the field.'
-            )
-        ),
-        _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-                'label',
-                null,
-                ' quality '
-            ),
-            ' ',
-            _react2.default.createElement('input', { type: 'text', onBlur: props.fbEditfield.bind(null, "quality"), key: props.newproductnumber }),
-            ' ',
-            props.filderror["quality"] && _react2.default.createElement(
-                'p',
-                null,
-                ' Please, fill the field.Value must be a number.'
-            )
-        ),
-        _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement('input', { type: 'button', value: 'New Product', onClick: NewProduct, disabled: Object.values(props.filderror).indexOf(true) !== -1 }),
-            _react2.default.createElement('input', { type: 'button', value: 'Censel', onClick: props.fbCensel })
-        )
-    );
-};
+    _createClass(ProductRow, [{
+        key: 'Edit',
+        value: function Edit(index, e) {
+            debugger;
+            e.stopPropagation();
+            _events.voteEvents.emit('EsetEditid', index);
+        }
+    }, {
+        key: 'Delete',
+        value: function Delete(productid, e) {
+            e.stopPropagation();
+            debugger;
+            var isDelete = window.confirm("Вы действительно хотите удалить?");
+            if (isDelete) {
+                _events.voteEvents.emit('EDelete', productid);
+            }
+        }
+    }, {
+        key: 'Selected',
+        value: function Selected(productid, e) {
+            debugger;
+            if (Object.keys(this.props.newproduct).length > 0) return false;
+            if (this.props.selectid === productid) {
+                _events.voteEvents.emit('EsetSelectid', null);
+            } else {
+                _events.voteEvents.emit('EsetSelectid', productid);
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            console.log("render ProductRow");
+            return _react2.default.createElement(
+                'tr',
+                { onClick: this.Selected.bind(null, this.props.index), className: this.props.select ? "select" : null },
+                _react2.default.createElement(
+                    'td',
+                    null,
+                    this.props.surname
+                ),
+                _react2.default.createElement(
+                    'td',
+                    null,
+                    this.props.name
+                ),
+                _react2.default.createElement(
+                    'td',
+                    null,
+                    this.props.patronymic
+                ),
+                _react2.default.createElement(
+                    'td',
+                    null,
+                    this.props.balans
+                ),
+                _react2.default.createElement(
+                    'td',
+                    { className: this.props.status },
+                    this.props.status
+                ),
+                _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement('input', { type: 'button', value: '\u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C', onClick: this.Edit.bind(null, this.props.index) })
+                ),
+                _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement('input', { type: 'button', value: '\u0443\u0434\u0430\u043B\u0438\u0442\u044C', onClick: this.Delete.bind(null, this.props.id) })
+                )
+            );
+        }
+    }]);
+
+    return ProductRow;
+}(_react2.default.PureComponent);
+
+exports.default = ProductRow;
+;
 
 /***/ }),
 /* 20 */
+/***/ (function(module, exports) {
+
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+function EventEmitter() {
+  this._events = this._events || {};
+  this._maxListeners = this._maxListeners || undefined;
+}
+module.exports = EventEmitter;
+
+// Backwards-compat with node 0.10.x
+EventEmitter.EventEmitter = EventEmitter;
+
+EventEmitter.prototype._events = undefined;
+EventEmitter.prototype._maxListeners = undefined;
+
+// By default EventEmitters will print a warning if more than 10 listeners are
+// added to it. This is a useful default which helps finding memory leaks.
+EventEmitter.defaultMaxListeners = 10;
+
+// Obviously not all Emitters should be limited to 10. This function allows
+// that to be increased. Set to zero for unlimited.
+EventEmitter.prototype.setMaxListeners = function(n) {
+  if (!isNumber(n) || n < 0 || isNaN(n))
+    throw TypeError('n must be a positive number');
+  this._maxListeners = n;
+  return this;
+};
+
+EventEmitter.prototype.emit = function(type) {
+  var er, handler, len, args, i, listeners;
+
+  if (!this._events)
+    this._events = {};
+
+  // If there is no 'error' event listener then throw.
+  if (type === 'error') {
+    if (!this._events.error ||
+        (isObject(this._events.error) && !this._events.error.length)) {
+      er = arguments[1];
+      if (er instanceof Error) {
+        throw er; // Unhandled 'error' event
+      } else {
+        // At least give some kind of context to the user
+        var err = new Error('Uncaught, unspecified "error" event. (' + er + ')');
+        err.context = er;
+        throw err;
+      }
+    }
+  }
+
+  handler = this._events[type];
+
+  if (isUndefined(handler))
+    return false;
+
+  if (isFunction(handler)) {
+    switch (arguments.length) {
+      // fast cases
+      case 1:
+        handler.call(this);
+        break;
+      case 2:
+        handler.call(this, arguments[1]);
+        break;
+      case 3:
+        handler.call(this, arguments[1], arguments[2]);
+        break;
+      // slower
+      default:
+        args = Array.prototype.slice.call(arguments, 1);
+        handler.apply(this, args);
+    }
+  } else if (isObject(handler)) {
+    args = Array.prototype.slice.call(arguments, 1);
+    listeners = handler.slice();
+    len = listeners.length;
+    for (i = 0; i < len; i++)
+      listeners[i].apply(this, args);
+  }
+
+  return true;
+};
+
+EventEmitter.prototype.addListener = function(type, listener) {
+  var m;
+
+  if (!isFunction(listener))
+    throw TypeError('listener must be a function');
+
+  if (!this._events)
+    this._events = {};
+
+  // To avoid recursion in the case that type === "newListener"! Before
+  // adding it to the listeners, first emit "newListener".
+  if (this._events.newListener)
+    this.emit('newListener', type,
+              isFunction(listener.listener) ?
+              listener.listener : listener);
+
+  if (!this._events[type])
+    // Optimize the case of one listener. Don't need the extra array object.
+    this._events[type] = listener;
+  else if (isObject(this._events[type]))
+    // If we've already got an array, just append.
+    this._events[type].push(listener);
+  else
+    // Adding the second element, need to change to array.
+    this._events[type] = [this._events[type], listener];
+
+  // Check for listener leak
+  if (isObject(this._events[type]) && !this._events[type].warned) {
+    if (!isUndefined(this._maxListeners)) {
+      m = this._maxListeners;
+    } else {
+      m = EventEmitter.defaultMaxListeners;
+    }
+
+    if (m && m > 0 && this._events[type].length > m) {
+      this._events[type].warned = true;
+      console.error('(node) warning: possible EventEmitter memory ' +
+                    'leak detected. %d listeners added. ' +
+                    'Use emitter.setMaxListeners() to increase limit.',
+                    this._events[type].length);
+      if (typeof console.trace === 'function') {
+        // not supported in IE 10
+        console.trace();
+      }
+    }
+  }
+
+  return this;
+};
+
+EventEmitter.prototype.on = EventEmitter.prototype.addListener;
+
+EventEmitter.prototype.once = function(type, listener) {
+  if (!isFunction(listener))
+    throw TypeError('listener must be a function');
+
+  var fired = false;
+
+  function g() {
+    this.removeListener(type, g);
+
+    if (!fired) {
+      fired = true;
+      listener.apply(this, arguments);
+    }
+  }
+
+  g.listener = listener;
+  this.on(type, g);
+
+  return this;
+};
+
+// emits a 'removeListener' event iff the listener was removed
+EventEmitter.prototype.removeListener = function(type, listener) {
+  var list, position, length, i;
+
+  if (!isFunction(listener))
+    throw TypeError('listener must be a function');
+
+  if (!this._events || !this._events[type])
+    return this;
+
+  list = this._events[type];
+  length = list.length;
+  position = -1;
+
+  if (list === listener ||
+      (isFunction(list.listener) && list.listener === listener)) {
+    delete this._events[type];
+    if (this._events.removeListener)
+      this.emit('removeListener', type, listener);
+
+  } else if (isObject(list)) {
+    for (i = length; i-- > 0;) {
+      if (list[i] === listener ||
+          (list[i].listener && list[i].listener === listener)) {
+        position = i;
+        break;
+      }
+    }
+
+    if (position < 0)
+      return this;
+
+    if (list.length === 1) {
+      list.length = 0;
+      delete this._events[type];
+    } else {
+      list.splice(position, 1);
+    }
+
+    if (this._events.removeListener)
+      this.emit('removeListener', type, listener);
+  }
+
+  return this;
+};
+
+EventEmitter.prototype.removeAllListeners = function(type) {
+  var key, listeners;
+
+  if (!this._events)
+    return this;
+
+  // not listening for removeListener, no need to emit
+  if (!this._events.removeListener) {
+    if (arguments.length === 0)
+      this._events = {};
+    else if (this._events[type])
+      delete this._events[type];
+    return this;
+  }
+
+  // emit removeListener for all listeners on all events
+  if (arguments.length === 0) {
+    for (key in this._events) {
+      if (key === 'removeListener') continue;
+      this.removeAllListeners(key);
+    }
+    this.removeAllListeners('removeListener');
+    this._events = {};
+    return this;
+  }
+
+  listeners = this._events[type];
+
+  if (isFunction(listeners)) {
+    this.removeListener(type, listeners);
+  } else if (listeners) {
+    // LIFO order
+    while (listeners.length)
+      this.removeListener(type, listeners[listeners.length - 1]);
+  }
+  delete this._events[type];
+
+  return this;
+};
+
+EventEmitter.prototype.listeners = function(type) {
+  var ret;
+  if (!this._events || !this._events[type])
+    ret = [];
+  else if (isFunction(this._events[type]))
+    ret = [this._events[type]];
+  else
+    ret = this._events[type].slice();
+  return ret;
+};
+
+EventEmitter.prototype.listenerCount = function(type) {
+  if (this._events) {
+    var evlistener = this._events[type];
+
+    if (isFunction(evlistener))
+      return 1;
+    else if (evlistener)
+      return evlistener.length;
+  }
+  return 0;
+};
+
+EventEmitter.listenerCount = function(emitter, type) {
+  return emitter.listenerCount(type);
+};
+
+function isFunction(arg) {
+  return typeof arg === 'function';
+}
+
+function isNumber(arg) {
+  return typeof arg === 'number';
+}
+
+function isObject(arg) {
+  return typeof arg === 'object' && arg !== null;
+}
+
+function isUndefined(arg) {
+  return arg === void 0;
+}
+
+
+/***/ }),
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31128,62 +31381,481 @@ function NewProductEl(props) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.default = EditProductEl;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-__webpack_require__(3);
+__webpack_require__(2);
+
+var _events = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function EditProductEl(props) {
-    debugger;
-    return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-            'h1',
-            null,
-            'Info Product'
-        ),
-        _react2.default.createElement(
-            'div',
-            null,
-            ' name    ',
-            props.product.name,
-            ' '
-        ),
-        _react2.default.createElement(
-            'div',
-            null,
-            ' price   ',
-            props.product.price,
-            '  '
-        ),
-        _react2.default.createElement(
-            'div',
-            null,
-            ' src     ',
-            props.product.src,
-            '  '
-        ),
-        _react2.default.createElement(
-            'div',
-            null,
-            ' quality ',
-            props.product.quality,
-            ' '
-        )
-    );
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var EditProductEl = function (_React$PureComponent) {
+    _inherits(EditProductEl, _React$PureComponent);
+
+    function EditProductEl(props) {
+        _classCallCheck(this, EditProductEl);
+
+        var _this = _possibleConstructorReturn(this, (EditProductEl.__proto__ || Object.getPrototypeOf(EditProductEl)).call(this, props));
+
+        _this.setInputNameRef = function (ref) {
+            _this.inputNameRef = ref;
+        };
+
+        _this.setInputSurnameRef = function (ref) {
+            _this.InputSurnameRef = ref;
+        };
+
+        _this.setInputPatronymicRef = function (ref) {
+            _this.InputPatronymicRef = ref;
+        };
+
+        _this.setInputBalansRef = function (ref) {
+            _this.InputBalansRef = ref;
+        };
+
+        _this.setInputStatusRef = function (ref) {
+            _this.InputStatusRef = ref;
+        };
+
+        _this.state = {
+            inputNameRef: null,
+            InputSurnameRef: null,
+            InputPatronymicRef: null,
+            InputBalansRef: null,
+            InputStatusRef: null
+        };
+
+        _this.EditProduct = _this.EditProduct.bind(_this);
+        return _this;
+    }
+
+    _createClass(EditProductEl, [{
+        key: 'EditProduct',
+        value: function EditProduct(index, oldproduct, e) {
+            e.stopPropagation();
+
+            debugger;
+            var newproduct = {};
+            newproduct.name = this.inputNameRef.value;
+            newproduct.surname = this.InputSurnameRef.value;
+            newproduct.patronymic = this.InputPatronymicRef.value;
+            newproduct.balans = this.InputBalansRef.value;
+            newproduct.status = this.InputStatusRef.value;
+            var product = _extends({}, oldproduct, newproduct);
+            _events.voteEvents.emit('EsetEditProduct', product, index);
+        }
+    }, {
+        key: 'Censel',
+        value: function Censel() {
+            _events.voteEvents.emit('ECensel');
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            console.log("renter EditClients");
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'h1',
+                    null,
+                    'Edit Clients '
+                ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                        'label',
+                        null,
+                        'surname'
+                    ),
+                    '  ',
+                    _react2.default.createElement('input', { type: 'text', defaultValue: this.props.strclientsedit.surname, key: this.props.editid, ref: this.setInputSurnameRef }),
+                    '  ',
+                    this.props.filderror["surname"] && _react2.default.createElement(
+                        'p',
+                        null,
+                        ' Please, fill the field.Value must be a number.'
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                        'label',
+                        null,
+                        'name '
+                    ),
+                    '   ',
+                    _react2.default.createElement('input', { type: 'text', defaultValue: this.props.strclientsedit.name, key: this.props.editid, ref: this.setInputNameRef }),
+                    ' ',
+                    this.props.filderror["name"] && _react2.default.createElement(
+                        'p',
+                        null,
+                        ' Please, fill the field.Value must be a string.'
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                        'label',
+                        null,
+                        'patronymic  '
+                    ),
+                    '  ',
+                    _react2.default.createElement('input', { type: 'text', defaultValue: this.props.strclientsedit.patronymic, key: this.props.editid, ref: this.setInputPatronymicRef }),
+                    ' ',
+                    this.props.filderror["patronymic"] && _react2.default.createElement(
+                        'p',
+                        null,
+                        ' Please, fill the field.'
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                        'label',
+                        null,
+                        'balans '
+                    ),
+                    ' ',
+                    _react2.default.createElement('input', { type: 'text', defaultValue: this.props.strclientsedit.balans, key: this.props.editid, ref: this.setInputBalansRef }),
+                    ' ',
+                    this.props.filderror["balans"] && _react2.default.createElement(
+                        'p',
+                        null,
+                        ' Please, fill the field.Value must be a number.'
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                        'label',
+                        null,
+                        'status '
+                    ),
+                    ' ',
+                    _react2.default.createElement('input', { type: 'text', defaultValue: this.props.strclientsedit.status, key: this.props.editid, ref: this.setInputStatusRef }),
+                    ' ',
+                    this.props.filderror["status"] && _react2.default.createElement(
+                        'p',
+                        null,
+                        ' Please, fill the field.Value must be a number.'
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement('input', { type: 'button', value: 'Edit Product', onClick: this.EditProduct.bind(null, this.props.editid, this.props.strclientsedit), disabled: Object.values(this.props.filderror).indexOf(true) !== -1 }),
+                    _react2.default.createElement('input', { type: 'button', value: 'Censel', onClick: this.Censel })
+                )
+            );
+        }
+    }]);
+
+    return EditProductEl;
+}(_react2.default.PureComponent);
+
+exports.default = EditProductEl;
+;
 
 /***/ }),
-/* 21 */
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+__webpack_require__(2);
+
+var _events = __webpack_require__(4);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var NewProductEl = function (_React$PureComponent) {
+    _inherits(NewProductEl, _React$PureComponent);
+
+    function NewProductEl(props) {
+        _classCallCheck(this, NewProductEl);
+
+        var _this = _possibleConstructorReturn(this, (NewProductEl.__proto__ || Object.getPrototypeOf(NewProductEl)).call(this, props));
+
+        _this.setInputNameRef = function (ref) {
+            _this.inputNameRef = ref;
+        };
+
+        _this.setInputSurnameRef = function (ref) {
+            _this.InputSurnameRef = ref;
+        };
+
+        _this.setInputPatronymicRef = function (ref) {
+            _this.InputPatronymicRef = ref;
+        };
+
+        _this.setInputBalansRef = function (ref) {
+            _this.InputBalansRef = ref;
+        };
+
+        _this.setInputStatusRef = function (ref) {
+            _this.InputStatusRef = ref;
+        };
+
+        _this.state = {
+            inputNameRef: null,
+            InputSurnameRef: null,
+            InputPatronymicRef: null,
+            InputBalansRef: null,
+            InputStatusRef: null
+
+        };
+
+        _this.NewClient = _this.NewClient.bind(_this);
+        return _this;
+    }
+
+    _createClass(NewProductEl, [{
+        key: 'NewClient',
+        value: function NewClient(e) {
+
+            var newproduct = {};
+
+            newproduct.id = this.props.newproductid;
+            newproduct.name = this.inputNameRef.value;
+            newproduct.surname = this.InputSurnameRef.value;
+            newproduct.patronymic = this.InputPatronymicRef.value;
+            newproduct.balans = this.InputBalansRef.value;
+            newproduct.status = this.InputStatusRef.value;
+            _events.voteEvents.emit('EsetNewProduct', newproduct);
+        }
+    }, {
+        key: 'Censel',
+        value: function Censel() {
+            _events.voteEvents.emit('ECensel');
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            console.log("render New Client");
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'h1',
+                    null,
+                    'New Client'
+                ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                        'label',
+                        null,
+                        ' surname '
+                    ),
+                    '  ',
+                    _react2.default.createElement('input', { type: 'text', key: this.props.newproductnumber, ref: this.setInputSurnameRef }),
+                    '  '
+                ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                        'label',
+                        null,
+                        ' name '
+                    ),
+                    '   ',
+                    _react2.default.createElement('input', { type: 'text', key: this.props.newproductnumber, ref: this.setInputNameRef }),
+                    ' '
+                ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                        'label',
+                        null,
+                        ' patronymic '
+                    ),
+                    '  ',
+                    _react2.default.createElement('input', { type: 'text', key: this.props.newproductnumber, ref: this.setInputPatronymicRef }),
+                    ' '
+                ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                        'label',
+                        null,
+                        ' balans '
+                    ),
+                    ' ',
+                    _react2.default.createElement('input', { type: 'text', key: this.props.newproductnumber, ref: this.setInputBalansRef }),
+                    ' '
+                ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                        'label',
+                        null,
+                        ' status '
+                    ),
+                    ' ',
+                    _react2.default.createElement('input', { type: 'text', key: this.props.newproductnumber, ref: this.setInputStatusRef }),
+                    ' '
+                ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement('input', { type: 'button', value: 'New Client', onClick: this.NewClient }),
+                    _react2.default.createElement('input', { type: 'button', value: 'Censel', onClick: this.Censel })
+                )
+            );
+        }
+    }]);
+
+    return NewProductEl;
+}(_react2.default.PureComponent);
+
+exports.default = NewProductEl;
+;
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+__webpack_require__(2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var EditProductEl = function (_React$PureComponent) {
+    _inherits(EditProductEl, _React$PureComponent);
+
+    function EditProductEl(props) {
+        _classCallCheck(this, EditProductEl);
+
+        return _possibleConstructorReturn(this, (EditProductEl.__proto__ || Object.getPrototypeOf(EditProductEl)).call(this, props));
+    }
+
+    _createClass(EditProductEl, [{
+        key: 'render',
+        value: function render() {
+            console.log("Info Clients");
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'h1',
+                    null,
+                    'Info Clients'
+                ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    ' name ',
+                    this.props.product.name,
+                    ' '
+                ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    ' surname ',
+                    this.props.product.surname,
+                    '  '
+                ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    ' patronymic ',
+                    this.props.product.patronymic,
+                    '  '
+                ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    ' quality ',
+                    this.props.product.balans,
+                    ' '
+                ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    ' quality ',
+                    this.props.product.status,
+                    ' '
+                )
+            );
+        }
+    }]);
+
+    return EditProductEl;
+}(_react2.default.PureComponent);
+
+exports.default = EditProductEl;
+;
+
+/***/ }),
+/* 24 */
 /***/ (function(module, exports) {
 
-module.exports = [{"id":1,"name":"товар 1","price":"10","src":"https://via.placeholder.com/150/0000FF/808080?Text=Digital.com","quality":10},{"id":2,"name":"товар 2","price":"20","src":"https://via.placeholder.com/150/FF0000/FFFFFF?Text=Down.com","quality":15},{"id":3,"name":"товар 3","price":"30","src":"https://via.placeholder.com/150/FFFF00/000000?Text=WebsiteBuilders.com ","quality":20},{"id":4,"name":"товар 4","price":"40","src":"https://via.placeholder.com/150/000000/FFFFFF/?text=IPaddress.net","quality":25}]
+module.exports = [{"id":1,"surname":"Иванов 1 mts","name":"Иван 1","patronymic":"Иванович 1","balans":200,"status":"active"},{"id":2,"surname":"Иванов 2 mts","name":"Иван 2","patronymic":"Иванович 2","balans":200,"status":"active"},{"id":3,"surname":"Иванов 3 mts","name":"Иван 3","patronymic":"Иванович 3","balans":200,"status":"active"},{"id":4,"surname":"Иванов blocked mts","name":"Иван","patronymic":"Иванович","balans":200,"status":"blocked"}]
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports) {
+
+module.exports = [{"id":1,"surname":"Иванов 1 velcom","name":"Иван 1","patronymic":"Иванович 1","balans":200,"status":"active"},{"id":2,"surname":"Иванов 2 velcom","name":"Иван 2","patronymic":"Иванович 2","balans":200,"status":"active"},{"id":3,"surname":"Иванов 3 velcom","name":"Иван 3","patronymic":"Иванович 3","balans":200,"status":"active"},{"id":4,"surname":"Иванов blocked velcom","name":"Иван","patronymic":"Иванович","balans":200,"status":"blocked"}]
 
 /***/ })
 /******/ ]);
