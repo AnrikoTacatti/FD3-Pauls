@@ -37,8 +37,6 @@ export default class EditProductEl extends React.PureComponent {
 
     EditProduct(index, oldproduct, e) {
         e.stopPropagation();
-
-        debugger;
         let newproduct = {};
         newproduct.name = this.inputNameRef.value;
         newproduct.surname = this.InputSurnameRef.value;
@@ -56,6 +54,7 @@ export default class EditProductEl extends React.PureComponent {
 
     render() {
         console.log("renter EditClients");
+        console.log(this.props.editid);
         return (
             <div>
                 <h1>Edit Clients </h1>

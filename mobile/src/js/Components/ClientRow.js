@@ -7,8 +7,6 @@ export default class ProductRow extends React.PureComponent {
 
     constructor(props) {
         super(props);
-
-
         this.Edit = this.Edit.bind(this);
         this.Delete = this.Delete.bind(this);
         this.Selected = this.Selected.bind(this);
@@ -16,14 +14,12 @@ export default class ProductRow extends React.PureComponent {
 
 
     Edit(index, e) {
-        debugger;
         e.stopPropagation();
         voteEvents.emit('EsetEditid', index);
     }
 
     Delete(productid, e) {
         e.stopPropagation();
-        debugger;
         let isDelete = window.confirm("Вы действительно хотите удалить?");
         if (isDelete) {
             voteEvents.emit('EDelete', productid);
@@ -32,7 +28,6 @@ export default class ProductRow extends React.PureComponent {
     }
 
     Selected(productid, e) {
-        debugger;
         if (Object.keys(this.props.newproduct).length > 0) return false;
         if (this.props.selectid === productid) {
             voteEvents.emit('EsetSelectid', null);
@@ -46,6 +41,7 @@ export default class ProductRow extends React.PureComponent {
 
     render() {
         console.log("render ProductRow");
+        console.log(this.props.id);
         return (
             <tr onClick={this.Selected.bind(null, this.props.index)} className={this.props.select ? "select" : null} >
                 <td>{this.props.surname}</td>

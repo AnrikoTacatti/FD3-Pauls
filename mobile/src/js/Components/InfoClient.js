@@ -8,9 +8,9 @@ export default class EditProductEl extends React.PureComponent {
         super(props);
     }
 
-    debugger;
     render() {
-        console.log("Info Clients");
+        console.log("render Info Clients");
+        console.log(this.props.product.id);
         return (
             <div>
                 <h1>Info Clients</h1>

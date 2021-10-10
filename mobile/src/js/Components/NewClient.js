@@ -40,7 +40,7 @@ export default class NewProductEl extends React.PureComponent {
     NewClient(e) {
 
         let newproduct = {};
-
+        console.log(this.props.newproductid);
         newproduct.id = this.props.newproductid;
         newproduct.name = this.inputNameRef.value;
         newproduct.surname = this.InputSurnameRef.value;
@@ -53,10 +53,10 @@ export default class NewProductEl extends React.PureComponent {
     Censel() {
         voteEvents.emit('ECensel');
     }
-    debugger;
 
     render() {
         console.log("render New Client");
+
         return (
             <div>
                 <h1>New Client</h1>
