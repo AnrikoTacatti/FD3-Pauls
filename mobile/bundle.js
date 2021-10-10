@@ -30869,7 +30869,6 @@ var ProductList = function (_React$PureComponent) {
               )
             ),
             this.state.strclients.map(function (el, index) {
-              debugger;
               if (el.status === _this2.state.clientsfilter || _this2.state.clientsfilter === true) {
                 return _react2.default.createElement(_ClientRow2.default, _extends({}, el, { key: el.id, select: index === _this2.state.selectid, id: el.id, newproduct: _this2.state.newproduct, selectid: _this2.state.selectid, index: index
                 }));
@@ -30986,7 +30985,6 @@ var ProductRow = function (_React$PureComponent) {
     _createClass(ProductRow, [{
         key: 'Edit',
         value: function Edit(index, e) {
-            debugger;
             e.stopPropagation();
             _events.voteEvents.emit('EsetEditid', index);
         }
@@ -30994,7 +30992,6 @@ var ProductRow = function (_React$PureComponent) {
         key: 'Delete',
         value: function Delete(productid, e) {
             e.stopPropagation();
-            debugger;
             var isDelete = window.confirm("Вы действительно хотите удалить?");
             if (isDelete) {
                 _events.voteEvents.emit('EDelete', productid);
@@ -31003,7 +31000,6 @@ var ProductRow = function (_React$PureComponent) {
     }, {
         key: 'Selected',
         value: function Selected(productid, e) {
-            debugger;
             if (Object.keys(this.props.newproduct).length > 0) return false;
             if (this.props.selectid === productid) {
                 _events.voteEvents.emit('EsetSelectid', null);
@@ -31015,6 +31011,7 @@ var ProductRow = function (_React$PureComponent) {
         key: 'render',
         value: function render() {
             console.log("render ProductRow");
+            console.log(this.props.id);
             return _react2.default.createElement(
                 'tr',
                 { onClick: this.Selected.bind(null, this.props.index), className: this.props.select ? "select" : null },
@@ -31446,8 +31443,6 @@ var EditProductEl = function (_React$PureComponent) {
         key: 'EditProduct',
         value: function EditProduct(index, oldproduct, e) {
             e.stopPropagation();
-
-            debugger;
             var newproduct = {};
             newproduct.name = this.inputNameRef.value;
             newproduct.surname = this.InputSurnameRef.value;
@@ -31466,6 +31461,7 @@ var EditProductEl = function (_React$PureComponent) {
         key: 'render',
         value: function render() {
             console.log("renter EditClients");
+            console.log(this.props.editid);
             return _react2.default.createElement(
                 'div',
                 null,
@@ -31650,7 +31646,7 @@ var NewProductEl = function (_React$PureComponent) {
         value: function NewClient(e) {
 
             var newproduct = {};
-
+            console.log(this.props.newproductid);
             newproduct.id = this.props.newproductid;
             newproduct.name = this.inputNameRef.value;
             newproduct.surname = this.InputSurnameRef.value;
@@ -31668,6 +31664,7 @@ var NewProductEl = function (_React$PureComponent) {
         key: 'render',
         value: function render() {
             console.log("render New Client");
+
             return _react2.default.createElement(
                 'div',
                 null,
@@ -31791,7 +31788,8 @@ var EditProductEl = function (_React$PureComponent) {
     _createClass(EditProductEl, [{
         key: 'render',
         value: function render() {
-            console.log("Info Clients");
+            console.log("render Info Clients");
+            console.log(this.props.product.id);
             return _react2.default.createElement(
                 'div',
                 null,
