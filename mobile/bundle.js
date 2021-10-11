@@ -30725,7 +30725,7 @@ var ProductList = function (_React$PureComponent) {
         newprevState[index] = data;
         return { strclients: newprevState };
       });
-      this.setState({ newForm: true });
+      this.setState({ selectid: data.id });
       this.setState({ editid: null });
     }
   }, {
@@ -30870,7 +30870,7 @@ var ProductList = function (_React$PureComponent) {
             ),
             this.state.strclients.map(function (el, index) {
               if (el.status === _this2.state.clientsfilter || _this2.state.clientsfilter === true) {
-                return _react2.default.createElement(_ClientRow2.default, _extends({}, el, { key: el.id, select: index === _this2.state.selectid, id: el.id, newproduct: _this2.state.newproduct, selectid: _this2.state.selectid, index: index
+                return _react2.default.createElement(_ClientRow2.default, _extends({}, el, { key: el.id, selectid: _this2.state.selectid
                 }));
               }
             })
@@ -30886,7 +30886,9 @@ var ProductList = function (_React$PureComponent) {
             return acc.id > curr.id ? acc : curr;
           }).id + 1, newproductnumber: this.state.strclients.length
         }),
-        this.state.selectid !== null && _react2.default.createElement(_InfoClient2.default, { key: this.state.editid, product: this.state.strclients[this.state.selectid], selectid: this.state.selectid })
+        this.state.selectid !== null && _react2.default.createElement(_InfoClient2.default, { key: this.state.editid, product: this.state.strclients.find(function (element) {
+            return element.id === _this2.state.selectid;
+          }), selectid: this.state.selectid })
       );
     }
   }]);
@@ -31000,7 +31002,6 @@ var ProductRow = function (_React$PureComponent) {
     }, {
         key: 'Selected',
         value: function Selected(productid, e) {
-            if (Object.keys(this.props.newproduct).length > 0) return false;
             if (this.props.selectid === productid) {
                 _events.voteEvents.emit('EsetSelectid', null);
             } else {
@@ -31010,11 +31011,13 @@ var ProductRow = function (_React$PureComponent) {
     }, {
         key: 'render',
         value: function render() {
+
             console.log("render ProductRow");
             console.log(this.props.id);
+            debugger;
             return _react2.default.createElement(
                 'tr',
-                { onClick: this.Selected.bind(null, this.props.index), className: this.props.select ? "select" : null },
+                { onClick: this.Selected.bind(null, this.props.id), className: this.props.selectid === this.props.id ? "select" : null },
                 _react2.default.createElement(
                     'td',
                     null,
