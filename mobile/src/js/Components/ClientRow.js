@@ -28,7 +28,6 @@ export default class ProductRow extends React.PureComponent {
     }
 
     Selected(productid, e) {
-        if (Object.keys(this.props.newproduct).length > 0) return false;
         if (this.props.selectid === productid) {
             voteEvents.emit('EsetSelectid', null);
         }
@@ -40,10 +39,12 @@ export default class ProductRow extends React.PureComponent {
     }
 
     render() {
+
         console.log("render ProductRow");
         console.log(this.props.id);
+        debugger;
         return (
-            <tr onClick={this.Selected.bind(null, this.props.index)} className={this.props.select ? "select" : null} >
+            <tr onClick={this.Selected.bind(null, this.props.id)} className={this.props.selectid === this.props.id ? "select" : null} >
                 <td>{this.props.surname}</td>
                 <td>{this.props.name}</td>
                 <td>{this.props.patronymic}</td>

@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductRow from './ClientRow';
+import ClientRow from './ClientRow';
 import EditProductEl from './EditClient';
 import NewProductEl from './NewClient';
 import InfoProductEl from './InfoClient';
@@ -70,7 +70,7 @@ export default class ProductList extends React.PureComponent {
       newprevState[index] = data;
       return { strclients: newprevState }
     });
-    this.setState({ newForm: true });
+    this.setState({ selectid: data.id });
     this.setState({ editid: null });
   }
 
@@ -186,7 +186,7 @@ export default class ProductList extends React.PureComponent {
 
               this.state.strclients.map((el, index) => {
                 if (el.status === this.state.clientsfilter || this.state.clientsfilter === true) {
-                  return <ProductRow {...el} key={el.id} select={index === this.state.selectid} id={el.id} newproduct={this.state.newproduct} selectid={this.state.selectid} index={index}
+                  return <ClientRow {...el} key={el.id} selectid={this.state.selectid}
                   />;
                 }
 
@@ -212,7 +212,7 @@ export default class ProductList extends React.PureComponent {
         }
         {
           this.state.selectid !== null &&
-          <InfoProductEl key={this.state.editid} product={this.state.strclients[this.state.selectid]} selectid={this.state.selectid} />
+          <InfoProductEl key={this.state.editid} product={this.state.strclients.find(element => element.id === this.state.selectid)} selectid={this.state.selectid} />
         }
       </React.Fragment >
     );
