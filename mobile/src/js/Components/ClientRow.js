@@ -52,7 +52,7 @@ export default class ProductRow extends React.PureComponent {
                 <td className={this.props.status} >{this.props.status}</td>
 
                 <td>
-                    <input type="button" value="редактировать" onClick={this.Edit.bind(null, this.props.index)} />
+                    <input type="button" value="редактировать" onClick={this.Edit.bind(null, this.props.id)} />
                 </td>
                 <td>
                     <input type="button" value="удалить" onClick={this.Delete.bind(null, this.props.id)} />

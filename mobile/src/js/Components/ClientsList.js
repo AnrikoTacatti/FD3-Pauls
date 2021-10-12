@@ -201,7 +201,7 @@ export default class ProductList extends React.PureComponent {
         {
 
           this.state.editid !== null && this.state.selectid === null &&
-          <EditProductEl key={this.state.editid} editid={this.state.editid} strclientsedit={this.state.strclients[this.state.editid]} filderror={this.state.filderror} newproduct={this.state.newproduct}
+          <EditProductEl key={this.state.editid} editid={this.state.editid} strclientsedit={this.state.strclients.find(element => element.id === this.state.editid)} filderror={this.state.filderror} newproduct={this.state.newproduct}
           />
         }
         {

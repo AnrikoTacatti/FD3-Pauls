@@ -1,6 +1,4 @@
-tr.select{
-    background: orange;
-}
+
 label{
     min-width: 60px;
     display: inline-block;
@@ -23,7 +21,9 @@ table {
 table, td, th {
     border: 1px solid #dee2e6;
 }
-
+tr.select{
+    background: orange;
+}
 td.active{
     background-color: #28a745;
 }

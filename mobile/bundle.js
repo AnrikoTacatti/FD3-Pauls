@@ -30879,7 +30879,9 @@ var ProductList = function (_React$PureComponent) {
         _react2.default.createElement('br', null),
         _react2.default.createElement('input', { type: 'button', value: 'New Product', onClick: this.New, disabled: Object.keys(this.state.newproduct).length > 0 }),
         console.log("id---" + this.state.editid),
-        this.state.editid !== null && this.state.selectid === null && _react2.default.createElement(_EditClient2.default, { key: this.state.editid, editid: this.state.editid, strclientsedit: this.state.strclients[this.state.editid], filderror: this.state.filderror, newproduct: this.state.newproduct
+        this.state.editid !== null && this.state.selectid === null && _react2.default.createElement(_EditClient2.default, { key: this.state.editid, editid: this.state.editid, strclientsedit: this.state.strclients.find(function (element) {
+            return element.id === _this2.state.editid;
+          }), filderror: this.state.filderror, newproduct: this.state.newproduct
         }),
         this.state.newForm === true && this.state.selectid === null && _react2.default.createElement(_NewClient2.default, { key: this.state.editid, filderror: this.state.filderror, newproduct: this.state.newproduct,
           newproductid: this.state.strclients.reduce(function (acc, curr) {
@@ -31046,7 +31048,7 @@ var ProductRow = function (_React$PureComponent) {
                 _react2.default.createElement(
                     'td',
                     null,
-                    _react2.default.createElement('input', { type: 'button', value: '\u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C', onClick: this.Edit.bind(null, this.props.index) })
+                    _react2.default.createElement('input', { type: 'button', value: '\u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C', onClick: this.Edit.bind(null, this.props.id) })
                 ),
                 _react2.default.createElement(
                     'td',
@@ -31670,7 +31672,7 @@ var NewProductEl = function (_React$PureComponent) {
 
             return _react2.default.createElement(
                 'div',
-                null,
+                { 'class': 'new-client' },
                 _react2.default.createElement(
                     'h1',
                     null,
