@@ -44,8 +44,8 @@ export default class ProductRow extends React.PureComponent {
         console.log(this.props.el.id);
         debugger;
         return (
-            <tr onClick={this.Selected.bind(null, this.props.el.id)} className={this.props.selectid === this.props.el.id ? "select" : null} >
-                <td>{this.props.el.surname}</td>
+            <tr onClick={this.Selected.bind(null, this.props.el.id)} className={`ClientRow${this.props.selectid === this.props.el.id ? " select" : ""}`} >
+                <td td > {this.props.el.surname}</td >
                 <td>{this.props.el.name}</td>
                 <td>{this.props.el.patronymic}</td>
                 <td>{this.props.el.balans}</td>
@@ -57,7 +57,7 @@ export default class ProductRow extends React.PureComponent {
                 <td>
                     <input type="button" value="удалить" onClick={this.Delete.bind(null, this.props.el.id)} />
                 </td>
-            </tr>
+            </tr >
         );
     }
 };

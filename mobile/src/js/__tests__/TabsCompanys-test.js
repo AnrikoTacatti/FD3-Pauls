@@ -90,6 +90,113 @@ describe('NEWProduct', () => {
 });
 
 
+describe('EditProduct', () => {
+
+  test('работа EditProduct', () => {
+
+    const tableName = "Таблица ";
+    const tableColName = {
+      surname: "Фамилия",
+      name: "Имя",
+      patronymic: "Отчество",
+      balans: "Баланс",
+      status: "Статус"
+    };
+    const veclonClients = require('../data/velcom.json');
+
+    const component2 = renderer.create(
+      <ClientsList key="velcom" name={tableName} colname={tableColName} clients={veclonClients} />
+    );
+    let client2 = {
+      "id": 2,
+      "surname": "Иванов blocked velcom 2 test",
+      "name": "Иван 2 test",
+    };
+    component2.getInstance().setEditClients(client2, 2);
+
+    expect(() => {
+      let client = component2.getInstance().state.strclients.find(element => element.id == client2.id);
+      return client.surname == client2.surname && client.name == client2.name
+    }).toBeTruthy();
+  });
+
+});
+
+describe('Filter Product', () => {
+
+  test('работа DeleteProduct', () => {
+
+    const tableName = "Таблица ";
+    const tableColName = {
+      surname: "Фамилия",
+      name: "Имя",
+      patronymic: "Отчество",
+      balans: "Баланс",
+      status: "Статус"
+    };
+    const veclonClients = require('../data/velcom.json');
+
+    const component2 = renderer.create(
+      <ClientsList key="velcom" name={tableName} colname={tableColName} clients={veclonClients} />
+    );
+
+    component2.getInstance().Delete(3);
+    expect(() => {
+      let client = component2.getInstance().state.strclients.find(element => element.id == 3);
+      return client === undefined
+    }).toBeTruthy();
+  });
+
+});
+
+describe('Filter Product Product', () => {
+
+  test('работа FilterProduct 	active', () => {
+
+    const tableName = "Таблица ";
+    const tableColName = {
+      surname: "Фамилия",
+      name: "Имя",
+      patronymic: "Отчество",
+      balans: "Баланс",
+      status: "Статус"
+    };
+    const veclonClients = require('../data/velcom.json');
+
+    const component = renderer.create(
+      <ClientsList key="velcom" name={tableName} colname={tableColName} clients={veclonClients} />
+    );
+    console.log(component.getInstance().state.strclients.find(element => element.status == "active"));
+    component.getInstance().clientsFilter("active");
+    const active = component.root.findAll((el) => {
+      return el.type === 'tr' && el.props.className === "ClientRow";
+    });
+    expect(active.length).toEqual(stateactive);
+  });
+  test('работа FilterProduct blocked', () => {
+
+    const tableName = "Таблица ";
+    const tableColName = {
+      surname: "Фамилия",
+      name: "Имя",
+      patronymic: "Отчество",
+      balans: "Баланс",
+      status: "Статус"
+    };
+    const veclonClients = require('../data/velcom.json');
+
+    const component = renderer.create(
+      <ClientsList key="velcom" name={tableName} colname={tableColName} clients={veclonClients} />
+    );
+    let stateblocked = component.getInstance().state.strclients.filter(element => element.status == "blocked").length;
+    component.getInstance().clientsFilter("blocked");
+    const active = component.root.findAll((el) => {
+      return el.type === 'tr' && el.props.className === "ClientRow";
+    });
+    expect(active.length).toEqual(stateblocked);
+  });
+});
+
 
 
 

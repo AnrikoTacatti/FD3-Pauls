@@ -31022,10 +31022,11 @@ var ProductRow = function (_React$PureComponent) {
             debugger;
             return _react2.default.createElement(
                 'tr',
-                { onClick: this.Selected.bind(null, this.props.el.id), className: this.props.selectid === this.props.el.id ? "select" : null },
+                { onClick: this.Selected.bind(null, this.props.el.id), className: 'ClientRow' + (this.props.selectid === this.props.el.id ? " select" : "") },
                 _react2.default.createElement(
                     'td',
-                    null,
+                    { td: true },
+                    ' ',
                     this.props.el.surname
                 ),
                 _react2.default.createElement(
