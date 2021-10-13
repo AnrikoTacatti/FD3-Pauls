@@ -30598,8 +30598,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(0);
@@ -30721,8 +30719,12 @@ var ProductList = function (_React$PureComponent) {
     key: 'setEditClients',
     value: function setEditClients(data, index) {
       this.setState(function (prevState) {
+        debugger;
         var newprevState = [].concat(_toConsumableArray(prevState.strclients));
-        newprevState[index] = data;
+        var i = newprevState.findIndex(function (element) {
+          return element.id === index;
+        });
+        newprevState[i] = data;
         return { strclients: newprevState };
       });
       this.setState({ selectid: data.id });
@@ -30765,7 +30767,8 @@ var ProductList = function (_React$PureComponent) {
   }, {
     key: 'New',
     value: function New(e) {
-      e.stopPropagation();
+      if (e !== undefined) e.stopPropagation();
+
       this.setState({ newForm: true });
       this.setState({ selectid: null });
       this.setState({ editid: null });
@@ -30870,8 +30873,8 @@ var ProductList = function (_React$PureComponent) {
             ),
             this.state.strclients.map(function (el, index) {
               if (el.status === _this2.state.clientsfilter || _this2.state.clientsfilter === true) {
-                return _react2.default.createElement(_ClientRow2.default, _extends({}, el, { key: el.id, selectid: _this2.state.selectid
-                }));
+                return _react2.default.createElement(_ClientRow2.default, { el: el, key: el.id, selectid: _this2.state.selectid
+                });
               }
             })
           )
@@ -31015,45 +31018,45 @@ var ProductRow = function (_React$PureComponent) {
         value: function render() {
 
             console.log("render ProductRow");
-            console.log(this.props.id);
+            console.log(this.props.el.id);
             debugger;
             return _react2.default.createElement(
                 'tr',
-                { onClick: this.Selected.bind(null, this.props.id), className: this.props.selectid === this.props.id ? "select" : null },
+                { onClick: this.Selected.bind(null, this.props.el.id), className: this.props.selectid === this.props.el.id ? "select" : null },
                 _react2.default.createElement(
                     'td',
                     null,
-                    this.props.surname
+                    this.props.el.surname
                 ),
                 _react2.default.createElement(
                     'td',
                     null,
-                    this.props.name
+                    this.props.el.name
                 ),
                 _react2.default.createElement(
                     'td',
                     null,
-                    this.props.patronymic
+                    this.props.el.patronymic
                 ),
                 _react2.default.createElement(
                     'td',
                     null,
-                    this.props.balans
+                    this.props.el.balans
                 ),
                 _react2.default.createElement(
                     'td',
-                    { className: this.props.status },
-                    this.props.status
-                ),
-                _react2.default.createElement(
-                    'td',
-                    null,
-                    _react2.default.createElement('input', { type: 'button', value: '\u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C', onClick: this.Edit.bind(null, this.props.id) })
+                    { className: this.props.el.status },
+                    this.props.el.status
                 ),
                 _react2.default.createElement(
                     'td',
                     null,
-                    _react2.default.createElement('input', { type: 'button', value: '\u0443\u0434\u0430\u043B\u0438\u0442\u044C', onClick: this.Delete.bind(null, this.props.id) })
+                    _react2.default.createElement('input', { type: 'button', value: '\u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C', onClick: this.Edit.bind(null, this.props.el.id) })
+                ),
+                _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement('input', { type: 'button', value: '\u0443\u0434\u0430\u043B\u0438\u0442\u044C', onClick: this.Delete.bind(null, this.props.el.id) })
                 )
             );
         }
@@ -31447,6 +31450,7 @@ var EditProductEl = function (_React$PureComponent) {
     _createClass(EditProductEl, [{
         key: 'EditProduct',
         value: function EditProduct(index, oldproduct, e) {
+            debugger;
             e.stopPropagation();
             var newproduct = {};
             newproduct.name = this.inputNameRef.value;
@@ -31563,7 +31567,7 @@ var EditProductEl = function (_React$PureComponent) {
                 _react2.default.createElement(
                     'div',
                     null,
-                    _react2.default.createElement('input', { type: 'button', value: 'Edit Product', onClick: this.EditProduct.bind(null, this.props.editid, this.props.strclientsedit), disabled: Object.values(this.props.filderror).indexOf(true) !== -1 }),
+                    _react2.default.createElement('input', { type: 'button', value: 'Edit Clients', onClick: this.EditProduct.bind(null, this.props.editid, this.props.strclientsedit), disabled: Object.values(this.props.filderror).indexOf(true) !== -1 }),
                     _react2.default.createElement('input', { type: 'button', value: 'Censel', onClick: this.Censel })
                 )
             );
@@ -31672,7 +31676,7 @@ var NewProductEl = function (_React$PureComponent) {
 
             return _react2.default.createElement(
                 'div',
-                { 'class': 'new-client' },
+                { className: 'new-client' },
                 _react2.default.createElement(
                     'h1',
                     null,

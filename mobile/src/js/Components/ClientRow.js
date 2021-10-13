@@ -41,21 +41,21 @@ export default class ProductRow extends React.PureComponent {
     render() {
 
         console.log("render ProductRow");
-        console.log(this.props.id);
+        console.log(this.props.el.id);
         debugger;
         return (
-            <tr onClick={this.Selected.bind(null, this.props.id)} className={this.props.selectid === this.props.id ? "select" : null} >
-                <td>{this.props.surname}</td>
-                <td>{this.props.name}</td>
-                <td>{this.props.patronymic}</td>
-                <td>{this.props.balans}</td>
-                <td className={this.props.status} >{this.props.status}</td>
+            <tr onClick={this.Selected.bind(null, this.props.el.id)} className={this.props.selectid === this.props.el.id ? "select" : null} >
+                <td>{this.props.el.surname}</td>
+                <td>{this.props.el.name}</td>
+                <td>{this.props.el.patronymic}</td>
+                <td>{this.props.el.balans}</td>
+                <td className={this.props.el.status} >{this.props.el.status}</td>
 
                 <td>
-                    <input type="button" value="редактировать" onClick={this.Edit.bind(null, this.props.id)} />
+                    <input type="button" value="редактировать" onClick={this.Edit.bind(null, this.props.el.id)} />
                 </td>
                 <td>
-                    <input type="button" value="удалить" onClick={this.Delete.bind(null, this.props.id)} />
+                    <input type="button" value="удалить" onClick={this.Delete.bind(null, this.props.el.id)} />
                 </td>
             </tr>
         );

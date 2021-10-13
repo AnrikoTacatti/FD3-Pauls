@@ -36,6 +36,7 @@ export default class EditProductEl extends React.PureComponent {
 
 
     EditProduct(index, oldproduct, e) {
+        debugger;
         e.stopPropagation();
         let newproduct = {};
         newproduct.name = this.inputNameRef.value;
@@ -65,7 +66,7 @@ export default class EditProductEl extends React.PureComponent {
                 <div><label>status </label> <input type="text" defaultValue={this.props.strclientsedit.status} key={this.props.editid} ref={this.setInputStatusRef} /> {this.props.filderror["status"] && <p > Please, fill the field.Value must be a number.</p>}</div>
 
                 <div>
-                    <input type="button" value="Edit Product" onClick={this.EditProduct.bind(null, this.props.editid, this.props.strclientsedit)} disabled={Object.values(this.props.filderror).indexOf(true) !== -1} />
+                    <input type="button" value="Edit Clients" onClick={this.EditProduct.bind(null, this.props.editid, this.props.strclientsedit)} disabled={Object.values(this.props.filderror).indexOf(true) !== -1} />
                     <input type="button" value="Censel" onClick={this.Censel} />
                 </div>
 

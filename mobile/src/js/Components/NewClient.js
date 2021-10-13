@@ -58,7 +58,7 @@ export default class NewProductEl extends React.PureComponent {
         console.log("render New Client");
 
         return (
-            <div class="new-client">
+            <div className="new-client">
                 <h1>New Client</h1>
                 <div><label> surname </label>  <input type="text" key={this.props.newproductnumber} ref={this.setInputSurnameRef} />  </div>
                 <div><label> name </label>   <input type="text" key={this.props.newproductnumber} ref={this.setInputNameRef} /> </div>

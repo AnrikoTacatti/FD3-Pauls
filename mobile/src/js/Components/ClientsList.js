@@ -66,8 +66,10 @@ export default class ProductList extends React.PureComponent {
 
   setEditClients(data, index) {
     this.setState((prevState) => {
+      debugger;
       let newprevState = [...prevState.strclients];
-      newprevState[index] = data;
+      let i = newprevState.findIndex(element => element.id === index);
+      newprevState[i] = data;
       return { strclients: newprevState }
     });
     this.setState({ selectid: data.id });
@@ -105,7 +107,8 @@ export default class ProductList extends React.PureComponent {
 
 
   New(e) {
-    e.stopPropagation();
+    if (e !== undefined) e.stopPropagation();
+
     this.setState({ newForm: true });
     this.setState({ selectid: null });
     this.setState({ editid: null });
@@ -134,7 +137,6 @@ export default class ProductList extends React.PureComponent {
     });
     this.setState({ newForm: null });
     this.setState({ selectid: newproduct.id });
-
   }
 
 
@@ -186,10 +188,9 @@ export default class ProductList extends React.PureComponent {
 
               this.state.strclients.map((el, index) => {
                 if (el.status === this.state.clientsfilter || this.state.clientsfilter === true) {
-                  return <ClientRow {...el} key={el.id} selectid={this.state.selectid}
+                  return <ClientRow el={el} key={el.id} selectid={this.state.selectid}
                   />;
                 }
-
               })
             }
           </tbody>
