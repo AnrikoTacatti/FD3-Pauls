@@ -45,11 +45,11 @@ export default class ProductRow extends React.PureComponent {
         debugger;
         return (
             <tr onClick={this.Selected.bind(null, this.props.el.id)} className={`ClientRow${this.props.selectid === this.props.el.id ? " select" : ""}`} >
-                <td td > {this.props.el.surname}</td >
+                <td > {this.props.el.surname}</td >
                 <td>{this.props.el.name}</td>
                 <td>{this.props.el.patronymic}</td>
                 <td>{this.props.el.balans}</td>
-                <td className={this.props.el.status} >{this.props.el.status}</td>
+                <td className={this.props.el.status && this.props.el.status} >{this.props.el.status}</td>
 
                 <td>
                     <input type="button" value="редактировать" onClick={this.Edit.bind(null, this.props.el.id)} />

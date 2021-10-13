@@ -51,20 +51,10 @@ export default class ProductList extends React.PureComponent {
       clientsfilter: true
     }
 
-    this.New = this.New.bind(this);
-    this.Censel = this.Censel.bind(this);
-    this.Delete = this.Delete.bind(this);
-    this.abSort = this.Delete.bind(this);
-    this.setNewClients = this.setNewClients.bind(this);
-    this.setEditClients = this.setEditClients.bind(this);
-    this.setEditid = this.setEditid.bind(this);
-    this.setSelectid = this.setSelectid.bind(this);
-    this.setfildError = this.setfildError.bind(this);
-    this.setNew = this.setNew.bind(this);
-    this.clientsFilter = this.clientsFilter.bind(this);
+
   }
 
-  setEditClients(data, index) {
+  setEditClients = (data, index) => {
     this.setState((prevState) => {
       debugger;
       let newprevState = [...prevState.strclients];
@@ -76,37 +66,37 @@ export default class ProductList extends React.PureComponent {
     this.setState({ editid: null });
   }
 
-  setEditid(data) {
+  setEditid = (data) => {
     this.setState({ editid: data });
     this.setState({ selectid: null });
     this.setState({ newForm: null });
   }
 
-  setSelectid(data) {
+  setSelectid = (data) => {
     this.setState({ selectid: data });
     this.setState({ editid: null });
     this.setState({ newForm: false });
   }
 
-  setfildError(data) {
+  setfildError = (data) => {
     this.setState({ filderror: data });
   }
 
-  setNewproduct(data) {
+  setNewproduct = (data) => {
     this.setState({ newproduct: data });
   }
 
-  setNew(data) {
+  setNew = (data) => {
     this.setState({ newForm: data });
   }
 
-  clientsFilter(data) {
+  clientsFilter = (data) => {
     this.setState({ clientsfilter: data });
   }
 
 
 
-  New(e) {
+  New = (e) => {
     if (e !== undefined) e.stopPropagation();
 
     this.setState({ newForm: true });
@@ -115,13 +105,13 @@ export default class ProductList extends React.PureComponent {
     this.setState({ filderror: { name: null, balans: null } });
   }
 
-  Censel() {
+  Censel = () => {
     this.setState({ editid: null });
     this.setState({ newForm: null });
     this.setState({ newproduct: {} });
   }
 
-  Delete(productid) {
+  Delete = (productid) => {
     let prod = this.state.strclients.filter((val) => {
       return val.id != productid
     });
@@ -129,11 +119,11 @@ export default class ProductList extends React.PureComponent {
     this.setState({ editid: null });
   }
 
-  setNewClients(newproduct) {
+  setNewClients = (newproduct) => {
     this.setState((prevState) => {
-      let newprevState = [...prevState.strclients];
-      newprevState[newprevState.length] = newproduct;
+      let newprevState = [...prevState.strclients, newproduct];
       return { strclients: newprevState }
+
     });
     this.setState({ newForm: null });
     this.setState({ selectid: newproduct.id });

@@ -30673,6 +30673,80 @@ var ProductList = function (_React$PureComponent) {
 
     var _this = _possibleConstructorReturn(this, (ProductList.__proto__ || Object.getPrototypeOf(ProductList)).call(this, props));
 
+    _this.setEditClients = function (data, index) {
+      _this.setState(function (prevState) {
+        debugger;
+        var newprevState = [].concat(_toConsumableArray(prevState.strclients));
+        var i = newprevState.findIndex(function (element) {
+          return element.id === index;
+        });
+        newprevState[i] = data;
+        return { strclients: newprevState };
+      });
+      _this.setState({ selectid: data.id });
+      _this.setState({ editid: null });
+    };
+
+    _this.setEditid = function (data) {
+      _this.setState({ editid: data });
+      _this.setState({ selectid: null });
+      _this.setState({ newForm: null });
+    };
+
+    _this.setSelectid = function (data) {
+      _this.setState({ selectid: data });
+      _this.setState({ editid: null });
+      _this.setState({ newForm: false });
+    };
+
+    _this.setfildError = function (data) {
+      _this.setState({ filderror: data });
+    };
+
+    _this.setNewproduct = function (data) {
+      _this.setState({ newproduct: data });
+    };
+
+    _this.setNew = function (data) {
+      _this.setState({ newForm: data });
+    };
+
+    _this.clientsFilter = function (data) {
+      _this.setState({ clientsfilter: data });
+    };
+
+    _this.New = function (e) {
+      if (e !== undefined) e.stopPropagation();
+
+      _this.setState({ newForm: true });
+      _this.setState({ selectid: null });
+      _this.setState({ editid: null });
+      _this.setState({ filderror: { name: null, balans: null } });
+    };
+
+    _this.Censel = function () {
+      _this.setState({ editid: null });
+      _this.setState({ newForm: null });
+      _this.setState({ newproduct: {} });
+    };
+
+    _this.Delete = function (productid) {
+      var prod = _this.state.strclients.filter(function (val) {
+        return val.id != productid;
+      });
+      _this.setState({ strclients: prod });
+      _this.setState({ editid: null });
+    };
+
+    _this.setNewClients = function (newproduct) {
+      _this.setState(function (prevState) {
+        var newprevState = [].concat(_toConsumableArray(prevState.strclients), [newproduct]);
+        return { strclients: newprevState };
+      });
+      _this.setState({ newForm: null });
+      _this.setState({ selectid: newproduct.id });
+    };
+
     _this.componentDidMount = function () {
       _events.voteEvents.addListener('EsetNewProduct', _this.setNewClients);
       _events.voteEvents.addListener('EsetEditProduct', _this.setEditClients);
@@ -30701,107 +30775,10 @@ var ProductList = function (_React$PureComponent) {
       clientsfilter: true
     };
 
-    _this.New = _this.New.bind(_this);
-    _this.Censel = _this.Censel.bind(_this);
-    _this.Delete = _this.Delete.bind(_this);
-    _this.abSort = _this.Delete.bind(_this);
-    _this.setNewClients = _this.setNewClients.bind(_this);
-    _this.setEditClients = _this.setEditClients.bind(_this);
-    _this.setEditid = _this.setEditid.bind(_this);
-    _this.setSelectid = _this.setSelectid.bind(_this);
-    _this.setfildError = _this.setfildError.bind(_this);
-    _this.setNew = _this.setNew.bind(_this);
-    _this.clientsFilter = _this.clientsFilter.bind(_this);
     return _this;
   }
 
   _createClass(ProductList, [{
-    key: 'setEditClients',
-    value: function setEditClients(data, index) {
-      this.setState(function (prevState) {
-        debugger;
-        var newprevState = [].concat(_toConsumableArray(prevState.strclients));
-        var i = newprevState.findIndex(function (element) {
-          return element.id === index;
-        });
-        newprevState[i] = data;
-        return { strclients: newprevState };
-      });
-      this.setState({ selectid: data.id });
-      this.setState({ editid: null });
-    }
-  }, {
-    key: 'setEditid',
-    value: function setEditid(data) {
-      this.setState({ editid: data });
-      this.setState({ selectid: null });
-      this.setState({ newForm: null });
-    }
-  }, {
-    key: 'setSelectid',
-    value: function setSelectid(data) {
-      this.setState({ selectid: data });
-      this.setState({ editid: null });
-      this.setState({ newForm: false });
-    }
-  }, {
-    key: 'setfildError',
-    value: function setfildError(data) {
-      this.setState({ filderror: data });
-    }
-  }, {
-    key: 'setNewproduct',
-    value: function setNewproduct(data) {
-      this.setState({ newproduct: data });
-    }
-  }, {
-    key: 'setNew',
-    value: function setNew(data) {
-      this.setState({ newForm: data });
-    }
-  }, {
-    key: 'clientsFilter',
-    value: function clientsFilter(data) {
-      this.setState({ clientsfilter: data });
-    }
-  }, {
-    key: 'New',
-    value: function New(e) {
-      if (e !== undefined) e.stopPropagation();
-
-      this.setState({ newForm: true });
-      this.setState({ selectid: null });
-      this.setState({ editid: null });
-      this.setState({ filderror: { name: null, balans: null } });
-    }
-  }, {
-    key: 'Censel',
-    value: function Censel() {
-      this.setState({ editid: null });
-      this.setState({ newForm: null });
-      this.setState({ newproduct: {} });
-    }
-  }, {
-    key: 'Delete',
-    value: function Delete(productid) {
-      var prod = this.state.strclients.filter(function (val) {
-        return val.id != productid;
-      });
-      this.setState({ strclients: prod });
-      this.setState({ editid: null });
-    }
-  }, {
-    key: 'setNewClients',
-    value: function setNewClients(newproduct) {
-      this.setState(function (prevState) {
-        var newprevState = [].concat(_toConsumableArray(prevState.strclients));
-        newprevState[newprevState.length] = newproduct;
-        return { strclients: newprevState };
-      });
-      this.setState({ newForm: null });
-      this.setState({ selectid: newproduct.id });
-    }
-  }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
@@ -30873,7 +30850,7 @@ var ProductList = function (_React$PureComponent) {
             ),
             this.state.strclients.map(function (el, index) {
               if (el.status === _this2.state.clientsfilter || _this2.state.clientsfilter === true) {
-                return _react2.default.createElement(_ClientRow2.default, { el: el, key: el.id, selectid: _this2.state.selectid
+                return _react2.default.createElement(_ClientRow2.default, { el: el, key: el.id, selectid: el.id === _this2.state.selectid && _this2.state.selectid
                 });
               }
             })
@@ -31025,7 +31002,7 @@ var ProductRow = function (_React$PureComponent) {
                 { onClick: this.Selected.bind(null, this.props.el.id), className: 'ClientRow' + (this.props.selectid === this.props.el.id ? " select" : "") },
                 _react2.default.createElement(
                     'td',
-                    { td: true },
+                    null,
                     ' ',
                     this.props.el.surname
                 ),
@@ -31046,7 +31023,7 @@ var ProductRow = function (_React$PureComponent) {
                 ),
                 _react2.default.createElement(
                     'td',
-                    { className: this.props.el.status },
+                    { className: this.props.el.status && this.props.el.status },
                     this.props.el.status
                 ),
                 _react2.default.createElement(
