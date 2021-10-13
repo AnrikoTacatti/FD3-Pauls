@@ -188,7 +188,7 @@ export default class ProductList extends React.PureComponent {
 
               this.state.strclients.map((el, index) => {
                 if (el.status === this.state.clientsfilter || this.state.clientsfilter === true) {
-                  return <ClientRow el={el} key={el.id} selectid={this.state.selectid}
+                  return <ClientRow el={el} key={el.id} selectid={el.id === this.state.selectid && this.state.selectid}
                   />;
                 }
               })
