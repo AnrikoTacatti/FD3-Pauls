@@ -30736,6 +30736,7 @@ var ProductList = function (_React$PureComponent) {
       });
       _this.setState({ strclients: prod });
       _this.setState({ editid: null });
+      _this.setState({ selectid: null });
     };
 
     _this.setNewClients = function (newproduct) {
