@@ -117,6 +117,7 @@ export default class ProductList extends React.PureComponent {
     });
     this.setState({ strclients: prod });
     this.setState({ editid: null });
+    this.setState({ selectid: null });
   }
 
   setNewClients = (newproduct) => {
