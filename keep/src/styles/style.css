@@ -1,0 +1,33 @@
+
+label{
+    min-width: 60px;
+    display: inline-block;
+}
+input{
+    margin-bottom: 5px;
+}
+input + p {
+color: red;
+display: inline-block;
+margin: 0;
+margin-left: 15px;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+table, td, th {
+    border: 1px solid #dee2e6;
+}
+tr.select{
+    background: orange;
+}
+td.active{
+    background-color: #28a745;
+}
+
+td.blocked{
+    background-color: #dc3545;
+}
