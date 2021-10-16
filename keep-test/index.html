@@ -45,8 +45,9 @@
           discoveryDocs: DISCOVERY_DOCS,
           scope: SCOPES
         }).then(function () {
-          // Listen for sign-in state changes.
-          appendPre();
+          gapi.auth2.getAuthInstance().signIn();
+          listTaskLists();
+   
         }, function(error) {
           appendPre(JSON.stringify(error, null, 2));
         });
@@ -56,17 +57,9 @@
        *  Called when the signed in status changes, to update the UI
        *  appropriately. After a sign-in, the API is called.
        */
-
-      /**
-       *  Sign in the user upon button click.
-       */
  
 
-      /**
-       *  Sign out the user upon button click.
-       */
   
-
       /**
        * Append a pre element to the body containing the given message
        * as its text node. Used to display the results of the API call.
