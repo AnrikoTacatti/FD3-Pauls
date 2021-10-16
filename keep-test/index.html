@@ -45,7 +45,7 @@
           discoveryDocs: DISCOVERY_DOCS,
           scope: SCOPES
         }).then(function () {
-          gapi.auth2.getAuthInstance().signIn();
+          gapi.auth2.getAuthInstance();
           listTaskLists();
    
         }, function(error) {
