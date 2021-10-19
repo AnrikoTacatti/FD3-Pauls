@@ -4,8 +4,8 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import ReactTestUtils from 'react-dom/test-utils';
 
-import TabsCompanys from '../components/TabsCompanys';
-import ClientsList from '../components/ClientsList';
+import TabsCompanys from '../сomponents/TabsCompanys';
+import ClientsList from '../сomponents/ClientsList';
 
 
 describe('NEWProduct', () => {

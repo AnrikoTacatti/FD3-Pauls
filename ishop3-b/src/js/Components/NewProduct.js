@@ -30,7 +30,6 @@ export default function NewProductEl(props) {
             });
             props.setNewproduct({});
             props.setSelectid(props.newproductnumber);
-
         }
         else {
             props.setfildError((prevState) => {

@@ -1,33 +1,62 @@
 
-label{
-    min-width: 60px;
-    display: inline-block;
-}
-input{
-    margin-bottom: 5px;
-}
-input + p {
-color: red;
-display: inline-block;
-margin: 0;
-margin-left: 15px;
+body, html {
+    padding: 0;
+    margin: 0;
+    font-family: Roboto,'sans-serif';
 }
 
+.container{
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+.task-app-content{
+    display: flex;
 
-table {
-    width: 100%;
-    border-collapse: collapse;
 }
-table, td, th {
-    border: 1px solid #dee2e6;
+.task-app-content aside{
+    width: 30%;
+    background-color: #f7d51d;
+    padding: 15px;
 }
-tr.select{
-    background: orange;
+.task-app-content section{
+    width: 70%;
+    background-color: #202124;
+    color:#fff;
+    padding: 15px;
+
 }
-td.active{
-    background-color: #28a745;
+.task-item-list{
+    display: flex;
+    justify-content: space-between;
+}
+.task-item{
+    border-color: #5f6368;
+    width: calc(25% - 15px);
+    min-height: 100px;
+    background-color: #202124;
+    border: 2px solid #5f6368;
+ 
+}
+.task-item__title{
+    color: #e8eaed;
+    cursor: pointer;
 }
 
-td.blocked{
-    background-color: #dc3545;
+.menu-page, .menu-task{
+    padding-left: 0;
+    list-style-type: none;
+}
+.menu-page li , .menu-task li {
+    padding: 15px;
+}
+.menu-page a , .menu-task a {
+    color: #202124;
+    text-decoration: none;
+}
+.menu-page li svg, .menu-task li svg{
+    max-width: 20px;
+    margin-right: 30px;
+
 }
