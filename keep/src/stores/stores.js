@@ -16,7 +16,8 @@ const initState = {
   openFormNewTaskCaption: false,
   addNewTaskCaption: true,
   openFormTaskItemNew: false,
-  openFormTaskItemEdit: false
+  openFormTaskItemEdit: false,
+
 }
 
 // в редьюсере state - это не весь state Redux, а только тот раздел state,

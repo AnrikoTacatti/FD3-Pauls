@@ -73,7 +73,40 @@ export default {
       console.log("unsaccessful error " + error);
     });
   },
+  setNewTaskItem(data, dispatch) {
+    debugger;
+    const db = getDatabase();
+    // A post entry.
+    const postData = {
+      name: data.title,
+      text: data.text
+    };
+    // Get a key for a new Post.
+    const newPostKey = push(child(ref(db), 'TaskLists')).key;
+    // Write the new post's data simultaneously in the posts list and the user's post list.
+    const updates = {};
 
+    set(ref(db, 'keeps/sectionlist/' + data.keychapter + "/itemlist/" + newPostKey), postData).then((snapshot) => {
+      console.log("set keep item firebase");
+      dispatch({ type: OPEN_FORM_TASK_ITEM_NEW, data: { active: false } });
+      get(child(dbRef, "keeps/sectionlist/")).then((snapshot) => {
+        if (snapshot.exists()) {
+          console.log("keep firebase");
+          console.log(snapshot.val());
+          dispatch({ type: TASKS_LOAD_REQUEST, tasklists: snapshot.val() });
+          return snapshot.val()
+        }
+        else {
+          console.log("no data found");
+        }
+      }).catch((error) => {
+        console.log("unsaccessful error " + error);
+      });
+
+    }).catch((error) => {
+      console.log("unsaccessful error " + error);
+    });
+  },
   setTaskItem(data, dispatch) {
     const db = getDatabase();
     debugger;

@@ -18,6 +18,7 @@ class FormTaskItem extends React.PureComponent {
     UNSAFE_componentWillReceiveProps = (newProps) => {
         this.setState({ openFormTaskItemEdit: newProps.openFormTaskItemEdit });
         this.setState({ openFormTaskItemNew: newProps.openFormTaskItemNew });
+
     }
 
 
@@ -29,10 +30,11 @@ class FormTaskItem extends React.PureComponent {
     }
 
     addNewTaskItem = () => {
-        let data = [this.inputTaskItemName.value, this.inputTaskItemText.value];
+        let data = { keychapter: this.state.openFormTaskItemNew.keychapter, title: this.inputTaskItemName.value, text: this.inputTaskItemText.value };
         api.setNewTaskItem(data, this.props.dispatch);
 
     }
+
     editTaskItem = () => {
         let data = { title: this.inputTaskItemName.value, text: this.inputTaskItemText.value, keychapter: this.state.openFormTaskItemEdit.keychapter, keyitem: this.state.openFormTaskItemEdit.keyitem };
         api.setTaskItem(data, this.props.dispatch);
