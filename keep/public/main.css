@@ -85,8 +85,7 @@ a {
 abbr[title] {
   border-bottom: none; /* 1 */
   text-decoration: underline; /* 2 */
-  -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted; /* 2 */
+  text-decoration: underline dotted; /* 2 */
 }
 
 /**
@@ -410,7 +409,16 @@ input:focus::-moz-placeholder,
 textarea:focus::-moz-placeholder {
     color: transparent !important;
 }
-
+textarea {
+    margin-bottom: 12px;
+    border: 1px solid #9e9e9e;
+    background-color: #e8eaed;
+    height: 80px;
+    max-height: 115px;
+    padding: 10px 12px;
+    max-width: 100%;
+    resize: none;
+}
 textarea::-webkit-input-placeholder {
     font-size: inherit;
     color: #444;
@@ -452,7 +460,7 @@ textarea:-ms-input-placeholder {
 }
     
 .container{
-    max-width: 1200px;
+    max-width: 90%;
     margin-left: auto;
     margin-right: auto;
     min-height: 100vh;
@@ -462,24 +470,30 @@ textarea:-ms-input-placeholder {
 .task-app-content{
     display: flex;
     flex: 1;
-
+    margin-bottom: 20px;
 }
+
 .task-app-content aside{
-    width: 30%;
+    width: 320px;
+    flex-shrink: 0;
     background-color: #ffcb2b;
     padding: 15px;
 }
+
 .task-app-content section{
-    width: 70%;
     background-color: #202124;
     color:#fff;
-    padding: 15px;
-
+    padding: 15px 30px;
+    flex-grow: 1;
 }
+
 .task-chapter__header {
     display: flex;
     justify-content: space-between;
     padding: 20px;
+}
+.task-chapter__title {
+    font-size: 21px;
 }
 .task-chapter__tools svg {
     width: 15px;
@@ -491,12 +505,15 @@ textarea:-ms-input-placeholder {
 
 .task-item-list{
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
+    margin-right: -7.5px;
+    margin-left: -7.5px;
 }
 .task-item{
     border-color: #5f6368;
-    width: calc(25% - 7px);
+    width: calc(25% - 15px);
+    margin-right: 7.5px;
+    margin-left: 7.5px;
     min-height: 100px;
     background-color: #202124;
     border: 2px solid #5f6368;
@@ -504,6 +521,7 @@ textarea:-ms-input-placeholder {
    margin-bottom: 15px;
  
 }
+
 .task-item__title {
     color: #e8eaed;
     cursor: pointer;
