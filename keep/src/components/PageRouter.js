@@ -11,7 +11,9 @@ class PageRouter extends React.Component {
         return (
             <div>
                 <Route path="/" exact component={TaskChapter} />
+                <Route path="/:chapter" component={TaskChapter} />
                 <Route path="/about" exact component={AboutPage} />
+
 
             </div>
         );

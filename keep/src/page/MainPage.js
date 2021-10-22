@@ -1,12 +1,15 @@
 "use strict";
 import React from 'react';
-import MenuPage from '../components/MenuPage.js';
-import MenuTask from '../components/MenuTask.js';
-import PageRouter from '../components/PageRouter.js';
-
 import { BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import api from '../api/api.js';
+
+import PageRouter from '../components/PageRouter.js';
+import MenuPage from '../components/MenuPage.js';
+import MenuTask from '../components/MenuTask.js';
+import FormTaskCaption from '../components/FormTaskCaption.js';
+
+
 
 class TaskMain extends React.PureComponent {
     constructor(props) {
@@ -16,9 +19,17 @@ class TaskMain extends React.PureComponent {
     }
 
     loadTaskLists = () => {
-        console.log("loadTaskLists");
-        let loadTaskLists = api.getTask();
-        this.props.dispatch({ type: 'TASKS_LOAD_REQUEST', tasklists: loadTaskLists });
+        let loadTaskLists = api.getTask(this.props.dispatch);
+
+        /*.then((data) => {
+            debugger;
+            console.log("loadTaskLists data");
+
+            this.props.dispatch({ type: 'TASKS_LOAD_REQUEST', tasklists: data });
+        }).catch((error) => {
+            console.log("unsaccessful error " + error);
+        });;*/
+
     }
 
     componentWillMount = () => {
@@ -31,7 +42,9 @@ class TaskMain extends React.PureComponent {
     }
 
     render() {
-        console.log("render TabsCompanys");
+
+        console.log("render TaskMains");
+
         return (
             <BrowserRouter>
                 <div className="container">
@@ -55,33 +68,21 @@ class TaskMain extends React.PureComponent {
 
                             <PageRouter />
 
-                            <div className="task-chapter">
-                                <div className="task-chapter__header">
-                                    <div className="task-chapter__title">
 
-                                    </div>
-                                    <div className="task-chapter__tools">
-
-                                    </div>
-                                </div>
-                                <div className="task-item-list">
-                                    <div className="task-item">
-                                        <div className="task-item__title"></div>
-                                        <div className="task-item__text"></div>
-                                        <div className="task-item__footer">
-                                            <div className="task-item__tools">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </section>
                     </div>
+                    <FormTaskCaption />
                 </div>
+
             </BrowserRouter>
         );
     }
 };
-
-export default connect()(TaskMain);
+const mapStateToProps = function (state) {
+    return {
+        // весь раздел Redux state под именем counters будет доступен
+        // данному компоненту как this.props.counters
+        stateTaskLists: state.stateTaskLists,
+    };
+};
+export default connect(mapStateToProps)(TaskMain);

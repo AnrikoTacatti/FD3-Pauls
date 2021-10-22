@@ -5,7 +5,7 @@
   "main": "./src/index.js",
   "scripts": {
     "build": ".\\node_modules\\.bin\\webpack --mode production",
-    "livebuild": ".\\node_modules\\.bin\\webpack-dev-server --mode development --progress ",
+    "livebuild": ".\\node_modules\\.bin\\webpack-dev-server --mode development --progress --history-api-fallback",
     "test": "jest"
   },
   "author": "",
@@ -28,7 +28,9 @@
     "webpack-shell-plugin-next": "^2.2.2"
   },
   "dependencies": {
+    "firebase": "^9.1.3",
     "mini-css-extract-plugin": "^2.4.2",
+    "normalize.css": "^8.0.1",
     "prop-types": "^15.6.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

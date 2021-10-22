@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom'; /* для работы с веб страни�
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { db } from './api/api.js';
+import 'normalize.css';
 import './styles/style.css';
 console.log(db);
 
