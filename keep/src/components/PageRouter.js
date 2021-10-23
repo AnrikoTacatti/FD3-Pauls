@@ -1,8 +1,9 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route ,Switch} from 'react-router-dom';
 
 import AboutPage from '../page/AboutPage';
 import TaskChapter from '../components/TaskChapter';
+import NoMatch from '../page/NoMatch';
 /*  Route path="/client/:clid" component={Page_Client} */
 class PageRouter extends React.Component {
 
@@ -10,9 +11,15 @@ class PageRouter extends React.Component {
 
         return (
             <div>
-                <Route path="/" exact component={TaskChapter} />
-                <Route path="/:chapter" component={TaskChapter} />
-                <Route path="/about" exact component={AboutPage} />
+          
+
+
+                <Switch>
+                    <Route path="/" exact component={TaskChapter} />
+                    <Route path="/about" exact component={AboutPage} />
+                    <Route path="/:chapter" component={TaskChapter} />
+                    <Route path="*"  component={NoMatch}/>
+              </Switch>
 
 
             </div>

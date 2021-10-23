@@ -38,7 +38,9 @@ class TaskMain extends React.PureComponent {
     }
 
     componentDidMount = () => {
+        console.log("componentDidMount");
         this.loadTaskLists();
+
     }
 
     render() {

@@ -29,7 +29,8 @@ class TaskChapter extends React.PureComponent {
     icoPlus = () => <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" ><path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" ></path></svg>;
 
     openFormNewItemNew = () => {
-        this.props.dispatch({ type: OPEN_FORM_TASK_ITEM_NEW, data: { activ: true, keychapter: this.state.locationPathname } });
+        let key = this.findkey();
+        this.props.dispatch({ type: OPEN_FORM_TASK_ITEM_NEW, data: { activ: true, keychapter: key } });
 
     }
 
@@ -43,12 +44,12 @@ class TaskChapter extends React.PureComponent {
 
     forhistoryTaskListschild = () => {
         let tasklistitem = [];
-
-        for (let tasklistskeychild in this.state.TaskLists[this.state.locationPathname].itemlist) {
+        let key = this.findkey();
+        for (let tasklistskeychild in this.state.TaskLists[key].itemlist) {
             debugger;
             tasklistitem.push(
 
-                <TaskItem data={this.state.TaskLists[this.state.locationPathname].itemlist[tasklistskeychild]} keychapter={this.state.locationPathname} keyitem={tasklistskeychild} key={tasklistskeychild} />
+                <TaskItem data={this.state.TaskLists[key].itemlist[tasklistskeychild]} keychapter={key} keyitem={tasklistskeychild} key={tasklistskeychild} />
 
             )
         }
@@ -71,6 +72,19 @@ class TaskChapter extends React.PureComponent {
         }
         return tasklistitem;
     }
+
+    findName() {
+        for (let tasklistskey in this.state.TaskLists) {
+            if (this.state.TaskLists[tasklistskey].url == this.state.locationPathname) { return this.state.TaskLists[tasklistskey].name; }
+
+        }
+    }
+    findkey() {
+        for (let tasklistskey in this.state.TaskLists) {
+            if (this.state.TaskLists[tasklistskey].url == this.state.locationPathname) { return tasklistskey; }
+
+        }
+    }
     render() {
         console.log("render TaskChapter");
         console.log(this.props);
@@ -79,7 +93,7 @@ class TaskChapter extends React.PureComponent {
                 <div className="task-chapter">
                     <div className="task-chapter__header">
                         <div className="task-chapter__title">
-                            {this.state.locationPathname === undefined ? "Все" : this.state.TaskLists[this.state.locationPathname].name}
+                            {this.state.locationPathname === undefined ? "Все" : this.findName()}
 
                         </div>
                         <div className="task-chapter__tools">

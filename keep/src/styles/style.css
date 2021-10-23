@@ -192,6 +192,7 @@ textarea:-ms-input-placeholder {
 }
 .menu-page li , .menu-task li {
     padding: 15px;
+    display: flex
 }
 .menu-page a , .menu-task a {
     color: #202124;
@@ -200,9 +201,15 @@ textarea:-ms-input-placeholder {
     width: 100%;
     align-items: center;
 }
-.menu-page li svg, .menu-task li svg{
-    max-width: 20px;
+.menu-page li  svg, .menu-task li  svg{
+    width: 20px;
+    margin-left: 15px;
+
+}
+.menu-page li  a svg, .menu-task li a svg{
+    width: 20px;
     margin-right: 30px;
+    margin-left: 0;
 
 }
 

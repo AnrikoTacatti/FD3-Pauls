@@ -2,8 +2,8 @@ import { combineReducers } from 'redux';
 
 import {
   TASKS_LOAD_REQUEST,
-  ADD_NEW_TASK_CAPTION,
-  OPEN_FORM_TASK_CAPTION,
+  OPEN_FORM_NEW_TASK_CAPTION,
+  OPEN_FORM_EDIT_TASK_CAPTION,
   OPEN_FORM_TASK_ITEM_EDIT,
   OPEN_FORM_TASK_ITEM_NEW
 } from './const.js';
@@ -14,6 +14,7 @@ const initState = {
   // ключ - идентификатор счётчика, значение - число нажатий
   TaskLists: {},
   openFormNewTaskCaption: false,
+  openFormEditTaskCaption: false,
   addNewTaskCaption: true,
   openFormTaskItemNew: false,
   openFormTaskItemEdit: false,
@@ -33,11 +34,19 @@ function TaskReducer(state = initState, action) {
       };
       return newState;
     }
-    case OPEN_FORM_TASK_CAPTION: {
-      console.log("state  OPEN_FORM_TASK_CAPTION");
+    case OPEN_FORM_NEW_TASK_CAPTION: {
+      console.log("state OPEN_FORM_NEW_TASK_CAPTION");
       let newState = {
         ...state,
         openFormNewTaskCaption: action.data
+      };
+      return newState;
+    }
+    case OPEN_FORM_EDIT_TASK_CAPTION: {
+      console.log("state OPEN_FORM_EDIT_TASK_CAPTION");
+      let newState = {
+        ...state,
+        openFormEditTaskCaption: action.data
       };
       return newState;
     }
