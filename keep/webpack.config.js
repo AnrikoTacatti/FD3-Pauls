@@ -1,7 +1,7 @@
 const path = require('path');
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const extractCSS = new MiniCssExtractPlugin();
 
@@ -11,8 +11,10 @@ const extractCSS = new MiniCssExtractPlugin();
 module.exports = {
     entry: "./src/index.js", // основной файл приложения
     output: {
-        path: __dirname + "/public", // путь к каталогу выходных файлов
-        filename: "bundle.js",  // название создаваемого файла 
+        path: __dirname + '/public/',
+        filename: "bundle.js"
+        // path: __dirname + "/public/build", // путь к каталогу выходных файлов
+        //filename: "bundle.js",  // название создаваемого файла 
 
     },
     devtool: 'source-map',
@@ -20,7 +22,7 @@ module.exports = {
         rules: [
             {
                 test: /\.jsx?$/, // какие файлы обрабатывать
-                exclude: /node_modules/, // какие файлы пропускать
+                exclude: [/node_modules/, /public/], // какие файлы пропускать
                 use: { loader: "babel-loader" }
             },
             {
@@ -31,7 +33,12 @@ module.exports = {
         ]
     },
     plugins: [
-        extractCSS
+        extractCSS,
+        new HtmlWebpackPlugin({
+            template: __dirname + '/index.html', //your template file
+            filename: 'index.html',
+
+        })
 
 
     ],
