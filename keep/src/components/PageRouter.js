@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route ,Switch} from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import AboutPage from '../page/AboutPage';
 import TaskChapter from '../components/TaskChapter';
@@ -11,15 +11,15 @@ class PageRouter extends React.Component {
 
         return (
             <div>
-          
+
 
 
                 <Switch>
                     <Route path="/" exact component={TaskChapter} />
                     <Route path="/about" exact component={AboutPage} />
                     <Route path="/:chapter" component={TaskChapter} />
-                    <Route path="*"  component={NoMatch}/>
-              </Switch>
+                    <Route path="*" component={NoMatch} />
+                </Switch>
 
 
             </div>

@@ -19,16 +19,8 @@ class TaskMain extends React.PureComponent {
     }
 
     loadTaskLists = () => {
-        let loadTaskLists = api.getTask(this.props.dispatch);
+        api.getTask(this.props.dispatch);
 
-        /*.then((data) => {
-            debugger;
-            console.log("loadTaskLists data");
-
-            this.props.dispatch({ type: 'TASKS_LOAD_REQUEST', tasklists: data });
-        }).catch((error) => {
-            console.log("unsaccessful error " + error);
-        });;*/
 
     }
 

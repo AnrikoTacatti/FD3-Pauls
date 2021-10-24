@@ -28,10 +28,11 @@ class Scales {
 
     }
     getNameList(){
-        this.Products.map(function(val:Product):string{
-            console.log(val.getNameList());
-            return val.getNameList();
+        let nameList:string[];
+        this.Products.forEach(function(val:Product):void{
+            nameList.push(val.getNameList());
           }, 0);
+          return nameList;
     }
 }
 
