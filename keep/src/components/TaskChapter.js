@@ -96,20 +96,23 @@ class TaskChapter extends React.PureComponent {
                 <div className="task-chapter">
                     <div className="task-chapter__header">
                         <div className="task-chapter__title">
-                            {(this.state.locationPathname === undefined && this.state.TaskLists.length > 0) ? "Все" : this.findName()}
+                            {Object.keys(this.state.TaskLists).length > 0 && (this.state.locationPathname === undefined ? "Все" : this.findName())}
 
                         </div>
                         <div className="task-chapter__tools">
                             <span className="task-chapter__tools__edit">{this.icoEdit()} </span>
                             <span className="task-chapter__tools__trash">{this.icoTrash()} </span>
-                            {(this.state.locationPathname !== undefined && this.state.TaskLists.length > 0) && <span className="task-chapter__tools__trash" onClick={this.openFormNewItemNew} >{this.icoPlus()} </span>}
+                            {Object.keys(this.state.TaskLists).length > 0 && (this.state.locationPathname !== undefined && <span className="task-chapter__tools__trash" onClick={this.openFormNewItemNew} >{this.icoPlus()} </span>)}
 
                         </div>
                     </div>
                     <div className="task-item-list">
                         {console.log("locationPathname")}
                         {console.log(this.state.locationPathname)}
-                        {(this.state.locationPathname === undefined && this.state.TaskLists.length > 0) ? this.forTaskListschild() : this.forhistoryTaskListschild()}
+                        {console.log("!!!!!")}
+                        {console.log(this.state.TaskLists.length)}
+                        {console.log(this.state.TaskLists)}
+                        {this.state.locationPathname === undefined ? this.forTaskListschild() : this.forhistoryTaskListschild()}
 
 
 
