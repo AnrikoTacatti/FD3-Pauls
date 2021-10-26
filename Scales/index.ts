@@ -27,7 +27,7 @@ class Scales {
       }, 0);
 
     }
-    getNameList(){
+    getNameList():string[]{
         let nameList:string[];
         this.Products.forEach(function(val:Product):void{
             nameList.push(val.getNameList());

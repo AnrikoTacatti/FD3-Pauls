@@ -45,18 +45,21 @@ class TaskChapter extends React.PureComponent {
     forhistoryTaskListschild = () => {
         let tasklistitem = [];
         let key = this.findkey();
-        for (let tasklistskeychild in this.state.TaskLists[key].itemlist) {
+        if (key) {
+            for (let tasklistskeychild in this.state.TaskLists[key].itemlist) {
 
-            tasklistitem.push(
+                tasklistitem.push(
 
-                <TaskItem data={this.state.TaskLists[key].itemlist[tasklistskeychild]} keychapter={key} keyitem={tasklistskeychild} key={tasklistskeychild} />
+                    <TaskItem data={this.state.TaskLists[key].itemlist[tasklistskeychild]} keychapter={key} keyitem={tasklistskeychild} key={tasklistskeychild} />
 
-            )
+                )
+            }
         }
-
 
         return tasklistitem;
     }
+
+
     forTaskListschild = () => {
         let tasklistitem = [];
         for (let tasklistskey in this.state.TaskLists) {
@@ -93,20 +96,20 @@ class TaskChapter extends React.PureComponent {
                 <div className="task-chapter">
                     <div className="task-chapter__header">
                         <div className="task-chapter__title">
-                            {this.state.locationPathname === undefined ? "Все" : this.findName()}
+                            {(this.state.locationPathname === undefined && this.state.TaskLists.length > 0) ? "Все" : this.findName()}
 
                         </div>
                         <div className="task-chapter__tools">
                             <span className="task-chapter__tools__edit">{this.icoEdit()} </span>
                             <span className="task-chapter__tools__trash">{this.icoTrash()} </span>
-                            {this.state.locationPathname !== undefined && <span className="task-chapter__tools__trash" onClick={this.openFormNewItemNew} >{this.icoPlus()} </span>}
+                            {(this.state.locationPathname !== undefined && this.state.TaskLists.length > 0) && <span className="task-chapter__tools__trash" onClick={this.openFormNewItemNew} >{this.icoPlus()} </span>}
 
                         </div>
                     </div>
                     <div className="task-item-list">
                         {console.log("locationPathname")}
                         {console.log(this.state.locationPathname)}
-                        {this.state.locationPathname === undefined ? this.forTaskListschild() : this.forhistoryTaskListschild()}
+                        {(this.state.locationPathname === undefined && this.state.TaskLists.length > 0) ? this.forTaskListschild() : this.forhistoryTaskListschild()}
 
 
 

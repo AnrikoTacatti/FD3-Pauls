@@ -16,6 +16,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, './public/'),
         filename: "bundle.js",
+        publicPath: "/"
 
     },
     devtool: 'source-map',
@@ -51,7 +52,10 @@ module.exports = {
         /* static: {
              directory: path.resolve(__dirname, './public')
          },*/ // here's the change
-        port: 8080,
+
+        historyApiFallback: true,
+        /*  port: 8080,
+          hot: true*/
 
 
     }
