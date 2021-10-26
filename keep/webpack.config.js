@@ -9,12 +9,13 @@ const extractCSS = new MiniCssExtractPlugin();
 
 
 module.exports = {
-    entry: "./src/index.js", // основной файл приложения
+
+    entry: {
+        main: path.resolve(__dirname, './src/index.js') // основной файл приложения
+    },
     output: {
-        path: __dirname + '/public/',
-        filename: "bundle.js"
-        // path: __dirname + "/public/build", // путь к каталогу выходных файлов
-        //filename: "bundle.js",  // название создаваемого файла 
+        path: path.resolve(__dirname, './public/'),
+        filename: "bundle.js",
 
     },
     devtool: 'source-map',
@@ -35,9 +36,8 @@ module.exports = {
     plugins: [
         extractCSS,
         new HtmlWebpackPlugin({
-            template: __dirname + '/index.html', //your template file
+            template: path.resolve(__dirname, 'index.html'), //your template file
             filename: 'index.html',
-
         })
 
 
@@ -46,5 +46,13 @@ module.exports = {
         hints: false,
         maxEntrypointSize: 512000,
         maxAssetSize: 512000
+    },
+    devServer: {
+        /* static: {
+             directory: path.resolve(__dirname, './public')
+         },*/ // here's the change
+        port: 8080,
+
+
     }
 }

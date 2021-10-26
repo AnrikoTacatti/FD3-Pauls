@@ -27,7 +27,7 @@ class MenuTask extends React.PureComponent {
         for (let tasklistskey in this.state.TaskLists) {
             menulist.push(
                 <li key={tasklistskey}>
-                    <NavLink to={"/" + this.state.TaskLists[tasklistskey].url} exact className="PageLink" activeClassName="ActivePageLink" key={tasklistskey}>
+                    <NavLink to={"/chapter/" + this.state.TaskLists[tasklistskey].url} exact className="PageLink" activeClassName="ActivePageLink" key={tasklistskey}>
                         {this.folder()}  {this.state.TaskLists[tasklistskey].name}
                     </NavLink>
                     <span onClick={this.openFormEditTaskCaption.bind(null, tasklistskey)}>{this.icoEdit()}</span>

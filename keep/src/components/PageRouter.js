@@ -17,7 +17,7 @@ class PageRouter extends React.Component {
                 <Switch>
                     <Route path="/" exact component={TaskChapter} />
                     <Route path="/about" exact component={AboutPage} />
-                    <Route path="/:chapter" component={TaskChapter} />
+                    <Route path="/chapter/:chapter" component={TaskChapter} />
                     <Route path="*" component={NoMatch} />
                 </Switch>
 

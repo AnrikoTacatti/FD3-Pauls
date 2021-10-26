@@ -116,7 +116,7 @@ export default {
 
   },
   setNewTaskItem(data, dispatch) {
-    debugger;
+
     const db = getDatabase();
     // A post entry.
     const postData = {
@@ -151,7 +151,7 @@ export default {
   },
   setTaskItem(data, dispatch) {
     const db = getDatabase();
-    debugger;
+
     // A post entry.
     const postData = {
       name: data.title,
@@ -186,7 +186,7 @@ export default {
   }
   /*setNewTaskCaption(title) {
     const db = getDatabase();
-    debugger;
+
     // A post entry.
     const postData = {
       name: title
@@ -210,7 +210,7 @@ export default {
 
 function setNewTaskCaption(title) {
   const db = getDatabase();
-  debugger;
+
   // A post entry.
   const postData = {
     name: title

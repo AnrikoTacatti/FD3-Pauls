@@ -46,7 +46,7 @@ class TaskChapter extends React.PureComponent {
         let tasklistitem = [];
         let key = this.findkey();
         for (let tasklistskeychild in this.state.TaskLists[key].itemlist) {
-            debugger;
+
             tasklistitem.push(
 
                 <TaskItem data={this.state.TaskLists[key].itemlist[tasklistskeychild]} keychapter={key} keyitem={tasklistskeychild} key={tasklistskeychild} />
@@ -61,7 +61,7 @@ class TaskChapter extends React.PureComponent {
         let tasklistitem = [];
         for (let tasklistskey in this.state.TaskLists) {
             for (let tasklistskeychild in this.state.TaskLists[tasklistskey].itemlist) {
-                debugger;
+
                 tasklistitem.push(
 
                     <TaskItem data={this.state.TaskLists[tasklistskey].itemlist[tasklistskeychild]} keychapter={tasklistskey} keyitem={tasklistskeychild} key={tasklistskeychild} />
