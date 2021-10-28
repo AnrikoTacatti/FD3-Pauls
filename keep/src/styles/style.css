@@ -168,15 +168,99 @@ textarea:-ms-input-placeholder {
     background-color: #202124;
     border: 2px solid #5f6368;
     padding: 15px;
-   margin-bottom: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    transition: all 1s;
+   /* -webkit-animation-name: slideInUp;
+    animation-name: slideInUp;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+    transform: translate3d(0,100%,0);
+    opacity: 0;*/
+    transform: scale(1) translate3d(0,100%,0);
  
 }
+.task-item.del {
+    opacity: 1;
+    transform: scale(1) translateZ(0);
+     -webkit-animation-name: del;
+    animation-name: del;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+}
+
+
+@-webkit-keyframes slideInUp {
+    0% {
+        transform: scale(1) translate3d(0,100%,0);
+        visibility: visible;
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1) translateZ(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    0% {
+        transform:  scale(1) translate3d(0,100%,0);
+        visibility: visible;
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1) translateZ(0);
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes del {
+    0% {
+        transform: scale(1) translateZ(0);
+        visibility: visible;
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(0) translateZ(0);
+        visibility: visible;
+        opacity: 0;
+    }
+}
+
+@keyframes del {
+    0% {
+        transform: scale(1) translateZ(0);
+        visibility: visible;
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(0) translateZ(0);
+        visibility: visible;
+        opacity: 0;
+    }
+}
+
+
+
+
 
 .task-item__title {
     color: #e8eaed;
     cursor: pointer;
     font-size: 21px;
     padding-bottom: 5px;
+}
+.task-item__text {
+    flex: 1 1 auto;
 }
 .task-item__tools {
     padding-top: 15px;
@@ -185,6 +269,12 @@ textarea:-ms-input-placeholder {
     width: 12px;
     margin-right: 15px;
     color: #979798;
+    cursor: pointer;
+    transition: color .2s;
+}
+.task-item__tools svg:hover{
+    color: #fff;   
+    transition: color .2s;
 }
 .menu-page, .menu-task{
     padding-left: 0;
@@ -192,8 +282,12 @@ textarea:-ms-input-placeholder {
 }
 .menu-page li , .menu-task li {
     padding: 15px;
-    display: flex
+    display: flex;
 }
+.menu-page li:hover , .menu-task li:hover {
+    background: rgb(65 51 28 / 30%);
+}
+
 .menu-page a , .menu-task a {
     color: #202124;
     text-decoration: none;
@@ -201,10 +295,22 @@ textarea:-ms-input-placeholder {
     width: 100%;
     align-items: center;
 }
+.menu-task span{
+    color: #202124;
+}
 .menu-page li  svg, .menu-task li  svg{
     width: 20px;
     margin-left: 15px;
+    transition: color .2s;
+}
 
+
+.menu-task li  svg{
+    cursor: pointer;
+}
+.menu-task li  svg:hover{
+    color: #fff; 
+    transition: color .2s;
 }
 .menu-page li  a svg, .menu-task li a svg{
     width: 20px;
@@ -212,8 +318,10 @@ textarea:-ms-input-placeholder {
     margin-left: 0;
 
 }
-
-
+.menu-task li:last-child svg {
+    margin-right: 30px;
+    margin-left: 0;
+}
 /* form*/
 .form {
     position: fixed;

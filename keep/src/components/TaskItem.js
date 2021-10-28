@@ -1,13 +1,15 @@
 "use strict";
 import React from 'react';
 import { connect } from 'react-redux';
+import api from '../api/api.js';
 
 class TaskItem extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
             TaskLists: this.props.stateTaskLists,
-            chapter: this.props.chapter
+            keychapter: this.props.keychapter,
+            keyitem: this.props.keyitem,
         }
 
 
@@ -17,6 +19,23 @@ class TaskItem extends React.PureComponent {
         this.props.dispatch({ type: "OPEN_FORM_TASK_ITEM_EDIT", data: { name: this.props.data.name, text: this.props.data.text, activ: true, keychapter: this.props.keychapter, keyitem: this.props.keyitem } });
 
     }
+    deleteTaskItem = () => {
+        debugger;
+        this.divitem.className = this.divitem.className + " del";
+        setTimeout(() => {
+            let data = { keychapter: this.state.keychapter, keyitem: this.state.keyitem };
+            api.removeTaskItem(data, this.props.dispatch);
+        }, 1000);
+
+
+    }
+
+    getTime(timestamp) {
+        let d = new Date(timestamp);
+        let timeStampCon = d.getDate() + '/' + (d.getMonth()) + '/' + d.getFullYear() + " " + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes());
+        return timeStampCon;
+    }
+
 
     icoTrash = () => <svg className="ico-trash" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" ><path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z" ></path></svg>;
     icoEdit = () => <svg className="ico-edit" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" ><path fill="currentColor" d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z" ></path></svg>;
@@ -27,16 +46,20 @@ class TaskItem extends React.PureComponent {
     render() {
         console.log("render TaskChapter");
         console.log(this.props);
+
+
         return (
-            <div className="task-item">
+            <div className={`task-item ${this.props.attrdata}`} data-keychapter={this.props.attrdata} style={{ "animationDelay": `${this.props.index * 0.05}s` }} ref={c => this.divitem = c} >
                 <div className="task-item__title">{this.props.data.name}</div>
                 <div className="task-item__text">{this.props.data.text}</div>
+                <div className="task-item__date">{this.props.data.time !== undefined && this.getTime(this.props.data.time)}</div>
+
                 <div className="task-item__footer">
                     <div className="task-item__tools">
-                        <span className="task-item__tools_Pin">{this.icoPin()}</span> <span onClick={this.openFormNewItemEdit} className="task-item__tools_Edit" >{this.icoEdit()}</span> <span className="task-item__tools_Trash">{this.icoTrash()}</span>
+                        <span className="task-item__tools_Pin">{this.icoPin()}</span> <span onClick={this.openFormNewItemEdit} className="task-item__tools_Edit" >{this.icoEdit()}</span> <span onClick={this.deleteTaskItem} className="task-item__tools_Trash">{this.icoTrash()}</span>
                     </div>
                 </div>
-            </div>
+            </div >
         )
     }
 

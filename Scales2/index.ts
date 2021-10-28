@@ -13,48 +13,82 @@
 
 Прислать на проверку на адрес loktev.alex.74@gmail.com ссылку на git-репозиторий и имя папки с выполненным домашним заданием.
 */
-var Scales = /** @class */ (function () {
-    function Scales() {
-        this.Products = [];
+
+
+interface IScalable {
+    getSumScale(): number;
+    getNameList(): string;
+}
+
+
+class Scales{
+    Products:IScalable[]= [];
+
+    add(Product:IScalable) {
+       this.Products.push(Product);
     }
-    Scales.prototype.add = function (Product) {
-        this.Products.push(Product);
-    };
-    Scales.prototype.getSumScale = function () {
-        return this.Products.reduce(function (sum, current) {
-            return sum + current.getSumScale();
-        }, 0);
-    };
-    Scales.prototype.getNameList = function () {
-        var nameList = [];
-        this.Products.forEach(function (val) {
+
+   getSumScale():number {
+        return this.Products.reduce(function(sum:number, current:IScalable):number {
+        return sum + current.getSumScale();
+      }, 0);
+
+    }
+    getNameList():string[]{
+        let nameList:string[] = [];
+        this.Products.forEach(function(val:IScalable):void{
             nameList.push(val.getNameList());
-        });
-        return nameList;
-    };
-    return Scales;
-}());
-var Product = /** @class */ (function () {
-    function Product(name, weight) {
+          }, 0);
+          return nameList;
+    }
+}
+
+
+
+
+class Tomato  implements IScalable{
+    name: string;
+    weight: number;
+
+    constructor(name: string, weight: number) {
         this.name = name;
         this.weight = weight;
     }
-    Product.prototype.getSumScale = function () {
+    getSumScale(): number {
         return this.weight;
-    };
-    Product.prototype.getNameList = function () {
+    }
+    getNameList(): string {
         return this.name;
-    };
-    return Product;
-}());
-var tomato = new Product("tomato", 400);
-var apple = new Product("spple", 400);
-var scales = new Scales;
-scales.add(tomato);
+    }
+
+
+}
+class Apple implements IScalable{
+    name: string;
+    weight: number;
+
+    constructor(name: string, weight: number) {
+        this.name = name;
+        this.weight = weight;
+    }
+    getSumScale(): number {
+        return this.weight;
+    }
+    getNameList(): string {
+        return this.name;
+    }
+}
+
+
+let tomato: IScalable = new Tomato ("tomato", 400);
+let apple: IScalable = new Apple("apple", 500);
+
+let scales = new Scales;
+scales.add(tomato)
 console.log(scales.getSumScale());
 console.log(scales.getNameList());
 console.log("----------");
 scales.add(apple);
 console.log(scales.getSumScale());
 console.log(scales.getNameList());
-//# sourceMappingURL=index.js.map
+

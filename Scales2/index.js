@@ -29,26 +29,39 @@ var Scales = /** @class */ (function () {
         var nameList = [];
         this.Products.forEach(function (val) {
             nameList.push(val.getNameList());
-        });
+        }, 0);
         return nameList;
     };
     return Scales;
 }());
-var Product = /** @class */ (function () {
-    function Product(name, weight) {
+var Tomato = /** @class */ (function () {
+    function Tomato(name, weight) {
         this.name = name;
         this.weight = weight;
     }
-    Product.prototype.getSumScale = function () {
+    Tomato.prototype.getSumScale = function () {
         return this.weight;
     };
-    Product.prototype.getNameList = function () {
+    Tomato.prototype.getNameList = function () {
         return this.name;
     };
-    return Product;
+    return Tomato;
 }());
-var tomato = new Product("tomato", 400);
-var apple = new Product("spple", 400);
+var Apple = /** @class */ (function () {
+    function Apple(name, weight) {
+        this.name = name;
+        this.weight = weight;
+    }
+    Apple.prototype.getSumScale = function () {
+        return this.weight;
+    };
+    Apple.prototype.getNameList = function () {
+        return this.name;
+    };
+    return Apple;
+}());
+var tomato = new Tomato("tomato", 400);
+var apple = new Apple("apple", 500);
 var scales = new Scales;
 scales.add(tomato);
 console.log(scales.getSumScale());

@@ -2,7 +2,7 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 import { getStorage } from "firebase/storage";
-import { getDatabase, ref, set, get, child, push, update, remove, query, onValue, runTransaction, onChildChanged } from "firebase/database";
+import { getDatabase, ref, set, get, child, push, update, remove, query, onValue, runTransaction, onChildChanged, serverTimestamp } from "firebase/database";
 import { OPEN_FORM_TASK_ITEM_NEW, OPEN_FORM_TASK_ITEM_EDIT, OPEN_FORM_NEW_TASK_CAPTION, OPEN_FORM_EDIT_TASK_CAPTION, TASKS_LOAD_REQUEST } from '../stores/const.js';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -23,6 +23,11 @@ const firebaseConfig = {
 const firebase = initializeApp(firebaseConfig);
 export const db = getFirestore(firebase);
 const database = getDatabase();
+console.log("дата");
+console.log(serverTimestamp());
+
+
+
 const dbRef = ref(database);
 
 onChildChanged(ref(database, "keeps/sectionlist/"), (data) => {
@@ -31,7 +36,8 @@ onChildChanged(ref(database, "keeps/sectionlist/"), (data) => {
   console.log(data);
   /*setCommentValues(postElement, data.key, data.val().text, data.val().author);*/
 });
-function appGet() {
+function appGet(dispatch) {
+  console.log("appGet");
   get(child(dbRef, "keeps/sectionlist/")).then((snapshot) => {
     if (snapshot.exists()) {
       console.log("keep firebase");
@@ -45,33 +51,16 @@ function appGet() {
   }).catch((error) => {
     console.log("unsaccessful error " + error);
   });
-
 }
-
-
-
-
-
 
 export default {
   getTask(disparch) {
     return new Promise((resolve, reject) => {
       console.log("api loadTaskLists");
-      get(child(dbRef, "keeps/sectionlist/")).then((snapshot) => {
-        if (snapshot.exists()) {
-          console.log("keep firebase");
-          console.log(snapshot.val());
-          disparch({ type: 'TASKS_LOAD_REQUEST', tasklists: snapshot.val() });
-          return snapshot.val()
-        }
-        else {
-          console.log("no data found");
-        }
-      }).catch((error) => {
-        console.log("unsaccessful error " + error);
-      });
+      appGet(disparch);
     });
   },
+
   setNewTaskCaption(title, disparch) {
     const db = getDatabase();
     // A post entry.
@@ -83,18 +72,17 @@ export default {
     // Get a key for a new Post.
     /*const newPostKey = push(child(ref(db), 'TaskLists')).key;*/
     const newPostKey = push(child(ref(db), 'TaskLists')).key;
-    // Write the new post's data simultaneously in the posts list and the user's post list.
-    const updates = {};
 
     set(ref(db, 'keeps/sectionlist/' + newPostKey), postData).then((snapshot) => {
-      console.log("set keepCaption firebase");
+      console.log("setNewTaskCaption firebase");
       disparch({ type: OPEN_FORM_NEW_TASK_CAPTION, data: false });
-      appGet();
+      appGet(disparch);
 
     }).catch((error) => {
       console.log("unsaccessful error " + error);
     });
   },
+
   editTaskCaption(data, disparch) {
     const db = getDatabase();
     // A post entry.
@@ -105,169 +93,78 @@ export default {
     updates['keeps/sectionlist/' + data.keychapter + '/name'] = postData;
     updates['keeps/sectionlist/' + data.keychapter + '/url'] = url;
     return update(ref(db), updates).then((snapshot) => {
-      console.log("edit keepCaption firebase");
+      console.log("editTaskCaption firebase");
       disparch({ type: OPEN_FORM_EDIT_TASK_CAPTION, data: { active: false } });
-      appGet();
+      appGet(disparch);
     }).catch((error) => {
       console.log("setTaskItem error " + error);
     });
-
-
-
   },
+  removeTaskCaption(data, disparch) {
+    const db = getDatabase();
+    let del = 'keeps/sectionlist/' + data.keychapter;
+    return remove(ref(db, del)).then(() => {
+      console.log("removeTaskCaption firebase");
+      appGet(disparch);
+    }).catch((error) => {
+      console.log("setTaskItem error " + error);
+    });
+  },
+
+
   setNewTaskItem(data, dispatch) {
 
     const db = getDatabase();
     // A post entry.
     const postData = {
       name: data.title,
-      text: data.text
+      text: data.text,
+      time: serverTimestamp()
     };
     // Get a key for a new Post.
     const newPostKey = push(child(ref(db), 'TaskLists')).key;
-    // Write the new post's data simultaneously in the posts list and the user's post list.
-    const updates = {};
 
-    set(ref(db, 'keeps/sectionlist/' + data.keychapter + "/itemlist/" + newPostKey), postData).then((snapshot) => {
-      console.log("set keep item firebase");
+    set(ref(db, 'keeps/sectionlist/' + data.keychapter + "/itemlist/" + newPostKey), postData).then(() => {
+      console.log("setNewTaskItem  firebase");
       dispatch({ type: OPEN_FORM_TASK_ITEM_NEW, data: { active: false } });
-      get(child(dbRef, "keeps/sectionlist/")).then((snapshot) => {
-        if (snapshot.exists()) {
-          console.log("keep firebase");
-          console.log(snapshot.val());
-          dispatch({ type: TASKS_LOAD_REQUEST, tasklists: snapshot.val() });
-          return snapshot.val()
-        }
-        else {
-          console.log("no data found");
-        }
-      }).catch((error) => {
-        console.log("unsaccessful error " + error);
-      });
-
+      appGet(dispatch);
     }).catch((error) => {
       console.log("unsaccessful error " + error);
     });
   },
+
   setTaskItem(data, dispatch) {
     const db = getDatabase();
 
     // A post entry.
     const postData = {
       name: data.title,
-      text: data.text
+      text: data.text,
+      time: serverTimestamp()
     };
-    // Get a key for a new Post.
-
-
-    // Write the new post's data simultaneously in the posts list and the user's post list.
     const updates = {};
     updates['keeps/sectionlist/' + data.keychapter + "/itemlist/" + data.keyitem] = postData;
-    return update(ref(db), updates).then((snapshot) => {
-      console.log("set keepCaption firebase");
-      /* disparch({ type: 'TASKS_LOAD_REQUEST', tasklists: snapshot.val() });*/
+    return update(ref(db), updates).then(() => {
+      console.log("setTaskItem firebase");
       dispatch({ type: OPEN_FORM_TASK_ITEM_EDIT, data: { active: false } });
-      get(child(dbRef, "keeps/sectionlist/")).then((snapshot) => {
-        if (snapshot.exists()) {
-          console.log("keep firebase");
-          console.log(snapshot.val());
-          dispatch({ type: 'TASKS_LOAD_REQUEST', tasklists: snapshot.val() });
-          return snapshot.val()
-        }
-        else {
-          console.log("no data found");
-        }
-      }).catch((error) => {
-        console.log("unsaccessful error " + error);
-      });
+      appGet(dispatch);
+    }).catch((error) => {
+      console.log("setTaskItem error " + error);
+    });
+  },
+
+  removeTaskItem(data, dispatch) {
+    debugger;
+    const db = getDatabase();
+    let del = 'keeps/sectionlist/' + data.keychapter + "/itemlist/" + data.keyitem;
+    return remove(ref(db, del)).then(() => {
+      console.log("remove TaskItem firebase");
+      appGet(dispatch);
     }).catch((error) => {
       console.log("setTaskItem error " + error);
     });
   }
-  /*setNewTaskCaption(title) {
-    const db = getDatabase();
-
-    // A post entry.
-    const postData = {
-      name: title
-    };
-
-    // Get a key for a new Post.
-    const newPostKey = push(child(ref(db), 'TaskLists')).key;
-
-    // Write the new post's data simultaneously in the posts list and the user's post list.
-    const updates = {};
-    updates['/TaskLists/' + newPostKey] = postData;
-   updates['/user-posts/' + uid + '/' + newPostKey] = postData;
-
-    return update(ref(db), updates);
-  }*/
 }
-
-
-
-
-
-function setNewTaskCaption(title) {
-  const db = getDatabase();
-
-  // A post entry.
-  const postData = {
-    name: title
-  };
-
-  // Get a key for a new Post.
-  const newPostKey = push(child(ref(db), 'TaskLists')).key;
-
-  // Write the new post's data simultaneously in the posts list and the user's post list.
-  const updates = {};
-  /* updates['/TaskLists/' + newPostKey] = postData;
-   updates['/user-posts/' + uid + '/' + newPostKey] = postData;
- 
-   return update(ref(db), updates);*/
-}
-
-
-/*
-function writeUserData(userId, name, email, imageUrl) {
-  const db = getDatabase();
-  set(ref(db, 'users/' + userId), {
-    username: name,
-    email: email,
-    profile_picture: imageUrl
-  });
-}
-
-const starCountRef = ref(database, 'posts/' + postId + '/starCount');
-onValue(starCountRef, (snapshot) => {
-  const data = snapshot.val();
-  updateStarCount(postElement, data);
-});
-
-
-function toggleStar(uid) {
-  const db = getDatabase();
-  const postRef = ref(db, '/posts/foo-bar-123');
-
-  runTransaction(postRef, (post) => {
-    if (post) {
-      if (post.stars && post.stars[uid]) {
-        post.starCount--;
-        post.stars[uid] = null;
-      } else {
-        post.starCount++;
-        if (!post.stars) {
-          post.stars = {};
-        }
-        post.stars[uid] = true;
-      }
-    }
-    return post;
-  });
-}
-
-*/
-
 
 
 function generate_url(str) {

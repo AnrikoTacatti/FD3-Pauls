@@ -22,6 +22,10 @@ class TaskChapter extends React.PureComponent {
         this.setState({ locationPathname: newProps.match.params.chapter });
     }
 
+    componentDidMount = () => {
+        console.log("TaskChapter componentDidMount");
+    }
+
     icoTrash = () => <svg className="ico-trash" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" ><path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z" ></path></svg>;
     icoEdit = () => <svg className="ico-edit" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" ><path fill="currentColor" d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z" ></path></svg>;
     icoBell = () => <svg className="ico-bell" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bell" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" ><path fill="currentColor" d="M224 512c35.32 0 63.97-28.65 63.97-64H160.03c0 35.35 28.65 64 63.97 64zm215.39-149.71c-19.32-20.76-55.47-51.99-55.47-154.29 0-77.7-54.48-139.9-127.94-155.16V32c0-17.67-14.32-32-31.98-32s-31.98 14.33-31.98 32v20.84C118.56 68.1 64.08 130.3 64.08 208c0 102.3-36.15 133.53-55.47 154.29-6 6.45-8.66 14.16-8.61 21.71.11 16.4 12.98 32 32.1 32h383.8c19.12 0 32-15.6 32.1-32 .05-7.55-2.61-15.27-8.61-21.71z" ></path></svg>;
@@ -46,13 +50,16 @@ class TaskChapter extends React.PureComponent {
         let tasklistitem = [];
         let key = this.findkey();
         if (key) {
+            var i = 0;
             for (let tasklistskeychild in this.state.TaskLists[key].itemlist) {
-
+                i++
                 tasklistitem.push(
 
-                    <TaskItem data={this.state.TaskLists[key].itemlist[tasklistskeychild]} keychapter={key} keyitem={tasklistskeychild} key={tasklistskeychild} />
+                    <TaskItem data={this.state.TaskLists[key].itemlist[tasklistskeychild]} keychapter={key} keyitem={tasklistskeychild} key={tasklistskeychild} index={i}
+                        attrdata={this.state.locationPathname === undefined ? "all" : this.state.locationPathname} />
 
                 )
+
             }
         }
 
@@ -62,12 +69,15 @@ class TaskChapter extends React.PureComponent {
 
     forTaskListschild = () => {
         let tasklistitem = [];
+        var i = 0;
         for (let tasklistskey in this.state.TaskLists) {
             for (let tasklistskeychild in this.state.TaskLists[tasklistskey].itemlist) {
-
+                i++
                 tasklistitem.push(
 
-                    <TaskItem data={this.state.TaskLists[tasklistskey].itemlist[tasklistskeychild]} keychapter={tasklistskey} keyitem={tasklistskeychild} key={tasklistskeychild} />
+                    <TaskItem data={this.state.TaskLists[tasklistskey].itemlist[tasklistskeychild]} keychapter={tasklistskey} keyitem={tasklistskeychild} key={tasklistskeychild} index={i}
+                        attrdata={this.state.locationPathname === undefined ? "all" : this.state.locationPathname}
+                    />
 
                 )
             }
@@ -93,7 +103,26 @@ class TaskChapter extends React.PureComponent {
         console.log(this.props);
         return (
             <React.Fragment>
-                <div className="task-chapter">
+                <div className="task-chapter" id={this.state.locationPathname === undefined ? "all" : this.state.locationPathname}>
+                    <style>
+
+
+                        {` .task-item{ -webkit-animation-name: none;
+                                animation-name: none;} .${this.state.locationPathname === undefined ? "all" : this.state.locationPathname} { 
+                           -webkit-animation-name: slideInUp;
+                            animation-name: slideInUp;
+                            -webkit-animation-duration: 1s;
+                            animation-duration: 1s;
+                            -webkit-animation-fill-mode: forwards;
+                                    animation-fill-mode: forwards;
+                            opacity: 0; }
+                           
+                            `
+
+
+
+                        }
+                    </style>
                     <div className="task-chapter__header">
                         <div className="task-chapter__title">
                             {Object.keys(this.state.TaskLists).length > 0 && (this.state.locationPathname === undefined ? "Все" : this.findName())}

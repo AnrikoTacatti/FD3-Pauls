@@ -14,23 +14,55 @@
 Прислать на проверку на адрес loktev.alex.74@gmail.com ссылку на git-репозиторий и имя папки с выполненным домашним заданием.
 */
 
-class Scales {
+
+interface IStorageEngine{
+    addItem(product:Product): void;
+    getItem(index:number): Product;
+    getCount(): number;
+}
+
+
+
+class ScalesStorageEngineArray implements IStorageEngine{
     Products:Product[]= [];
 
-    add(Product:Product) {
-       this.Products.push(Product);
+    addItem(product:Product):void {
+       this.Products.push(product);
     }
-   getSumScale():number {
-    return this.Products.reduce(function(sum:number, current:Product):number {
-        sum + current.getSumScale();
-      }, 0);
+    getItem(index:number):Product {
+       return  this.Products[index];
     }
-    getNameList():string[]{
+    getCount():number {
+        return this.Products.length;
+    }
+}
+
+class Scales<StorageEngine extends IStorageEngine> {
+    
+    stor:IStorageEngine;
+    length:number;
+    constructor(stor:IStorageEngine) {
+        this.stor = stor;
+        this.length= this.stor.getCount();
+    }
+
+   getSumScale():void {
+     
+       let sum:number = 0;
+        for(let i = 0; i < this.length; i++){
+           let item = this.stor.getItem(i);
+           sum += item.getWeight();
+        }
+        console.log(sum);
+    }
+
+    getNameList():void{
         let nameList:string[] = [];
-        this.Products.forEach(function(val:Product):void{
-            nameList.push(val.getNameList());
-          });
-         return nameList;
+        for(let i = 0; i < this.length; i++){
+            let item = this.stor.getItem(i);
+            nameList.push(item.getName());
+         }
+         console.log(nameList);
     }
 }
 
@@ -38,32 +70,32 @@ class Scales {
 
 
 class Product {
-    name: string;
-    weight: number;
+   private name: string;
+   private weight: number;
 
     constructor(name: string, weight: number) {
         this.name = name;
         this.weight = weight;
     }
 
-    getSumScale(): number {
-        return this.weight;
-    }
-    getNameList(): string {
+   public getName(): string {
         return this.name;
     }
-
+    public getWeight(): number {
+        return this.weight;
+       
+    }
 }
-let tomato: Product = new Product("tomato", 400);
-let apple: Product = new Product("spple", 400);
 
-let scales = new Scales;
 
-scales.add(tomato)
-console.log(scales.getSumScale());
-console.log(scales.getNameList());
-console.log("----------");
-scales.add(apple);
-console.log(scales.getSumScale());
-console.log(scales.getNameList());
+let tomato: Product = new Product ("tomato", 400);
+let apple: Product = new Product("apple", 400);
 
+let scalesStorageEngineArray = new ScalesStorageEngineArray();
+scalesStorageEngineArray.addItem(tomato);
+scalesStorageEngineArray.addItem(apple);
+
+
+let scales = new Scales<ScalesStorageEngineArray>(scalesStorageEngineArray);
+scales.getSumScale();
+scales.getNameList();

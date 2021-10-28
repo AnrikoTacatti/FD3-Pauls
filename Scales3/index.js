@@ -13,24 +13,41 @@
 
 Прислать на проверку на адрес loktev.alex.74@gmail.com ссылку на git-репозиторий и имя папки с выполненным домашним заданием.
 */
-var Scales = /** @class */ (function () {
-    function Scales() {
+var ScalesStorageEngineArray = /** @class */ (function () {
+    function ScalesStorageEngineArray() {
         this.Products = [];
     }
-    Scales.prototype.add = function (Product) {
-        this.Products.push(Product);
+    ScalesStorageEngineArray.prototype.addItem = function (product) {
+        this.Products.push(product);
     };
+    ScalesStorageEngineArray.prototype.getItem = function (index) {
+        return this.Products[index];
+    };
+    ScalesStorageEngineArray.prototype.getCount = function () {
+        return this.Products.length;
+    };
+    return ScalesStorageEngineArray;
+}());
+var Scales = /** @class */ (function () {
+    function Scales(stor) {
+        this.stor = stor;
+        this.length = this.stor.getCount();
+    }
     Scales.prototype.getSumScale = function () {
-        return this.Products.reduce(function (sum, current) {
-            return sum + current.getSumScale();
-        }, 0);
+        var sum = 0;
+        for (var i = 0; i < this.length; i++) {
+            var item = this.stor.getItem(i);
+            sum += item.getWeight();
+        }
+        console.log(sum);
     };
     Scales.prototype.getNameList = function () {
         var nameList = [];
-        this.Products.forEach(function (val) {
-            nameList.push(val.getNameList());
-        });
-        return nameList;
+        for (var i = 0; i < this.length; i++) {
+            var item = this.stor.getItem(i);
+            nameList.push(item.getName());
+        }
+        console.log(nameList);
     };
     return Scales;
 }());
@@ -39,22 +56,20 @@ var Product = /** @class */ (function () {
         this.name = name;
         this.weight = weight;
     }
-    Product.prototype.getSumScale = function () {
-        return this.weight;
-    };
-    Product.prototype.getNameList = function () {
+    Product.prototype.getName = function () {
         return this.name;
+    };
+    Product.prototype.getWeight = function () {
+        return this.weight;
     };
     return Product;
 }());
 var tomato = new Product("tomato", 400);
-var apple = new Product("spple", 400);
-var scales = new Scales;
-scales.add(tomato);
-console.log(scales.getSumScale());
-console.log(scales.getNameList());
-console.log("----------");
-scales.add(apple);
-console.log(scales.getSumScale());
-console.log(scales.getNameList());
+var apple = new Product("apple", 400);
+var scalesStorageEngineArray = new ScalesStorageEngineArray();
+scalesStorageEngineArray.addItem(tomato);
+scalesStorageEngineArray.addItem(apple);
+var scales = new Scales(scalesStorageEngineArray);
+scales.getSumScale();
+scales.getNameList();
 //# sourceMappingURL=index.js.map
