@@ -16,9 +16,10 @@ import SessionStore from './stores/SessionStore';*/
 
 import TaskMain from './page/MainPage.js';
 import combinedReducer from "./stores/stores.js";
+import { syncHistoryWithStore } from 'react-router-redux';
+import { createBrowserHistory } from 'history';
 
+const store = createStore(combinedReducer);
+let history = syncHistoryWithStore(createBrowserHistory(), store);
 
-
-let store = createStore(combinedReducer);
-
-ReactDOM.render(<Provider store={store}><TaskMain /></Provider>, document.getElementById('root'));
+ReactDOM.render(<Provider store={store}><TaskMain history={history} /></Provider>, document.getElementById('root'));

@@ -22,7 +22,7 @@ class Scales {
     }
    getSumScale():number {
     return this.Products.reduce(function(sum:number, current:Product):number {
-        sum + current.getSumScale();
+        return sum + current.getSumScale();
       }, 0);
     }
     getNameList():string[]{
@@ -54,8 +54,21 @@ class Product {
     }
 
 }
-let tomato: Product = new Product("tomato", 400);
-let apple: Product = new Product("spple", 400);
+class Tomato  extends Product {
+    subname:"Tomato";
+    constructor(name: string, weight: number) {
+        super(name, weight);
+    }
+}
+class Apple  extends Product {
+    subname:"Apple";
+    constructor(name: string, weight: number) {
+        super(name, weight);
+    }
+}
+
+let tomato: Product = new Tomato("tomato", 400);
+let apple: Product = new  Apple("spple", 400);
 
 let scales = new Scales;
 

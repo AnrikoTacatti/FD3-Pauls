@@ -42,6 +42,16 @@ function appGet(dispatch) {
     if (snapshot.exists()) {
       console.log("keep firebase");
       console.log(snapshot.val());
+      /* let taskLists = { ...snapshot.val() };
+       let itemlist = [];
+       for (let tasklistskey in taskLists) {
+         for (let tasklistskeychild in taskLists[tasklistskey].itemlist) {
+           itemlist.push(taskLists[tasklistskey].itemlist[tasklistskeychild])
+         }
+         taskLists[tasklistskey].itemlist = itemlist.sort((a, b) => b.time - a.time);
+         itemlist = [];
+       }*/
+
       dispatch({ type: TASKS_LOAD_REQUEST, tasklists: snapshot.val() });
       return snapshot.val()
     }

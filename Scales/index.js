@@ -13,6 +13,21 @@
 
 Прислать на проверку на адрес loktev.alex.74@gmail.com ссылку на git-репозиторий и имя папки с выполненным домашним заданием.
 */
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var Scales = /** @class */ (function () {
     function Scales() {
         this.Products = [];
@@ -47,8 +62,22 @@ var Product = /** @class */ (function () {
     };
     return Product;
 }());
-var tomato = new Product("tomato", 400);
-var apple = new Product("spple", 400);
+var Tomato = /** @class */ (function (_super) {
+    __extends(Tomato, _super);
+    function Tomato(name, weight) {
+        return _super.call(this, name, weight) || this;
+    }
+    return Tomato;
+}(Product));
+var Apple = /** @class */ (function (_super) {
+    __extends(Apple, _super);
+    function Apple(name, weight) {
+        return _super.call(this, name, weight) || this;
+    }
+    return Apple;
+}(Product));
+var tomato = new Tomato("tomato", 400);
+var apple = new Apple("spple", 400);
 var scales = new Scales;
 scales.add(tomato);
 console.log(scales.getSumScale());

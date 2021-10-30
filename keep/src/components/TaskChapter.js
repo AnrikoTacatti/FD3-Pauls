@@ -70,9 +70,12 @@ class TaskChapter extends React.PureComponent {
     forTaskListschild = () => {
         let tasklistitem = [];
         var i = 0;
+        let list = [];
         for (let tasklistskey in this.state.TaskLists) {
+
             for (let tasklistskeychild in this.state.TaskLists[tasklistskey].itemlist) {
-                i++
+
+                i++;
                 tasklistitem.push(
 
                     <TaskItem data={this.state.TaskLists[tasklistskey].itemlist[tasklistskeychild]} keychapter={tasklistskey} keyitem={tasklistskeychild} key={tasklistskeychild} index={i}
@@ -83,6 +86,8 @@ class TaskChapter extends React.PureComponent {
             }
 
         }
+        console.log("лист");
+        console.log(list);
         return tasklistitem;
     }
 
@@ -108,19 +113,16 @@ class TaskChapter extends React.PureComponent {
 
 
                         {` .task-item{ -webkit-animation-name: none;
-                                animation-name: none;} .${this.state.locationPathname === undefined ? "all" : this.state.locationPathname} { 
-                           -webkit-animation-name: slideInUp;
-                            animation-name: slideInUp;
-                            -webkit-animation-duration: 1s;
-                            animation-duration: 1s;
-                            -webkit-animation-fill-mode: forwards;
-                                    animation-fill-mode: forwards;
-                            opacity: 0; }
-                           
+                                animation-name: none;} 
+                            .${this.state.locationPathname !== undefined && this.state.locationPathname} { 
+                                -webkit-animation-name: slideInUp;
+                                animation-name: slideInUp;
+                                opacity: 0; }
+                            .all{ 
+                                -webkit-animation-name: slideInUpAll;
+                                 animation-name: slideInUpAll;
+                             }
                             `
-
-
-
                         }
                     </style>
                     <div className="task-chapter__header">

@@ -40,7 +40,8 @@ class TaskMain extends React.PureComponent {
         console.log("render TaskMains");
 
         return (
-            <BrowserRouter>
+
+            <BrowserRouter history={this.props.history}>
                 <div className="container">
                     <h1> TASK APP</h1>
                     <div className="task-app-content">
