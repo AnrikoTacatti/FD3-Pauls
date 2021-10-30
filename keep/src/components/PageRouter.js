@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import AboutPage from '../page/AboutPage';
 import TaskChapter from '../components/TaskChapter';
 import NoMatch from '../page/NoMatch';
-/*  Route path="/client/:clid" component={Page_Client} */
+
 class PageRouter extends React.Component {
 
     render() {

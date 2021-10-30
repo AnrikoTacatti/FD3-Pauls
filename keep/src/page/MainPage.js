@@ -41,7 +41,7 @@ class TaskMain extends React.PureComponent {
 
         return (
 
-            <BrowserRouter history={this.props.history}>
+            <BrowserRouter>
                 <div className="container">
                     <h1> TASK APP</h1>
                     <div className="task-app-content">
@@ -81,3 +81,4 @@ const mapStateToProps = function (state) {
     };
 };
 export default connect(mapStateToProps)(TaskMain);
+

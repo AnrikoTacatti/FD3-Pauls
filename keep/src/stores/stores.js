@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { routerReducer } from 'react-router-redux';
+import { connectRouter } from 'connected-react-router'
 
 
 import {
@@ -78,7 +78,7 @@ function TaskReducer(state = initState, action) {
 let combinedReducer = combineReducers({
   // редьюсер countersReducer отвечает за раздел state под именем counters
   stateTaskLists: TaskReducer,
-  routing: routerReducer
+  /*routing: routerReducer*/
   // + другие редьюсеры
 });
 

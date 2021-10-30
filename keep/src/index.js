@@ -3,23 +3,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom'; /* для работы с веб страницами */  // модуль React для работы с веб-страницами  import {render} from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { applyMiddleware, compose, createStore } from 'redux';
 import { db } from './api/api.js';
 import 'normalize.css';
 import './styles/style.css';
 console.log(db);
 
 
-
-/*import SessionActions from './actions/SessionActions';
-import SessionStore from './stores/SessionStore';*/
-
 import TaskMain from './page/MainPage.js';
 import combinedReducer from "./stores/stores.js";
-import { syncHistoryWithStore } from 'react-router-redux';
-import { createBrowserHistory } from 'history';
+
+
+/*import { createBrowserHistory } from 'history'*/
+/*import { routerMiddleware } from 'connected-react-router'*/
+/*export const history = createBrowserHistory();*/
 
 const store = createStore(combinedReducer);
-let history = syncHistoryWithStore(createBrowserHistory(), store);
+/*
+const store = createStore(
+    combinedReducer(history), // root reducer with router state
+    preloadedState,
+    compose(
+        applyMiddleware(
+            routerMiddleware(history), // for dispatching history actions
+            // ... other middlewares ...
+        ),
+    )
+);*/
 
-ReactDOM.render(<Provider store={store}><TaskMain history={history} /></Provider>, document.getElementById('root'));
+
+
+
+/*let history = syncHistoryWithStore(createBrowserHistory(), store);*/
+
+ReactDOM.render(<Provider store={store}><TaskMain /></Provider>, document.getElementById('root'));
