@@ -8,7 +8,7 @@ import PageRouter from '../components/PageRouter.js';
 import MenuPage from '../components/MenuPage.js';
 import MenuTask from '../components/MenuTask.js';
 import FormTaskCaption from '../components/FormTaskCaption.js';
-
+import FormSearch from '../components/FormSearch.js';
 
 
 class TaskMain extends React.PureComponent {
@@ -24,10 +24,10 @@ class TaskMain extends React.PureComponent {
 
     }
 
-    componentWillMount = () => {
-        /*TaskListsActions.loadTaskList(this.props.params.id);*/
-        /* TasksActions.loadTasks(this.props.params.id);*/
-    }
+    /* componentWillMount = () => {
+         /*TaskListsActions.loadTaskList(this.props.params.id);*/
+    /* TasksActions.loadTasks(this.props.params.id);*/
+    /* }*/
 
     componentDidMount = () => {
         console.log("componentDidMount");
@@ -47,6 +47,7 @@ class TaskMain extends React.PureComponent {
                     <div className="task-app-content">
                         <aside>
                             <h1> TASK </h1>
+                            <FormSearch />
                             <div className="main-menu">
                                 <ul className="menu-page">
                                     <MenuPage />

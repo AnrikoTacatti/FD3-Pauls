@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import { connectRouter } from 'connected-react-router'
 
 
 import {
@@ -7,7 +6,8 @@ import {
   OPEN_FORM_NEW_TASK_CAPTION,
   OPEN_FORM_EDIT_TASK_CAPTION,
   OPEN_FORM_TASK_ITEM_EDIT,
-  OPEN_FORM_TASK_ITEM_NEW
+  OPEN_FORM_TASK_ITEM_NEW,
+  SEARH_TEXT
 } from './const.js';
 
 
@@ -15,12 +15,13 @@ import {
 const initState = {
   // ключ - идентификатор счётчика, значение - число нажатий
   TaskLists: {},
+  TaskListsItemsSort: [],
   openFormNewTaskCaption: false,
   openFormEditTaskCaption: false,
   addNewTaskCaption: true,
   openFormTaskItemNew: false,
   openFormTaskItemEdit: false,
-
+  searchText: null,
 }
 
 // в редьюсере state - это не весь state Redux, а только тот раздел state,
@@ -32,7 +33,8 @@ function TaskReducer(state = initState, action) {
       console.log("state TASKS_LOAD_REQUEST");
       let newState = {
         ...state,
-        TaskLists: action.tasklists
+        TaskLists: action.data.tasklists,
+        TaskListsItemsSort: action.data.tasklistsitemsort
       };
       return newState;
     }
@@ -65,6 +67,14 @@ function TaskReducer(state = initState, action) {
       let newState = {
         ...state,
         openFormTaskItemEdit: action.data
+      };
+      return newState;
+    }
+    case SEARH_TEXT: {
+      console.log("state SEARH_TEXT");
+      let newState = {
+        ...state,
+        searchText: action.data.text
       };
       return newState;
     }

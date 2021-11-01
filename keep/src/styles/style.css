@@ -153,6 +153,8 @@ textarea:-ms-input-placeholder {
     color: #979798;
 }
 
+
+
 .task-item-list{
     display: flex;
     flex-wrap: wrap;
@@ -160,12 +162,11 @@ textarea:-ms-input-placeholder {
     margin-left: -7.5px;
 }
 .task-item{
-    border-color: #5f6368;
     width: calc(25% - 15px);
     margin-right: 7.5px;
     margin-left: 7.5px;
     min-height: 100px;
-    background-color: #202124;
+    background-color: #3c3f43;
     border: 2px solid #5f6368;
     padding: 15px;
     margin-bottom: 15px;
@@ -288,11 +289,23 @@ textarea:-ms-input-placeholder {
     font-size: 21px;
     padding-bottom: 5px;
 }
+
+
 .task-item__text {
     flex: 1 1 auto;
 }
-.task-item__tools {
+.task-item__date {
     padding-top: 15px;
+    text-align: right;
+    font-size: 14px;
+    float: right;
+}
+
+.task-item__tools {
+    padding-top: 10px;
+}
+.task-item__tools span{
+    padding-top: 5px;
 }
 .task-item__tools svg {
     width: 12px;
@@ -305,6 +318,56 @@ textarea:-ms-input-placeholder {
     color: #fff;   
     transition: color .2s;
 }
+
+.styled .task-item__title,.styled  .task-item__text,.styled .task-item__date{
+    color: #202124;
+}
+.styled .task-item__tools svg {
+    color: rgb(104 104 103);}
+
+.styled .task-item__tools svg:hover{
+        color: black;   
+        transition: color .2s;
+    }
+
+span.task-item__tools_Color {
+    position: relative;
+}
+
+span.task-item__tools_Color-list {
+       position: absolute;
+       width: auto;
+       background: #202124;
+       left: 50%;
+       transform: translateX(-50%);
+       top: -40px;
+       background-color: #202124;
+       border: 2px solid #5f6368;
+       padding: 5px 10px;
+       border-radius: 5px;
+       display: none;
+       cursor: pointer;
+}
+
+.task-item__tools_Color:hover .task-item__tools_Color-list, .task-item__tools_Color-list:hover{
+    display: inline-flex;
+}
+
+span.color {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    display: block;
+    border-radius: 50%;
+}
+span.color:last-child{
+    margin-right: 0px;
+}
+
+
+
+
+
 .menu-page, .menu-task{
     padding-left: 0;
     list-style-type: none;
@@ -417,4 +480,12 @@ p.form-title {
     left: 0;
 }
 
+.form-search .form-inner {
+    display: flex;
+    justify-content: space-between;
+}
+.form-search input:not([type="submit"]){
+    margin-bottom: 0;
+    height: 45px;
+}
 

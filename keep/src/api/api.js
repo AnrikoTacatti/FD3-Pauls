@@ -42,17 +42,28 @@ function appGet(dispatch) {
     if (snapshot.exists()) {
       console.log("keep firebase");
       console.log(snapshot.val());
-      /* let taskLists = { ...snapshot.val() };
-       let itemlist = [];
-       for (let tasklistskey in taskLists) {
-         for (let tasklistskeychild in taskLists[tasklistskey].itemlist) {
-           itemlist.push(taskLists[tasklistskey].itemlist[tasklistskeychild])
-         }
-         taskLists[tasklistskey].itemlist = itemlist.sort((a, b) => b.time - a.time);
-         itemlist = [];
-       }*/
+      let taskLists = { ...snapshot.val() };
 
-      dispatch({ type: TASKS_LOAD_REQUEST, tasklists: snapshot.val() });
+      for (let tasklistskey in taskLists) {
+        let itemlist = [];
+        for (let tasklistskeychild in taskLists[tasklistskey].itemlist) {
+          let item = { ...taskLists[tasklistskey].itemlist[tasklistskeychild], key: tasklistskeychild, keychapter: tasklistskey };
+          itemlist.push(item);
+        }
+        taskLists[tasklistskey].itemlist = itemlist.sort((a, b) => b.time - a.time);
+
+      }
+
+
+      let taskListsItemsSort = {};
+      for (let tasklistskeysort in taskLists) {
+        taskListsItemsSort = [...taskListsItemsSort, ...taskLists[tasklistskeysort].itemlist];
+      }
+      console.log(taskListsItemsSort);
+      taskListsItemsSort = taskListsItemsSort.sort((a, b) => b.time - a.time);
+
+
+      dispatch({ type: TASKS_LOAD_REQUEST, data: { tasklists: taskLists, tasklistsitemsort: taskListsItemsSort } });
       return snapshot.val()
     }
     else {
@@ -150,8 +161,10 @@ export default {
     const postData = {
       name: data.title,
       text: data.text,
-      time: serverTimestamp()
+      time: serverTimestamp(),
     };
+
+
     const updates = {};
     updates['keeps/sectionlist/' + data.keychapter + "/itemlist/" + data.keyitem] = postData;
     return update(ref(db), updates).then(() => {
@@ -163,6 +176,30 @@ export default {
     });
   },
 
+  setTaskItemStyle(data, dispatch) {
+    const db = getDatabase();
+    const postData = data.style;
+    const updates = {};
+    updates['keeps/sectionlist/' + data.keychapter + "/itemlist/" + data.keyitem + "/style"] = postData;
+    return update(ref(db), updates).then(() => {
+      console.log("setTaskItemStyle firebase");
+      appGet(dispatch);
+    }).catch((error) => {
+      console.log("setTaskItemStyle error " + error);
+    });
+  },
+  setTaskItemPin(data, dispatch) {
+    const db = getDatabase();
+    const postData = data.pin;
+    const updates = {};
+    updates['keeps/sectionlist/' + data.keychapter + "/itemlist/" + data.keyitem + "/pin"] = postData;
+    return update(ref(db), updates).then(() => {
+      console.log("setTaskItemStyle firebase");
+      appGet(dispatch);
+    }).catch((error) => {
+      console.log("setTaskItemStyle error " + error);
+    });
+  },
   removeTaskItem(data, dispatch) {
     debugger;
     const db = getDatabase();
