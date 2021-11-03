@@ -127,7 +127,8 @@ class TaskChapter extends React.PureComponent {
             <React.Fragment>
                 <div className="task-chapter" id={this.state.locationPathname === undefined ? "all" : this.state.locationPathname}>
                     <style>
-
+                        {console.log("стили", this.state)}
+                        {console.log(this.state.locationPathname)}
 
                         {` .task-item{ -webkit-animation-name: none;
                                 animation-name: none;} 
@@ -148,8 +149,6 @@ class TaskChapter extends React.PureComponent {
 
                         </div>
                         <div className="task-chapter__tools">
-                            <span className="task-chapter__tools__edit">{this.icoEdit()} </span>
-                            <span className="task-chapter__tools__trash">{this.icoTrash()} </span>
                             {Object.keys(this.state.TaskLists).length > 0 && (this.state.locationPathname !== undefined && <span className="task-chapter__tools__trash" onClick={this.openFormNewItemNew} >{this.icoPlus()} </span>)}
 
                         </div>

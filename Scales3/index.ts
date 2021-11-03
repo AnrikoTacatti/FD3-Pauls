@@ -57,7 +57,7 @@ class ScalesStorageEngineLocalStorage implements IStorageEngine{
     getCount():number {
         let Products:any[] = [];
         let storageProducts:string;
-        if((storageProducts = localStorage.getItem('products')) !== undefined){
+        if((storageProducts = localStorage.getItem('products')) !== null){
          Products = JSON.parse(storageProducts);
           }
         return Products.length;
@@ -66,16 +66,19 @@ class ScalesStorageEngineLocalStorage implements IStorageEngine{
 class Scales<StorageEngine extends IStorageEngine> {
     
     stor:IStorageEngine;
-    length:number;
     constructor(stor:IStorageEngine) {
         this.stor = stor;
-        this.length= this.stor.getCount();
     }
 
+    addItem(product:Product):void {
+        this.stor.addItem(product);
+
+
+    }
    getSumScale():void {
      
        let sum:number = 0;
-        for(let i = 0; i < this.length; i++){
+        for(let i = 0; i < this.stor.getCount(); i++){
            let item = this.stor.getItem(i);
            sum += item.getWeight();
         }
@@ -84,7 +87,7 @@ class Scales<StorageEngine extends IStorageEngine> {
 
     getNameList():void{
         let nameList:string[] = [];
-        for(let i = 0; i < this.length; i++){
+        for(let i = 0; i < this.stor.getCount(); i++){
             let item = this.stor.getItem(i);
             nameList.push(item.getName());
          }
@@ -118,20 +121,26 @@ let tomato: Product = new Product ("tomato", 400);
 let apple: Product = new Product("apple", 400);
 
 let scalesStorageEngineArray = new ScalesStorageEngineArray();
-
+/*
 scalesStorageEngineArray.addItem(tomato);
 scalesStorageEngineArray.addItem(apple);
-
+*/
 let scales = new Scales<ScalesStorageEngineArray>(scalesStorageEngineArray);
+scales.addItem(tomato)
+scales.addItem(apple);
 scales.getSumScale();
 scales.getNameList();
 
+
+
 let scalesStorageEngineLocalStorage = new ScalesStorageEngineLocalStorage();
-scalesStorageEngineLocalStorage.addItem(tomato);
-scalesStorageEngineLocalStorage.addItem(apple);
+/*scalesStorageEngineLocalStorage.addItem(tomato);
+scalesStorageEngineLocalStorage.addItem(apple);*/
 
 
 let scales2 = new Scales<ScalesStorageEngineArray>(scalesStorageEngineLocalStorage);
+scales2.addItem(tomato)
+scales2.addItem(apple);
 scales2.getSumScale();
 scales2.getNameList();
 

@@ -49,7 +49,7 @@ var ScalesStorageEngineLocalStorage = /** @class */ (function () {
     ScalesStorageEngineLocalStorage.prototype.getCount = function () {
         var Products = [];
         var storageProducts;
-        if ((storageProducts = localStorage.getItem('products')) !== undefined) {
+        if ((storageProducts = localStorage.getItem('products')) !== null) {
             Products = JSON.parse(storageProducts);
         }
         return Products.length;
@@ -59,11 +59,13 @@ var ScalesStorageEngineLocalStorage = /** @class */ (function () {
 var Scales = /** @class */ (function () {
     function Scales(stor) {
         this.stor = stor;
-        this.length = this.stor.getCount();
     }
+    Scales.prototype.addItem = function (product) {
+        this.stor.addItem(product);
+    };
     Scales.prototype.getSumScale = function () {
         var sum = 0;
-        for (var i = 0; i < this.length; i++) {
+        for (var i = 0; i < this.stor.getCount(); i++) {
             var item = this.stor.getItem(i);
             sum += item.getWeight();
         }
@@ -71,7 +73,7 @@ var Scales = /** @class */ (function () {
     };
     Scales.prototype.getNameList = function () {
         var nameList = [];
-        for (var i = 0; i < this.length; i++) {
+        for (var i = 0; i < this.stor.getCount(); i++) {
             var item = this.stor.getItem(i);
             nameList.push(item.getName());
         }
@@ -95,15 +97,21 @@ var Product = /** @class */ (function () {
 var tomato = new Product("tomato", 400);
 var apple = new Product("apple", 400);
 var scalesStorageEngineArray = new ScalesStorageEngineArray();
+/*
 scalesStorageEngineArray.addItem(tomato);
 scalesStorageEngineArray.addItem(apple);
+*/
 var scales = new Scales(scalesStorageEngineArray);
+scales.addItem(tomato);
+scales.addItem(apple);
 scales.getSumScale();
 scales.getNameList();
 var scalesStorageEngineLocalStorage = new ScalesStorageEngineLocalStorage();
-scalesStorageEngineLocalStorage.addItem(tomato);
-scalesStorageEngineLocalStorage.addItem(apple);
+/*scalesStorageEngineLocalStorage.addItem(tomato);
+scalesStorageEngineLocalStorage.addItem(apple);*/
 var scales2 = new Scales(scalesStorageEngineLocalStorage);
+scales2.addItem(tomato);
+scales2.addItem(apple);
 scales2.getSumScale();
 scales2.getNameList();
 //# sourceMappingURL=index.js.map

@@ -91,9 +91,9 @@ class TaskItem extends React.PureComponent {
                         <span onClick={this.deleteTaskItem} className="task-item__tools_Trash">{this.icoTrash()}</span>
                         <span className="task-item__tools_Color">
                             <span className="task-item__tools_Color-list">
-                                <span className="color" onClick={this.setColor} style={{ "background-color": "#fff4ba", "border": "1px solid #fbe67b" }}></span>
-                                <span className="color" onClick={this.setColor} style={{ "background-color": "#e8fafc", "border": "1px solid #b2d9ec" }}></span>
-                                <span className="color" onClick={this.setColor} style={{ "background-color": "#ffecf1", "border": "1px solid #f9c8ca" }}></span>
+                                <span className="color" onClick={this.setColor} style={{ "backgroundColor": "#fff4ba", "border": "1px solid #fbe67b" }}></span>
+                                <span className="color" onClick={this.setColor} style={{ "backgroundColor": "#e8fafc", "border": "1px solid #b2d9ec" }}></span>
+                                <span className="color" onClick={this.setColor} style={{ "backgroundColor": "#ffecf1", "border": "1px solid #f9c8ca" }}></span>
                             </span>
                             {this.icoColor()}
                         </span>
