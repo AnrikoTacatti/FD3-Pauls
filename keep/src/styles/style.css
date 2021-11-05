@@ -141,7 +141,12 @@ textarea:-ms-input-placeholder {
     padding: 15px 30px;
     flex-grow: 1;
 }
-
+.task-chapter--main{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow:hidden;
+}
 .task-chapter__header {
     display: flex;
     justify-content: space-between;
@@ -169,7 +174,7 @@ textarea:-ms-input-placeholder {
     margin-right: -7.5px;
     margin-left: -7.5px;
 }
-.task-item{
+.task-item,.book{
     width: calc(25% - 15px);
     margin-right: 7.5px;
     margin-left: 7.5px;
@@ -196,6 +201,33 @@ textarea:-ms-input-placeholder {
     transform: scale(1) translate3d(0,100%,0);
     opacity: 0;
  
+}
+
+.book{ width: 100%;
+ -webkit-animation-name: slideInUp;
+    animation-name: slideInUp;
+    background-color: #fff4ba;
+    border: 1px solid #fff4ba;
+    color:#fff;
+    flex: 1 1 auto;
+    margin: 0;
+    margin-bottom: 30px;
+
+}
+.book__save svg {
+    max-width: 21px;
+        color: #979798;
+        cursor: pointer;
+        transition: color .2s;
+        float: right;
+}
+.book__save svg:hover {
+        color: #000;
+}
+.book textarea{
+    background-color: #fff4ba;
+    height: auto;
+    max-height: none;
 }
 .task-item.del {
     opacity: 1;
@@ -291,15 +323,19 @@ textarea:-ms-input-placeholder {
 
 
 
-.task-item__title {
+.task-item__title, .book__title{
     color: #e8eaed;
     cursor: pointer;
     font-size: 21px;
     padding-bottom: 5px;
 }
+.book__title{
+    color: #202124;
+    margin-bottom: 10px;
+    }
+    
 
-
-.task-item__text {
+.task-item__text,.book__text {
     flex: 1 1 auto;
 }
 .task-item__date {

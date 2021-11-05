@@ -128,20 +128,21 @@ class TaskChapter extends React.PureComponent {
                 <div className="task-chapter" id={this.state.locationPathname === undefined ? "all" : this.state.locationPathname}>
                     <style>
                         {console.log("стили", this.state)}
-                        {console.log(this.state.locationPathname)}
+                        {console.log(this.state.locationPathname !== undefined)}
 
                         {` .task-item{ -webkit-animation-name: none;
                                 animation-name: none;} 
-                            .${this.state.locationPathname !== undefined && this.state.locationPathname} { 
-                                -webkit-animation-name: slideInUp;
-                                animation-name: slideInUp;
-                                opacity: 0; }
+                                
                             .all{ 
                                 -webkit-animation-name: slideInUpAll;
                                  animation-name: slideInUpAll;
                              }
                             `
                         }
+                        {this.state.locationPathname !== undefined && `.${this.state.locationPathname !== undefined && this.state.locationPathname} { 
+    -webkit-animation-name: slideInUp;
+    animation-name: slideInUp;
+    opacity: 0; }` }
                     </style>
                     <div className="task-chapter__header">
                         <div className="task-chapter__title">

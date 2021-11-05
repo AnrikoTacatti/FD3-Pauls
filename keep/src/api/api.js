@@ -3,7 +3,7 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 import { getStorage } from "firebase/storage";
 import { getDatabase, ref, set, get, child, push, update, remove, query, onValue, runTransaction, onChildChanged, serverTimestamp } from "firebase/database";
-import { OPEN_FORM_TASK_ITEM_NEW, OPEN_FORM_TASK_ITEM_EDIT, OPEN_FORM_NEW_TASK_CAPTION, OPEN_FORM_EDIT_TASK_CAPTION, TASKS_LOAD_REQUEST } from '../stores/const.js';
+import { OPEN_FORM_TASK_ITEM_NEW, OPEN_FORM_TASK_ITEM_EDIT, OPEN_FORM_NEW_TASK_CAPTION, OPEN_FORM_EDIT_TASK_CAPTION, TASKS_LOAD_REQUEST, BOOK_LOAD_REQUEST } from '../stores/const.js';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -61,10 +61,20 @@ function appGet(dispatch) {
       }
       console.log(taskListsItemsSort);
       taskListsItemsSort = taskListsItemsSort.sort((a, b) => b.time - a.time);
-
-
       dispatch({ type: TASKS_LOAD_REQUEST, data: { tasklists: taskLists, tasklistsitemsort: taskListsItemsSort } });
-      return snapshot.val()
+    }
+    else {
+      console.log("no data found");
+    }
+  }).catch((error) => {
+    console.log("unsaccessful error " + error);
+  });
+
+  get(child(dbRef, "book")).then((snapshot) => {
+    if (snapshot.exists()) {
+      let book = { ...snapshot.val() };
+      console.log("book", book);
+      dispatch({ type: BOOK_LOAD_REQUEST, data: { book: book } });
     }
     else {
       console.log("no data found");
@@ -131,6 +141,22 @@ export default {
       console.log("setTaskItem error " + error);
     });
   },
+  saveBook(data, disparch) {
+    const db = getDatabase();
+    const postData = data.text;
+    const updates = {};
+    updates['book/text'] = postData;
+
+    return update(ref(db), updates).then((snapshot) => {
+      console.log(" saveBook firebase");
+      appGet(disparch);
+    }).catch((error) => {
+      console.log(" saveBook error " + error);
+    });
+
+
+  },
+
 
 
   setNewTaskItem(data, dispatch) {

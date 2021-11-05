@@ -48,14 +48,15 @@ module.exports = {
         maxEntrypointSize: 512000,
         maxAssetSize: 512000
     },
+
     devServer: {
         /* static: {
              directory: path.resolve(__dirname, './public')
          },*/ // here's the change
 
         historyApiFallback: true,
-        /*  port: 8080,
-          hot: true*/
+        /*  port: 8080,*/
+        hot: true
 
 
     }

@@ -35,24 +35,25 @@ class Search extends React.PureComponent {
         let tasklistitem = [];
         var i = 0;
         let listtask = [];
-
-        for (let tasklistskey in this.state.TaskLists) {
-            listtask = [...listtask, ...this.state.TaskLists[tasklistskey].itemlist];
-        }
-        listtask = listtask.sort((a, b) => b.time - a.time);
-        for (let i = 0; i < listtask.length; i++) {
-            let keyitem = listtask[i].key;
-            let keychapter = listtask[i].keychapter;
-            debugger;
-            if (listtask[i].name.indexOf(this.state.searchText) !== -1 || listtask[i].text.indexOf(this.state.searchText) !== -1) {
-                tasklistitem.push(
-                    <TaskItem data={listtask[i]} keychapter={keychapter} keyitem={keyitem} key={keyitem} index={i}
-                        attrdata={this.state.locationPathname}
-                    />
-                )
+        if (this.state.searchText !== null) {
+            for (let tasklistskey in this.state.TaskLists) {
+                listtask = [...listtask, ...this.state.TaskLists[tasklistskey].itemlist];
+            }
+            listtask = listtask.sort((a, b) => b.time - a.time);
+            for (let i = 0; i < listtask.length; i++) {
+                let keyitem = listtask[i].key;
+                let keychapter = listtask[i].keychapter;
+                debugger;
+                if (listtask[i].name.toLowerCase().indexOf(this.state.searchText.toLowerCase()) !== -1 || listtask[i].text.toLowerCase().indexOf(this.state.searchText.toLowerCase()) !== -1) {
+                    tasklistitem.push(
+                        <TaskItem data={listtask[i]} keychapter={keychapter} keyitem={keyitem} key={keyitem} index={i}
+                            attrdata={this.state.locationPathname === undefined ? "all" : this.state.locationPathname}
+                        />
+                    )
+                }
             }
         }
-        if (tasklistitem.length == 0) {
+        if (tasklistitem.length == 0 || this.state.searchText === null) {
             return "Поиск не дал результатов"
         }
         return tasklistitem;
@@ -75,11 +76,11 @@ class Search extends React.PureComponent {
         console.log(this.props);
         return (
             <React.Fragment>
-                <div className="task-chapter" id={this.state.locationPathname}>
+                <div className="task-chapter">
                     <style>
                         {` .task-item{ -webkit-animation-name: none;
                                 animation-name: none;} 
-                            .${this.state.locationPathname} { 
+                            .${this.state.locationPathname !== undefined ? this.state.locationPathname : "all"} { 
                                 -webkit-animation-name: slideInUp;
                                 animation-name: slideInUp;
                                 opacity: 0; }

@@ -7,7 +7,6 @@ class TaskItem extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            TaskLists: this.props.stateTaskLists,
             keychapter: this.props.keychapter,
             keyitem: this.props.keyitem,
         }
@@ -76,7 +75,7 @@ class TaskItem extends React.PureComponent {
 
 
         return (
-            <div className={`task-item ${this.props.attrdata} ${this.props.data.style !== undefined && "styled"}`} data-keychapter={this.props.attrdata} style={{ "animationDelay": `${this.props.index * 0.05}s`, ...this.CSSstring(this.props.data.style) }} ref={c => this.divitem = c}
+            <div className={`task-item ${this.props.attrdata} ${this.props.data.style !== undefined ? "styled" : ""}`} data-keychapter={this.props.attrdata} style={{ "animationDelay": `${this.props.index * 0.05}s`, ...this.CSSstring(this.props.data.style) }} ref={c => this.divitem = c}
                 data-key={this.props.keyitem}
 
             >
@@ -107,13 +106,13 @@ class TaskItem extends React.PureComponent {
 
 }
 
-const mapStateToProps = function (state) {
+/*const mapStateToProps = function (state) {
     return {
         // весь раздел Redux state под именем counters будет доступен
         // данному компоненту как this.props.counters
         stateTaskLists: state.stateTaskLists.TaskLists,
 
     };
-};
+};*/
 
-export default connect(mapStateToProps)(TaskItem);
+export default connect()(TaskItem);

@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { OPEN_FORM_NEW_TASK_CAPTION, OPEN_FORM_EDIT_TASK_CAPTION } from '../stores/const.js';
-
+import api from '../api/api.js';
 
 class MenuTask extends React.Component {
     constructor(props) {
@@ -22,6 +22,15 @@ class MenuTask extends React.Component {
     UNSAFE_componentWillReceiveProps = (newProps) => {
         this.setState({ TaskLists: newProps.stateTaskLists.TaskLists });
     }
+    deleteChapter = (keychapter, e) => {
+        let isDelete = window.confirm("Вы действительно хотите удалить?");
+        if (isDelete) {
+            let data = { keychapter: keychapter };
+            api.removeTaskCaption(data, this.props.dispatch);
+
+        }
+
+    }
     forTaskLists = () => {
         let menulist = [];
         for (let tasklistskey in this.state.TaskLists) {
@@ -31,7 +40,7 @@ class MenuTask extends React.Component {
                         {this.folder()}  {this.state.TaskLists[tasklistskey].name}
                     </NavLink>
                     <span onClick={this.openFormEditTaskCaption.bind(null, tasklistskey)}>{this.icoEdit()}</span>
-                    <span>{this.icoTrash()}</span>
+                    <span onClick={this.deleteChapter.bind(null, tasklistskey)}>{this.icoTrash()}</span>
                 </li>
             )
         }
@@ -48,8 +57,6 @@ class MenuTask extends React.Component {
         console.log("MenuTask ");
         return (
             <React.Fragment>
-                {console.log(this.props)}
-                {console.log(this.state.TaskLists.length)}
                 {<li><NavLink to="/chapter" exact className="PageLink" activeClassName="ActivePageLink" > {this.folder()} Все </NavLink></li>}
                 {<li><NavLink to="/pin" exact className="PageLink" activeClassName="ActivePageLink" > {this.icoPin()} Закрепленные </NavLink></li>}
                 {Object.keys(this.state.TaskLists).length > 0 && this.forTaskLists()}

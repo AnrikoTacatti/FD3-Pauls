@@ -5,7 +5,7 @@
   "main": "./src/index.js",
   "scripts": {
     "build": ".\\node_modules\\.bin\\webpack --mode production",
-    "livebuild": ".\\node_modules\\.bin\\webpack-dev-server --mode development --progress --history-api-fallback  --color",
+    "livebuild": ".\\node_modules\\.bin\\webpack-dev-server --mode development --progress --history-api-fallback --hot  --color",
     "test": "jest"
   },
   "author": "",

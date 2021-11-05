@@ -7,6 +7,7 @@ import {
   OPEN_FORM_EDIT_TASK_CAPTION,
   OPEN_FORM_TASK_ITEM_EDIT,
   OPEN_FORM_TASK_ITEM_NEW,
+  BOOK_LOAD_REQUEST,
   SEARH_TEXT
 } from './const.js';
 
@@ -16,6 +17,7 @@ const initState = {
   // ключ - идентификатор счётчика, значение - число нажатий
   TaskLists: {},
   TaskListsItemsSort: [],
+  Book: {},
   openFormNewTaskCaption: false,
   openFormEditTaskCaption: false,
   addNewTaskCaption: true,
@@ -38,6 +40,15 @@ function TaskReducer(state = initState, action) {
       };
       return newState;
     }
+    case BOOK_LOAD_REQUEST: {
+      console.log("state BOOK_LOAD_REQUEST");
+      let newState = {
+        ...state,
+        Book: action.data.book,
+      };
+      return newState;
+    }
+
     case OPEN_FORM_NEW_TASK_CAPTION: {
       console.log("state OPEN_FORM_NEW_TASK_CAPTION");
       let newState = {

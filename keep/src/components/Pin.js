@@ -47,7 +47,7 @@ class Pin extends React.PureComponent {
             if (listtask[i].pin === true) {
                 tasklistitem.push(
                     <TaskItem data={listtask[i]} keychapter={keychapter} keyitem={keyitem} key={keyitem} index={i}
-                        attrdata={this.state.locationPathname}
+                        attrdata={this.state.locationPathname === undefined ? "all" : this.state.locationPathname}
                     />
                 )
             }
@@ -75,11 +75,11 @@ class Pin extends React.PureComponent {
         console.log(this.props);
         return (
             <React.Fragment>
-                <div className="task-chapter" id={this.state.locationPathname}>
+                <div className="task-chapter" >
                     <style>
                         {` .task-item{ -webkit-animation-name: none;
                                 animation-name: none;} 
-                            .${this.state.locationPathname} { 
+                            .${this.state.locationPathname !== undefined ? this.state.locationPathname : "all"} { 
                                 -webkit-animation-name: slideInUp;
                                 animation-name: slideInUp;
                                 opacity: 0; }

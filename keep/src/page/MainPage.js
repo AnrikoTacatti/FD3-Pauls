@@ -55,7 +55,7 @@ class TaskMain extends React.PureComponent {
 
                     </span></h1>
                     <div className="task-app-content">
-                        <aside className={this.state.openMenu === true && 'active'}>
+                        <aside className={this.state.openMenu === true ? 'active' : ''}>
                             <h1> TASK </h1>
                             <FormSearch />
                             <div className="main-menu">
