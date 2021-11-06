@@ -3,7 +3,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const extractCSS = new MiniCssExtractPlugin();
+const extractCSS = new MiniCssExtractPlugin({ filename: "./main.css" });
 
 
 
@@ -15,7 +15,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, './public/'),
-        filename: "bundle.js",
+        filename: "./bundle.js",
         publicPath: "/"
 
     },
@@ -39,7 +39,7 @@ module.exports = {
 
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'index.html'), //your template file
-            base: "./",
+            publicPath: "/",
             filename: 'index.html',
         })
 
