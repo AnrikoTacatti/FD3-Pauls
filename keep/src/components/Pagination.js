@@ -18,6 +18,7 @@ class Pagination extends React.Component {
         return (
             <ul className="pagination">
                 {pageNumber.map((number) => <li key={number}><NavLink to={this.props.url + "?page_" + number} onClick={this.props.pageNumber.bind(null, number)}>{number}</NavLink></li>)}
+                <li ><NavLink to={this.props.url} onClick={this.props.pageNumber.bind(null, null)}>Все</NavLink></li>
             </ul>
         );
 

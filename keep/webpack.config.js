@@ -16,7 +16,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, './public/'),
         filename: "bundle.js",
-        publicPath: "./"
+        publicPath: "/"
 
     },
     devtool: 'source-map',
@@ -36,8 +36,10 @@ module.exports = {
     },
     plugins: [
         extractCSS,
+
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'index.html'), //your template file
+            publicPath: "./",
             filename: 'index.html',
         })
 

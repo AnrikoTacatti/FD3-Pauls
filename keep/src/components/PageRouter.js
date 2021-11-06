@@ -18,12 +18,12 @@ class PageRouter extends React.Component {
 
 
             <Switch>
-                <Route path="./" exact component={Main} />
-                <Route path="./about" exact component={AboutPage} />
-                <Route path="./serch" exact component={Search} />
-                <Route path="./pin" exact component={Pin} />
-                <Route path="./chapter" exact component={TaskChapter} />
-                <Route path="./chapter/:chapter" component={TaskChapter} />
+                <Route path="/" exact component={Main} />
+                <Route path="/about" exact component={AboutPage} />
+                <Route path="/serch" exact component={Search} />
+                <Route path="/pin" exact component={Pin} />
+                <Route path="/chapter" exact component={TaskChapter} />
+                <Route path="/chapter/:chapter" component={TaskChapter} />
                 <Route path="*" component={NoMatch} />
             </Switch>
 

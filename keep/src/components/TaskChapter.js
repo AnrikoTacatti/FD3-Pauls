@@ -73,6 +73,12 @@ class TaskChapter extends React.PureComponent {
 
         listtask = listtask.sort((a, b) => b.time - a.time);
 
+        if (this.state.currentPage !== null) {
+            let lastIndex = this.state.perpage * this.state.currentPage;
+            let firstIndex = lastIndex - this.state.perpage;
+            listtask = listtask.slice(lastIndex, firstIndex);
+        }
+
         for (let i = 0; i < listtask.length; i++) {
             debugger;
             let keyitem = listtask[i].key;

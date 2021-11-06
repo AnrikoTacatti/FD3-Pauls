@@ -11,8 +11,8 @@ class MenuPage extends React.Component {
 
         return (
             <React.Fragment>
-                <li><NavLink to="./" exact className="PageLink" activeClassName="ActivePageLink"> {this.homeIco()} Главная </NavLink></li>
-                <li> <NavLink to="./about" className="PageLink" activeClassName="ActivePageLink"> {this.aboutIco()} О компании</NavLink></li>
+                <li><NavLink to="/" exact className="PageLink" activeClassName="ActivePageLink"> {this.homeIco()} Главная </NavLink></li>
+                <li> <NavLink to="/about" className="PageLink" activeClassName="ActivePageLink"> {this.aboutIco()} О компании</NavLink></li>
             </React.Fragment>
         );
 
