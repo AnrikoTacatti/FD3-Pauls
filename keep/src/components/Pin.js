@@ -43,10 +43,11 @@ class Pin extends React.PureComponent {
         for (let i = 0; i < this.state.TaskListsItemsSort.length; i++) {
             let keyitem = listtask[i].key;
             let keychapter = listtask[i].keychapter;
-            debugger;
+            let index = 0;
             if (listtask[i].pin === true) {
+                index++;
                 tasklistitem.push(
-                    <TaskItem data={listtask[i]} keychapter={keychapter} keyitem={keyitem} key={keyitem} index={i}
+                    <TaskItem data={listtask[i]} keychapter={keychapter} keyitem={keyitem} key={keyitem} index={index}
                         attrdata={this.state.locationPathname === undefined ? "all" : this.state.locationPathname}
                     />
                 )
