@@ -70,7 +70,6 @@ class TaskChapter extends React.PureComponent {
         let tasklistitem = [];
         var i = 0;
         let listtask = this.state.TaskListsItemsSort;
-
         listtask = listtask.sort((a, b) => b.time - a.time);
 
         if (this.state.currentPage !== null) {
