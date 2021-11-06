@@ -18,7 +18,7 @@ class TaskChapter extends React.PureComponent {
             locationPathname: this.props.match.params.chapter,
             TaskListsItemsSort: this.props.taskListsItemsSort,
             perpage: 24,
-            currentPage: null,
+            currentPage: this.props.location.search !== undefined ? this.props.location.search.match(/\d+/g) : null,
         }
 
     }
@@ -69,14 +69,14 @@ class TaskChapter extends React.PureComponent {
     forTaskListschild = () => {
         let tasklistitem = [];
         var i = 0;
-        let listtask = this.state.taskListsItemsSort;
+        let listtask = this.state.TaskListsItemsSort;
 
         listtask = listtask.sort((a, b) => b.time - a.time);
 
         if (this.state.currentPage !== null) {
             let lastIndex = this.state.perpage * this.state.currentPage;
             let firstIndex = lastIndex - this.state.perpage;
-            listtask = listtask.slice(lastIndex, firstIndex);
+            listtask = listtask.slice(firstIndex, lastIndex);
         }
 
         for (let i = 0; i < listtask.length; i++) {
