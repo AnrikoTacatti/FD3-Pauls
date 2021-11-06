@@ -16,7 +16,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, './public/'),
         filename: "./bundle.js",
-        publicPath: "/"
+        publicPath: 'auto'
 
     },
     devtool: 'source-map',
@@ -39,7 +39,6 @@ module.exports = {
 
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'index.html'), //your template file
-            publicPath: "/",
             filename: 'index.html',
         })
 
