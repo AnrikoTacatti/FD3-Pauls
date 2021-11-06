@@ -14,9 +14,9 @@ class MenuTask extends React.Component {
     openFormNewTaskCaption = () => {
         this.props.dispatch({ type: OPEN_FORM_NEW_TASK_CAPTION, data: true });
     }
-    openFormEditTaskCaption = (keychapter, e) => {
+    openFormEditTaskCaption = (keychapter, name, e) => {
         console.log("openFormEditTaskCaption");
-        this.props.dispatch({ type: OPEN_FORM_EDIT_TASK_CAPTION, data: { active: true, keychapter: keychapter } });
+        this.props.dispatch({ type: OPEN_FORM_EDIT_TASK_CAPTION, data: { active: true, keychapter: keychapter, name: name } });
     }
 
     UNSAFE_componentWillReceiveProps = (newProps) => {
@@ -33,17 +33,20 @@ class MenuTask extends React.Component {
     }
     forTaskLists = () => {
         let menulist = [];
+
         for (let tasklistskey in this.state.TaskLists) {
             menulist.push(
                 <li key={tasklistskey}>
                     <NavLink to={"/chapter/" + this.state.TaskLists[tasklistskey].url} exact className="PageLink" activeClassName="ActivePageLink" key={tasklistskey}>
                         {this.folder()}  {this.state.TaskLists[tasklistskey].name}
                     </NavLink>
-                    <span onClick={this.openFormEditTaskCaption.bind(null, tasklistskey)}>{this.icoEdit()}</span>
+                    <span onClick={this.openFormEditTaskCaption.bind(null, tasklistskey, this.state.TaskLists[tasklistskey].name)}>{this.icoEdit()}</span>
                     <span onClick={this.deleteChapter.bind(null, tasklistskey)}>{this.icoTrash()}</span>
                 </li>
             )
+
         }
+
         return menulist;
     }
 

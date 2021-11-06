@@ -52,7 +52,7 @@ class FormTaskItem extends React.PureComponent {
                         <div className="form-add-task-caption form">
                             <div className="form-inner">
                                 <p className="form-title">Add task item</p>
-                                <input type="text" className="task-item-name" name="name" placeholder="Enter task item name" required="" ref={c => this.inputTaskItemName = c} />
+                                <input type="text" className="task-item-name" name="title" placeholder="Enter task item name" required="" ref={c => this.inputTaskItemName = c} />
                                 <textarea type="text" className="task-item-text" name="text" cols="60" rows="5" placeholder="Enter task item text" required="" ref={c => this.inputTaskItemText = c} />
                             </div>
                             <div className="form-add-task-caption__footer">

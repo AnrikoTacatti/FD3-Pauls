@@ -23,11 +23,12 @@ class FormTaskCaption extends React.PureComponent {
     }
 
     addNewTaskCaption = () => {
-        api.setNewTaskCaption(this.inputTaskListName.value, this.props.dispatch);
+        let data = { title: this.inputTaskListName.value };
+        api.setNewTaskCaption(data, this.props.dispatch);
 
     }
     editTaskCaption = () => {
-        let data = { title: this.inputTaskListName.value, keychapter: this.state.openFormEditTaskCaption.keychapter }
+        let data = { title: this.inputTaskListName.value, keychapter: this.state.openFormEditTaskCaption.keychapter };
         api.editTaskCaption(data, this.props.dispatch);
 
     }
@@ -43,7 +44,7 @@ class FormTaskCaption extends React.PureComponent {
                     <div className="form-add-task-caption form">
                         <div className="form-inner">
                             <p className="form-title">Edit task list</p>
-                            <input type="text" className="task-list-name" name="phone" placeholder="Enter task list name" required="" ref={c => this.inputTaskListName = c} />
+                            <input type="text" className="task-list-name" name="title" defaultValue={this.state.openFormEditTaskCaption.name} placeholder="Enter task list name" required="" ref={c => this.inputTaskListName = c} />
                         </div>
                         <div className="form-add-task-caption__footer">
                             <button type="button" title="Cancel" className="form-cancel btn" onClick={this.closeFormNewTaskCaption}>Cancel</button>

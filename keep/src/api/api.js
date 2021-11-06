@@ -46,6 +46,7 @@ function appGet(dispatch) {
 
       for (let tasklistskey in taskLists) {
         let itemlist = [];
+        taskLists[tasklistskey]['key'] = tasklistskey;
         for (let tasklistskeychild in taskLists[tasklistskey].itemlist) {
           let item = { ...taskLists[tasklistskey].itemlist[tasklistskeychild], key: tasklistskeychild, keychapter: tasklistskey };
           itemlist.push(item);
@@ -92,13 +93,14 @@ export default {
     });
   },
 
-  setNewTaskCaption(title, disparch) {
+  setNewTaskCaption(data, disparch) {
     const db = getDatabase();
     // A post entry.
     const url = generate_url(data.title);
     const postData = {
-      name: title,
-      url: url
+      name: data.title,
+      url: url,
+      time: serverTimestamp()
     };
     // Get a key for a new Post.
     /*const newPostKey = push(child(ref(db), 'TaskLists')).key;*/
@@ -117,12 +119,19 @@ export default {
   editTaskCaption(data, disparch) {
     const db = getDatabase();
     // A post entry.
-    const postData = data.title;
     const url = generate_url(data.title);
+    const postData = {
+      name: data.title,
+      url: url,
+      time: serverTimestamp()
+    };
+
+
     // Write the new post's data simultaneously in the posts list and the user's post list.
     const updates = {};
-    updates['keeps/sectionlist/' + data.keychapter + '/name'] = postData;
-    updates['keeps/sectionlist/' + data.keychapter + '/url'] = url;
+    updates['keeps/sectionlist/' + data.keychapter] = postData;
+    /*updates['keeps/sectionlist/' + data.keychapter + '/url'] = url;*/
+
     return update(ref(db), updates).then((snapshot) => {
       console.log("editTaskCaption firebase");
       disparch({ type: OPEN_FORM_EDIT_TASK_CAPTION, data: { active: false } });

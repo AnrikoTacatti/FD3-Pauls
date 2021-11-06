@@ -6,13 +6,19 @@ import { withRouter } from "react-router";
 import FormTaskItem from './FormTaskItem.js';
 import TaskItem from './TaskItem.js';
 import { OPEN_FORM_TASK_ITEM_NEW } from '../stores/const.js';
+import Pagination from './Pagination.js';
+
+
 
 class TaskChapter extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
             TaskLists: this.props.stateTaskLists,
-            locationPathname: this.props.match.params.chapter
+            locationPathname: this.props.match.params.chapter,
+            TaskListsItemsSort: this.props.taskListsItemsSort,
+            perpage: 24,
+            currentPage: null,
         }
 
     }
@@ -20,6 +26,7 @@ class TaskChapter extends React.PureComponent {
     UNSAFE_componentWillReceiveProps = (newProps) => {
         this.setState({ TaskLists: newProps.stateTaskLists });
         this.setState({ locationPathname: newProps.match.params.chapter });
+        this.setState({ TaskListsItemsSort: newProps.taskListsItemsSort });
     }
 
     componentDidMount = () => {
@@ -35,16 +42,7 @@ class TaskChapter extends React.PureComponent {
     openFormNewItemNew = () => {
         let key = this.findkey();
         this.props.dispatch({ type: OPEN_FORM_TASK_ITEM_NEW, data: { activ: true, keychapter: key } });
-
     }
-
-    /*forTaskLists = () => {
-        let menulist = [];
-        for (let tasklistskey in this.state.TaskLists) {
-            menulist.push(<span key={tasklistskey}> {this.state.TaskLists[tasklistskey].name} </span>)
-        }
-        return menulist;
-    }*/
 
     forhistoryTaskListschild = () => {
         let tasklistitem = [];
@@ -71,24 +69,10 @@ class TaskChapter extends React.PureComponent {
     forTaskListschild = () => {
         let tasklistitem = [];
         var i = 0;
-        let listtask = [];
+        let listtask = this.state.taskListsItemsSort;
 
-        for (let tasklistskey in this.state.TaskLists) {
-            debugger;
-            listtask = [...listtask, ...this.state.TaskLists[tasklistskey].itemlist];
-            /* for (let tasklistskeychild in this.state.TaskLists[tasklistskey].itemlist) {
-                 let key = this.state.TaskLists[tasklistskey].itemlist[tasklistskeychild].key;
-                 i++;
-                 tasklistitem.push(
- 
-                     <TaskItem data={this.state.TaskLists[tasklistskey].itemlist[tasklistskeychild]} keychapter={tasklistskey} keyitem={key} key={key} index={i}
-                         attrdata={this.state.locationPathname === undefined ? "all" : this.state.locationPathname}
-                     />
- 
-                 )
-             }*/
-        }
         listtask = listtask.sort((a, b) => b.time - a.time);
+
         for (let i = 0; i < listtask.length; i++) {
             debugger;
             let keyitem = listtask[i].key;
@@ -99,30 +83,27 @@ class TaskChapter extends React.PureComponent {
                 />
             )
         }
-
-
-
-
-
-        console.log("лист");
         return tasklistitem;
     }
 
     findName() {
         for (let tasklistskey in this.state.TaskLists) {
             if (this.state.TaskLists[tasklistskey].url == this.state.locationPathname) { return this.state.TaskLists[tasklistskey].name; }
-
         }
     }
     findkey() {
         for (let tasklistskey in this.state.TaskLists) {
             if (this.state.TaskLists[tasklistskey].url == this.state.locationPathname) { return tasklistskey; }
-
         }
     }
+    pageNumber = (index) => {
+        this.setState({ currentPage: index });
+    }
+
+
+
     render() {
         console.log("render TaskChapter");
-        console.log(this.props);
         return (
             <React.Fragment>
                 <div className="task-chapter" id={this.state.locationPathname === undefined ? "all" : this.state.locationPathname}>
@@ -154,17 +135,9 @@ class TaskChapter extends React.PureComponent {
 
                         </div>
                     </div>
+                    <div>{this.state.locationPathname === undefined && <Pagination perpage={this.state.perpage} total={this.state.TaskListsItemsSort.length} url={this.props.location.pathname} pageNumber={this.pageNumber} />}</div>
                     <div className="task-item-list">
-                        {console.log("locationPathname")}
-                        {console.log(this.state.locationPathname)}
-                        {console.log("!!!!!")}
-                        {console.log(this.state.TaskLists.length)}
-                        {console.log(this.state.TaskLists)}
                         {this.state.locationPathname === undefined ? this.forTaskListschild() : this.forhistoryTaskListschild()}
-
-
-
-
                     </div>
                 </div>
                 <FormTaskItem />
@@ -180,7 +153,8 @@ const mapStateToProps = function (state) {
     return {
         // весь раздел Redux state под именем counters будет доступен
         // данному компоненту как this.props.counters
-        stateTaskLists: state.stateTaskLists.TaskLists
+        stateTaskLists: state.stateTaskLists.TaskLists,
+        taskListsItemsSort: state.stateTaskLists.TaskListsItemsSort,
     };
 };
 

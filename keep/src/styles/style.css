@@ -108,6 +108,10 @@ textarea:-ms-input-placeholder {
     height: auto;
     cursor: pointer;
 }
+[type="button"]:hover{
+    background: #44464a;
+}
+
     
 .container{
     max-width: 90%;
@@ -575,3 +579,29 @@ p.form-title {
     height: 45px;
 }
 
+
+.pagination {
+    list-style-type: none;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+.pagination li {
+    padding: 5px;    
+    min-width: 30px;
+    height: 30px;   
+    text-align: center; 
+    background: #3c3f43;  
+    border: 2px solid #5f6368;    
+    margin: 0 5px;
+    color: #e8eaed;
+    }
+    .pagination li:hover{
+        background: #909092;
+        color: #fff;
+    }
+    .pagination a {
+    color: inherit;
+    text-decoration: none;
+}
+    
