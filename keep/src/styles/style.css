@@ -204,6 +204,7 @@ textarea:-ms-input-placeholder {
             animation-fill-mode: forwards;
     transform: scale(1) translate3d(0,100%,0);
     opacity: 0;
+
  
 }
 
@@ -240,8 +241,7 @@ textarea:-ms-input-placeholder {
     animation-name: del;
     -webkit-animation-duration: 1s;
     animation-duration: 1s;
-    -webkit-animation-fill-mode: forwards;
-            animation-fill-mode: forwards;
+   
 }
 
 

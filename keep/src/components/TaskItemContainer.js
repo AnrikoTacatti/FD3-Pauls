@@ -20,11 +20,17 @@ class TaskItemContainer extends React.PureComponent {
 
     }
     deleteTaskItem = () => {
-        let isDelete = window.confirm("Вы действительно хотите удалить?");
-        if (this.state.del === true && isDelete) {
-            this.divitem.className = this.divitem.className + " del";
-            let data = { keychapter: this.state.keychapter, keyitem: this.state.keyitem };
-            api.removeTaskItem(data, this.props.dispatch);
+
+        if (this.state.del === true) {
+            let isDelete = window.confirm("Вы действительно хотите удалить?");
+            if (isDelete) {
+                this.divitem.className = this.divitem.className + " del";
+                let data = { keychapter: this.state.keychapter, keyitem: this.state.keyitem };
+                api.removeTaskItem(data, this.props.dispatch);
+            }
+            else {
+                this.setState({ del: false });
+            }
         }
     }
     addDel = () => {
@@ -52,7 +58,7 @@ class TaskItemContainer extends React.PureComponent {
         console.log(this.props);
         return (
             <TaskItem {...this.props} del={this.state.del} cbopenFormNewItemEdit={this.openFormNewItemEdit} cbsetPin={this.setPin} cbopenFormNewItemEdit={this.openFormNewItemEdit}
-                cbaddDel={this.addDel} cbgetTime={this.getTime} cbsetColor={this.setColor} ></TaskItem>
+                cbaddDel={this.addDel} cbdeleteTaskItem={this.deleteTaskItem} cbgetTime={this.getTime} cbsetColor={this.setColor} ></TaskItem>
         )
     }
 

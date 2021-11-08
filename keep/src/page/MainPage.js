@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import api from '../api/api.js';
 
-import PageRouter from '../components/PageRouter.js';
+import PageRouter from '../router/PageRouter.js';
 import MenuPage from '../components/MenuPage.js';
 import MenuTask from '../components/MenuTask.js';
 import FormTaskCaption from '../components/FormTaskCaption.js';

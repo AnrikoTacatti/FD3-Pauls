@@ -21,9 +21,6 @@ class FormTaskItem extends React.PureComponent {
 
     }
 
-
-
-
     closeForm = () => {
         this.props.dispatch({ type: OPEN_FORM_TASK_ITEM_EDIT, data: { active: false } });
         this.props.dispatch({ type: OPEN_FORM_TASK_ITEM_NEW, data: { active: false } });
