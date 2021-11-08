@@ -1,29 +1,11 @@
 "use strict";
 import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from "react-router";
-
-import FormTaskItem from './FormTaskItem.js';
-import TaskItem from './TaskItem.js';
+import TaskItemContainer from './TaskItemContainer.js';
 
 class Search extends React.PureComponent {
     constructor(props) {
         super(props);
-        this.state = {
-            TaskLists: this.props.stateTaskLists,
-            locationPathname: this.props.match.params.chapter,
-            searchText: this.props.searchText,
-        }
-
     }
-
-    UNSAFE_componentWillReceiveProps = (newProps) => {
-        this.setState({ TaskLists: newProps.stateTaskLists });
-        this.setState({ locationPathname: newProps.match.params.chapter });
-        this.setState({ searchText: newProps.searchText });
-    }
-
-
 
     icoTrash = () => <svg className="ico-trash" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" ><path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z" ></path></svg>;
     icoEdit = () => <svg className="ico-edit" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" ><path fill="currentColor" d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z" ></path></svg>;
@@ -35,52 +17,40 @@ class Search extends React.PureComponent {
         let tasklistitem = [];
         var i = 0;
         let listtask = [];
-        if (this.state.searchText !== null) {
-            for (let tasklistskey in this.state.TaskLists) {
-                listtask = [...listtask, ...this.state.TaskLists[tasklistskey].itemlist];
+        if (this.props.searchText !== null) {
+            for (let tasklistskey in this.props.TaskLists) {
+                listtask = [...listtask, ...this.props.TaskLists[tasklistskey].itemlist];
             }
             listtask = listtask.sort((a, b) => b.time - a.time);
+            let index = 0;
             for (let i = 0; i < listtask.length; i++) {
                 let keyitem = listtask[i].key;
                 let keychapter = listtask[i].keychapter;
-                debugger;
-                if (listtask[i].name.toLowerCase().indexOf(this.state.searchText.toLowerCase()) !== -1 || listtask[i].text.toLowerCase().indexOf(this.state.searchText.toLowerCase()) !== -1) {
+                if (listtask[i].name.toLowerCase().indexOf(this.props.searchText.toLowerCase().trim()) !== -1 || listtask[i].text.toLowerCase().indexOf(this.props.searchText.toLowerCase().trim()) !== -1) {
+                    index++;
                     tasklistitem.push(
-                        <TaskItem data={listtask[i]} keychapter={keychapter} keyitem={keyitem} key={keyitem} index={i}
-                            attrdata={this.state.locationPathname === undefined ? "all" : this.state.locationPathname}
+                        <TaskItemContainer data={listtask[i]} keychapter={keychapter} keyitem={keyitem} key={keyitem} index={index}
+                            attrdata={this.props.locationPathname === undefined ? "all" : this.props.locationPathname}
                         />
                     )
                 }
             }
         }
-        if (tasklistitem.length == 0 || this.state.searchText === null) {
+        if (tasklistitem.length == 0 || this.props.searchText === null) {
             return "Поиск не дал результатов"
         }
         return tasklistitem;
     }
 
-    findName() {
-        for (let tasklistskey in this.state.TaskLists) {
-            if (this.state.TaskLists[tasklistskey].url == this.state.locationPathname) { return this.state.TaskLists[tasklistskey].name; }
-
-        }
-    }
-    findkey() {
-        for (let tasklistskey in this.state.TaskLists) {
-            if (this.state.TaskLists[tasklistskey].url == this.state.locationPathname) { return tasklistskey; }
-
-        }
-    }
     render() {
-        console.log("render TaskChapter");
-        console.log(this.props);
+        console.log("render Search", this.props);
         return (
             <React.Fragment>
                 <div className="task-chapter">
                     <style>
                         {` .task-item{ -webkit-animation-name: none;
                                 animation-name: none;} 
-                            .${this.state.locationPathname !== undefined ? this.state.locationPathname : "all"} { 
+                            .${this.props.locationPathname !== undefined ? this.props.locationPathname : "all"} { 
                                 -webkit-animation-name: slideInUp;
                                 animation-name: slideInUp;
                                 opacity: 0; }
@@ -97,7 +67,6 @@ class Search extends React.PureComponent {
                         {this.forTaskListschild()}
                     </div>
                 </div>
-                <FormTaskItem />
             </React.Fragment>
 
         );
@@ -106,13 +75,4 @@ class Search extends React.PureComponent {
 
 }
 
-const mapStateToProps = function (state) {
-    return {
-        // весь раздел Redux state под именем counters будет доступен
-        // данному компоненту как this.props.counters
-        stateTaskLists: state.stateTaskLists.TaskLists,
-        searchText: state.stateTaskLists.searchText
-    };
-};
-
-export default connect(mapStateToProps)(withRouter(Search));
+export default Search;

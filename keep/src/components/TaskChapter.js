@@ -1,36 +1,11 @@
 "use strict";
 import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from "react-router";
-
-import FormTaskItem from './FormTaskItem.js';
-import TaskItem from './TaskItem.js';
-import { OPEN_FORM_TASK_ITEM_NEW } from '../stores/const.js';
+import TaskItemContainer from './TaskItemContainer.js';
 import Pagination from './Pagination.js';
-
-
 
 class TaskChapter extends React.PureComponent {
     constructor(props) {
         super(props);
-        this.state = {
-            TaskLists: this.props.stateTaskLists,
-            locationPathname: this.props.match.params.chapter,
-            TaskListsItemsSort: this.props.taskListsItemsSort,
-            perpage: 24,
-            currentPage: this.props.location.search !== undefined ? this.props.location.search.match(/\d+/g) : null,
-        }
-
-    }
-
-    UNSAFE_componentWillReceiveProps = (newProps) => {
-        this.setState({ TaskLists: newProps.stateTaskLists });
-        this.setState({ locationPathname: newProps.match.params.chapter });
-        this.setState({ TaskListsItemsSort: newProps.taskListsItemsSort });
-    }
-
-    componentDidMount = () => {
-        console.log("TaskChapter componentDidMount");
     }
 
     icoTrash = () => <svg className="ico-trash" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" ><path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z" ></path></svg>;
@@ -39,23 +14,17 @@ class TaskChapter extends React.PureComponent {
     icoPin = () => <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="thumbtack" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" ><path fill="currentColor" d="M298.028 214.267L285.793 96H328c13.255 0 24-10.745 24-24V24c0-13.255-10.745-24-24-24H56C42.745 0 32 10.745 32 24v48c0 13.255 10.745 24 24 24h42.207L85.972 214.267C37.465 236.82 0 277.261 0 328c0 13.255 10.745 24 24 24h136v104.007c0 1.242.289 2.467.845 3.578l24 48c2.941 5.882 11.364 5.893 14.311 0l24-48a8.008 8.008 0 0 0 .845-3.578V352h136c13.255 0 24-10.745 24-24-.001-51.183-37.983-91.42-85.973-113.733z" ></path></svg>;
     icoPlus = () => <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" ><path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" ></path></svg>;
 
-    openFormNewItemNew = () => {
-        let key = this.findkey();
-        this.props.dispatch({ type: OPEN_FORM_TASK_ITEM_NEW, data: { activ: true, keychapter: key } });
-    }
-
     forhistoryTaskListschild = () => {
         let tasklistitem = [];
-        let key = this.findkey();
+        let key = this.props.cbfindkey();
         if (key) {
             var i = 0;
-            for (let tasklistskeychild in this.state.TaskLists[key].itemlist) {
+            for (let tasklistskeychild in this.props.TaskLists[key].itemlist) {
                 i++;
-                let keyitem = this.state.TaskLists[key].itemlist[tasklistskeychild].key;
+                let keyitem = this.props.TaskLists[key].itemlist[tasklistskeychild].key;
                 tasklistitem.push(
-
-                    <TaskItem data={this.state.TaskLists[key].itemlist[tasklistskeychild]} keychapter={key} keyitem={keyitem} key={keyitem} index={i}
-                        attrdata={this.state.locationPathname === undefined ? "all" : this.state.locationPathname} />
+                    <TaskItemContainer data={this.props.TaskLists[key].itemlist[tasklistskeychild]} keychapter={key} keyitem={keyitem} key={keyitem} index={i}
+                        attrdata={this.props.locationPathname === undefined ? "all" : this.props.locationPathname} />
 
                 )
 
@@ -69,83 +38,61 @@ class TaskChapter extends React.PureComponent {
     forTaskListschild = () => {
         let tasklistitem = [];
         var i = 0;
-        let listtask = this.state.TaskListsItemsSort;
+        let listtask = this.props.TaskListsItemsSort;
         listtask = listtask.sort((a, b) => b.time - a.time);
 
-        if (this.state.currentPage !== null) {
-            let lastIndex = this.state.perpage * this.state.currentPage;
-            let firstIndex = lastIndex - this.state.perpage;
+        if (this.props.currentPage !== "all") {
+            let lastIndex = this.props.perpage * this.props.currentPage;
+            let firstIndex = lastIndex - this.props.perpage;
             listtask = listtask.slice(firstIndex, lastIndex);
         }
 
         for (let i = 0; i < listtask.length; i++) {
-            debugger;
             let keyitem = listtask[i].key;
             let keychapter = listtask[i].keychapter;
             tasklistitem.push(
-                <TaskItem data={listtask[i]} keychapter={keychapter} keyitem={keyitem} key={keyitem} index={i}
-                    attrdata={this.state.locationPathname === undefined ? "all" : this.state.locationPathname}
+                <TaskItemContainer data={listtask[i]} keychapter={keychapter} keyitem={keyitem} key={keyitem} index={i}
+                    attrdata={this.props.locationPathname === undefined ? "all" : this.props.locationPathname}
                 />
             )
         }
         return tasklistitem;
     }
 
-    findName() {
-        for (let tasklistskey in this.state.TaskLists) {
-            if (this.state.TaskLists[tasklistskey].url == this.state.locationPathname) { return this.state.TaskLists[tasklistskey].name; }
-        }
-    }
-    findkey() {
-        for (let tasklistskey in this.state.TaskLists) {
-            if (this.state.TaskLists[tasklistskey].url == this.state.locationPathname) { return tasklistskey; }
-        }
-    }
-    pageNumber = (index) => {
-        this.setState({ currentPage: index });
-    }
-
-
-
     render() {
-        console.log("render TaskChapter");
+        console.log("render TaskChapter", this.props);
         return (
             <React.Fragment>
-                <div className="task-chapter" id={this.state.locationPathname === undefined ? "all" : this.state.locationPathname}>
+                <div className="task-chapter" id={this.props.locationPathname === undefined ? "all" : this.props.locationPathname}>
                     <style>
-                        {console.log("стили", this.state)}
-                        {console.log(this.state.locationPathname !== undefined)}
-
                         {` .task-item{ -webkit-animation-name: none;
                                 animation-name: none;} 
-                                
                             .all{ 
                                 -webkit-animation-name: slideInUpAll;
                                  animation-name: slideInUpAll;
                              }
                             `
                         }
-                        {this.state.locationPathname !== undefined && `.${this.state.locationPathname !== undefined && this.state.locationPathname} { 
-    -webkit-animation-name: slideInUp;
-    animation-name: slideInUp;
-    opacity: 0; }` }
+                        {this.props.locationPathname !== undefined && `.${this.props.locationPathname !== undefined && this.props.locationPathname} { 
+                        -webkit-animation-name: slideInUp;
+                        animation-name: slideInUp;
+                        opacity: 0; }` }
                     </style>
                     <div className="task-chapter__header">
                         <div className="task-chapter__title">
-                            {Object.keys(this.state.TaskLists).length > 0 && (this.state.locationPathname === undefined ? "Все" : this.findName())}
+                            {Object.keys(this.props.TaskLists).length > 0 && (this.props.locationPathname === undefined ? "Все" : this.props.cbfindName())}
 
                         </div>
                         <div className="task-chapter__tools">
-                            {Object.keys(this.state.TaskLists).length > 0 && (this.state.locationPathname !== undefined && <span className="task-chapter__tools__trash" onClick={this.openFormNewItemNew} >{this.icoPlus()} </span>)}
+                            {Object.keys(this.props.TaskLists).length > 0 && (this.props.locationPathname !== undefined && <span className="task-chapter__tools__trash" onClick={this.openFormNewItemNew} >{this.icoPlus()} </span>)}
 
                         </div>
                     </div>
-                    <div>{this.state.locationPathname === undefined && <Pagination perpage={this.state.perpage} total={this.state.TaskListsItemsSort.length} url={this.props.location.pathname} pageNumber={this.pageNumber} />}</div>
+                    <div>{this.props.locationPathname === undefined && <Pagination perpage={this.props.perpage} total={this.props.TaskListsItemsSort.length} />}</div>
                     <div className="task-item-list">
-                        {this.state.locationPathname === undefined ? this.forTaskListschild() : this.forhistoryTaskListschild()}
+                        {this.props.locationPathname === undefined ? this.forTaskListschild() : this.forhistoryTaskListschild()}
                     </div>
                 </div>
-                <FormTaskItem />
             </React.Fragment>
 
         );
@@ -154,13 +101,5 @@ class TaskChapter extends React.PureComponent {
 
 }
 
-const mapStateToProps = function (state) {
-    return {
-        // весь раздел Redux state под именем counters будет доступен
-        // данному компоненту как this.props.counters
-        stateTaskLists: state.stateTaskLists.TaskLists,
-        taskListsItemsSort: state.stateTaskLists.TaskListsItemsSort,
-    };
-};
 
-export default connect(mapStateToProps)(withRouter(TaskChapter));
+export default TaskChapter;

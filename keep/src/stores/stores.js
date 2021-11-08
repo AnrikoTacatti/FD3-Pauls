@@ -8,7 +8,8 @@ import {
   OPEN_FORM_TASK_ITEM_EDIT,
   OPEN_FORM_TASK_ITEM_NEW,
   BOOK_LOAD_REQUEST,
-  SEARH_TEXT
+  SEARH_TEXT,
+  PAGE
 } from './const.js';
 
 
@@ -24,6 +25,7 @@ const initState = {
   openFormTaskItemNew: false,
   openFormTaskItemEdit: false,
   searchText: null,
+  currentPage: null
 }
 
 // в редьюсере state - это не весь state Redux, а только тот раздел state,
@@ -89,7 +91,14 @@ function TaskReducer(state = initState, action) {
       };
       return newState;
     }
-
+    case PAGE: {
+      console.log("state PAGE");
+      let newState = {
+        ...state,
+        currentPage: action.data.currentPage
+      };
+      return newState;
+    }
     default:
       return state;
   }

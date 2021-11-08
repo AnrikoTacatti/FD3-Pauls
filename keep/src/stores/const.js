@@ -6,3 +6,4 @@ export const OPEN_FORM_TASK_ITEM_EDIT = 'OPEN_FORM_TASK_ITEM_EDIT';
 export const OPEN_FORM_TASK_ITEM_NEW = 'OPEN_FORM_TASK_ITEM_NEW';
 export const BOOK_LOAD_REQUEST = "BOOK_LOAD_REQUEST";
 export const SEARH_TEXT = 'SEARH_TEXT';
+export const PAGE = 'PAGE';

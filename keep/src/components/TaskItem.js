@@ -1,67 +1,10 @@
 "use strict";
 import React from 'react';
-import { connect } from 'react-redux';
-import api from '../api/api.js';
 
 class TaskItem extends React.PureComponent {
     constructor(props) {
         super(props);
-        this.state = {
-            keychapter: this.props.keychapter,
-            keyitem: this.props.keyitem,
-        }
-
-
     }
-
-    openFormNewItemEdit = () => {
-        this.props.dispatch({ type: "OPEN_FORM_TASK_ITEM_EDIT", data: { name: this.props.data.name, text: this.props.data.text, activ: true, keychapter: this.props.keychapter, keyitem: this.props.keyitem } });
-
-    }
-    deleteTaskItem = () => {
-        debugger;
-        this.divitem.className = this.divitem.className + " del";
-        setTimeout(() => {
-            let data = { keychapter: this.state.keychapter, keyitem: this.state.keyitem };
-            api.removeTaskItem(data, this.props.dispatch);
-        }, 1000);
-
-
-    }
-
-    getTime(timestamp) {
-        let d = new Date(timestamp);
-        let timeStampCon = d.getDate() + '/' + (d.getMonth()) + '/' + d.getFullYear() + " " + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes());
-        return timeStampCon;
-    }
-    setColor = (e) => {
-        debugger;
-        let data = { style: e.target.getAttribute("style"), keychapter: this.state.keychapter, keyitem: this.state.keyitem };
-        api.setTaskItemStyle(data, this.props.dispatch);
-    }
-    setPin = (ifo) => {
-        let pin = true;
-        if (ifo === true) pin = false;
-        let data = { pin: pin, keychapter: this.state.keychapter, keyitem: this.state.keyitem };
-        api.setTaskItemPin(data, this.props.dispatch);
-    }
-    CSSstring(string) {
-        if (string) {
-            const css_json = `{"${string
-                .replace(/; /g, '", "')
-                .replace(/: /g, '": "')
-                .replace(";", "")}"}`;
-
-            const obj = JSON.parse(css_json);
-
-            const keyValues = Object.keys(obj).map((key) => {
-                var camelCased = key.replace(/-[a-z]/g, (g) => g[1].toUpperCase());
-                return { [camelCased]: obj[key] };
-            });
-            return Object.assign({}, ...keyValues);
-        }
-    }
-
 
     icoTrash = () => <svg className="ico-trash" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" ><path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z" ></path></svg>;
     icoEdit = () => <svg className="ico-edit" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" ><path fill="currentColor" d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z" ></path></svg>;
@@ -70,12 +13,13 @@ class TaskItem extends React.PureComponent {
     icoColor = () => <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="palette" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" ><path fill="currentColor" d="M204.3 5C104.9 24.4 24.8 104.3 5.2 203.4c-37 187 131.7 326.4 258.8 306.7 41.2-6.4 61.4-54.6 42.5-91.7-23.1-45.4 9.9-98.4 60.9-98.4h79.7c35.8 0 64.8-29.6 64.9-65.3C511.5 97.1 368.1-26.9 204.3 5zM96 320c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm32-128c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm128-64c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm128 64c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z" ></path></svg>;
 
     render() {
-        console.log("render TaskChapter");
+        console.log("render TaskItem");
         console.log(this.props);
 
 
         return (
-            <div className={`task-item ${this.props.attrdata} ${this.props.data.style !== undefined ? "styled" : ""}`} data-keychapter={this.props.attrdata} style={{ "animationDelay": `${this.props.index * 0.05}s`, ...this.CSSstring(this.props.data.style) }} ref={c => this.divitem = c}
+            <div className={`task-item ${this.props.attrdata} ${this.props.data.style !== undefined ? "styled" : ""} ${this.props.del === true ? "del" : ""}`} data-keychapter={this.props.attrdata}
+                style={{ "animationDelay": `${this.props.index * 0.05}s`, ...this.props.data.style }}
                 data-key={this.props.keyitem}
 
             >
@@ -85,18 +29,18 @@ class TaskItem extends React.PureComponent {
 
                 <div className="task-item__footer">
                     <div className="task-item__tools">
-                        <span className="task-item__tools_Pin" onClick={this.setPin}>{this.icoPin(this.props.data.pin)}</span>
-                        <span onClick={this.openFormNewItemEdit} className="task-item__tools_Edit" >{this.icoEdit()}</span>
-                        <span onClick={this.deleteTaskItem} className="task-item__tools_Trash">{this.icoTrash()}</span>
+                        <span className="task-item__tools_Pin" onClick={this.props.cbsetPin}>{this.icoPin(this.props.data.pin)}</span>
+                        <span onClick={this.props.cbopenFormNewItemEdit} className="task-item__tools_Edit" >{this.icoEdit()}</span>
+                        <span onClick={this.props.cbaddDel} className="task-item__tools_Trash">{this.icoTrash()}</span>
                         <span className="task-item__tools_Color">
                             <span className="task-item__tools_Color-list">
-                                <span className="color" onClick={this.setColor} style={{ "backgroundColor": "#fff4ba", "border": "1px solid #fbe67b" }}></span>
-                                <span className="color" onClick={this.setColor} style={{ "backgroundColor": "#e8fafc", "border": "1px solid #b2d9ec" }}></span>
-                                <span className="color" onClick={this.setColor} style={{ "backgroundColor": "#ffecf1", "border": "1px solid #f9c8ca" }}></span>
+                                <span className="color" onClick={this.props.cbsetColor} style={{ "backgroundColor": "#fff4ba", "border": "1px solid #fbe67b" }}></span>
+                                <span className="color" onClick={this.props.cbsetColor} style={{ "backgroundColor": "#e8fafc", "border": "1px solid #b2d9ec" }}></span>
+                                <span className="color" onClick={this.props.cbsetColor} style={{ "backgroundColor": "#ffecf1", "border": "1px solid #f9c8ca" }}></span>
                             </span>
                             {this.icoColor()}
                         </span>
-                        <span className="task-item__date">{this.props.data.time !== undefined && this.getTime(this.props.data.time)}</span>
+                        <span className="task-item__date">{this.props.data.time !== undefined && this.props.cbgetTime(this.props.data.time)}</span>
                     </div>
                 </div>
             </div >
@@ -106,13 +50,5 @@ class TaskItem extends React.PureComponent {
 
 }
 
-/*const mapStateToProps = function (state) {
-    return {
-        // весь раздел Redux state под именем counters будет доступен
-        // данному компоненту как this.props.counters
-        stateTaskLists: state.stateTaskLists.TaskLists,
 
-    };
-};*/
-
-export default connect()(TaskItem);
+export default TaskItem;

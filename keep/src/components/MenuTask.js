@@ -27,13 +27,10 @@ class MenuTask extends React.Component {
         if (isDelete) {
             let data = { keychapter: keychapter };
             api.removeTaskCaption(data, this.props.dispatch);
-
         }
-
     }
     forTaskLists = () => {
         let menulist = [];
-
         for (let tasklistskey in this.state.TaskLists) {
             menulist.push(
                 <li key={tasklistskey}>
@@ -46,7 +43,6 @@ class MenuTask extends React.Component {
             )
 
         }
-
         return menulist;
     }
 
@@ -69,11 +65,8 @@ class MenuTask extends React.Component {
                 }
             </React.Fragment >
         );
-
     }
-
 }
-
 const mapStateToProps = function (state) {
     return {
         // весь раздел Redux state под именем counters будет доступен
@@ -81,7 +74,6 @@ const mapStateToProps = function (state) {
         stateTaskLists: state.stateTaskLists,
     };
 };
-
 export default connect(mapStateToProps)(MenuTask);
 
 

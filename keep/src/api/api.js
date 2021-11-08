@@ -48,7 +48,8 @@ function appGet(dispatch) {
         let itemlist = [];
         taskLists[tasklistskey]['key'] = tasklistskey;
         for (let tasklistskeychild in taskLists[tasklistskey].itemlist) {
-          let item = { ...taskLists[tasklistskey].itemlist[tasklistskeychild], key: tasklistskeychild, keychapter: tasklistskey };
+          let style = CSSstring(taskLists[tasklistskey].itemlist[tasklistskeychild].style);
+          let item = { ...taskLists[tasklistskey].itemlist[tasklistskeychild], key: tasklistskeychild, keychapter: tasklistskey, style: style };
           itemlist.push(item);
         }
         taskLists[tasklistskey].itemlist = itemlist.sort((a, b) => b.time - a.time);
@@ -266,4 +267,21 @@ function translit(str) {
     else { res += s; }
   }
   return res;
+}
+
+function CSSstring(string) {
+  if (string) {
+    const css_json = `{"${string
+      .replace(/; /g, '", "')
+      .replace(/: /g, '": "')
+      .replace(";", "")}"}`;
+
+    const obj = JSON.parse(css_json);
+
+    const keyValues = Object.keys(obj).map((key) => {
+      var camelCased = key.replace(/-[a-z]/g, (g) => g[1].toUpperCase());
+      return { [camelCased]: obj[key] };
+    });
+    return Object.assign({}, ...keyValues);
+  }
 }

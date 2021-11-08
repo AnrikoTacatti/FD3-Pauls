@@ -3,7 +3,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const extractCSS = new MiniCssExtractPlugin({ filename: "./main.css" });
+const extractCSS = new MiniCssExtractPlugin({ filename: "main.css" });
 
 
 
@@ -15,8 +15,8 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, './public/'),
-        filename: "./bundle.js",
-        publicPath: 'auto'
+        filename: "bundle.js",
+        publicPath: '/'
 
     },
     devtool: 'source-map',
