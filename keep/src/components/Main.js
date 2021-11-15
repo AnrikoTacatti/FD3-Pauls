@@ -3,7 +3,7 @@ import React from 'react';
 import FormTaskItem from './FormTaskItem.js';
 import TaskItemContainer from './TaskItemContainer.js';
 import { icoSave } from '../ico/ico.js';
-
+import { actionsaveBook } from '../actions/FormTaskItem.js';
 class Main extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -59,7 +59,11 @@ class Main extends React.PureComponent {
         }
         return tasklistitem;
     }
+    saveBook = () => {
+        let data = { text: this.bookText.value };
+        actionsaveBook(data, this.props.dispatch);
 
+    }
 
     render() {
         console.log("render Main");
