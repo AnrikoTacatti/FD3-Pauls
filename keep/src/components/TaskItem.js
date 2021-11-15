@@ -28,7 +28,7 @@ class TaskItem extends React.PureComponent {
                         <span className="task-item__tools_Color">
                             <span className="task-item__tools_Color-list">
                                 <span className="color" onClick={this.props.cbsetColor.bind(null, { "backgroundColor": "#fff4ba", "border": "1px solid #fbe67b" })} style={{ "backgroundColor": "#fff4ba", "border": "1px solid #fbe67b" }}></span>
-                                <span className="color" onClick={this.props.cbsetColor.bind(null, { "backgroundColor": "#fff4ba", "border": "1px solid #fbe67b" })} style={{ "backgroundColor": "#e8fafc", "border": "1px solid #b2d9ec" }}></span>
+                                <span className="color" onClick={this.props.cbsetColor.bind(null, { "backgroundColor": "#e8fafc", "border": "1px solid #b2d9ec" })} style={{ "backgroundColor": "#e8fafc", "border": "1px solid #b2d9ec" }}></span>
                                 <span className="color" onClick={this.props.cbsetColor.bind(null, { "backgroundColor": "#ffecf1", "border": "1px solid #f9c8ca" })} style={{ "backgroundColor": "#ffecf1", "border": "1px solid #f9c8ca" }}></span>
                                 <span className="color dark" onClick={this.props.cbsetColor.bind(null, null)} style={{ "backgroundColor": "#3c3f43", "border": "1px solid #5f6368" }}></span>
                             </span>

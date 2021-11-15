@@ -10,6 +10,6 @@ export const actionopenFormEditTaskCaption = (data, dispatch) => {
     dispatch({ type: OPEN_FORM_EDIT_TASK_CAPTION, data });
 }
 export const actiondeleteChapter = (data, dispatch) => {
-    api.removeTaskCaption(data, this.props.dispatch);
+    api.removeTaskCaption(data, dispatch);
 }
 
