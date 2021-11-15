@@ -3,7 +3,7 @@ import React from 'react';
 import FormTaskItem from './FormTaskItem.js';
 import TaskItemContainer from './TaskItemContainer.js';
 import { icoSave } from '../ico/ico.js';
-import { actionsaveBook } from '../actions/FormTaskItem.js';
+import { actionsaveBook } from '../actions/Main.js';
 class Main extends React.PureComponent {
     constructor(props) {
         super(props);
