@@ -60,7 +60,7 @@ class Main extends React.PureComponent {
         return tasklistitem;
     }
     saveBook = () => {
-        let data = { text: this.bookText.value };
+        let data = { text: this.inputNewTextRef.value };
         actionsaveBook(data, this.props.dispatch);
 
     }
@@ -104,7 +104,7 @@ class Main extends React.PureComponent {
                     <div className="book" style={{ "animationDelay": `1s` }}>
                         <div className="book__title">Записная книжка <span className="book__save" onClick={this.saveBook}> {icoSave()} </span></div>
                         {console.log("Записная книжка")}
-                        {this.props.Book !== undefined && <textarea className="book__text" ref={this.props.cbsetNewTextRef} defaultValue={this.props.Book !== undefined && this.props.Book.text} placeholder="Запишите что-нибудь"></textarea>}
+                        {this.props.Book !== undefined && <textarea className="book__text" ref={c => this.inputNewTextRef = c} defaultValue={this.props.Book !== undefined && this.props.Book.text} placeholder="Запишите что-нибудь"></textarea>}
                     </div>
 
                 </div>
