@@ -54,7 +54,7 @@ module.exports = {
         /* static: {
              directory: path.resolve(__dirname, './public')
          },*/ // here's the change
-        publicPath: '/FD3-Pauls/keep/public/',
+        publicPath: '/site/',
         historyApiFallback: true,
         port: 8080,
         hot: true
