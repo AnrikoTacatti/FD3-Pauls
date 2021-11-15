@@ -1,9 +1,9 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
-import { getStorage } from "firebase/storage";
 import { getDatabase, ref, set, get, child, push, update, remove, query, onValue, runTransaction, onChildChanged, serverTimestamp } from "firebase/database";
 import { OPEN_FORM_TASK_ITEM_NEW, OPEN_FORM_TASK_ITEM_EDIT, OPEN_FORM_NEW_TASK_CAPTION, OPEN_FORM_EDIT_TASK_CAPTION, TASKS_LOAD_REQUEST, BOOK_LOAD_REQUEST } from '../stores/const.js';
+import { string } from 'prop-types';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -21,13 +21,8 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const firebase = initializeApp(firebaseConfig);
-export const db = getFirestore(firebase);
+const db = getFirestore(firebase);
 const database = getDatabase();
-console.log("дата");
-console.log(serverTimestamp());
-
-
-
 const dbRef = ref(database);
 
 onChildChanged(ref(database, "keeps/sectionlist/"), (data) => {
@@ -48,7 +43,11 @@ function appGet(dispatch) {
         let itemlist = [];
         taskLists[tasklistskey]['key'] = tasklistskey;
         for (let tasklistskeychild in taskLists[tasklistskey].itemlist) {
-          let style = CSSstring(taskLists[tasklistskey].itemlist[tasklistskeychild].style);
+          let style = taskLists[tasklistskey].itemlist[tasklistskeychild].style;
+          if (typeof style === 'string') {
+            style = CSSstring(taskLists[tasklistskey].itemlist[tasklistskeychild].style);
+          }
+
           let item = { ...taskLists[tasklistskey].itemlist[tasklistskeychild], key: tasklistskeychild, keychapter: tasklistskey, style: style };
           itemlist.push(item);
         }
@@ -57,7 +56,7 @@ function appGet(dispatch) {
       }
 
 
-      let taskListsItemsSort = {};
+      let taskListsItemsSort = [];
       for (let tasklistskeysort in taskLists) {
         taskListsItemsSort = [...taskListsItemsSort, ...taskLists[tasklistskeysort].itemlist];
       }
@@ -130,9 +129,9 @@ export default {
 
     // Write the new post's data simultaneously in the posts list and the user's post list.
     const updates = {};
-    updates['keeps/sectionlist/' + data.keychapter] = postData;
-    /*updates['keeps/sectionlist/' + data.keychapter + '/url'] = url;*/
-
+    updates['keeps/sectionlist/' + data.keychapter + '/name'] = postData.name;
+    updates['keeps/sectionlist/' + data.keychapter + '/url'] = postData.url;
+    updates['keeps/sectionlist/' + data.keychapter + '/time'] = postData.time;
     return update(ref(db), updates).then((snapshot) => {
       console.log("editTaskCaption firebase");
       disparch({ type: OPEN_FORM_EDIT_TASK_CAPTION, data: { active: false } });
@@ -202,7 +201,9 @@ export default {
 
 
     const updates = {};
-    updates['keeps/sectionlist/' + data.keychapter + "/itemlist/" + data.keyitem] = postData;
+    updates['keeps/sectionlist/' + data.keychapter + "/itemlist/" + data.keyitem + "/name"] = postData.name;
+    updates['keeps/sectionlist/' + data.keychapter + "/itemlist/" + data.keyitem + "/text"] = postData.text;
+    updates['keeps/sectionlist/' + data.keychapter + "/itemlist/" + data.keyitem + "/time"] = postData.time;
     return update(ref(db), updates).then(() => {
       console.log("setTaskItem firebase");
       dispatch({ type: OPEN_FORM_TASK_ITEM_EDIT, data: { active: false } });

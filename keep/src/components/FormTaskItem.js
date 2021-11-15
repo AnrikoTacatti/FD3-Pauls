@@ -1,47 +1,70 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import api from '../api/api.js';
-import { OPEN_FORM_TASK_ITEM_NEW, OPEN_FORM_TASK_ITEM_EDIT } from '../stores/const.js';
+import {
+    actioncloseFormNew,
+    actioncloseFormEdit,
+    actionsetNewTaskItem,
+    setTaskItem
+} from '../actions/FormTaskItem.js';
 
-class FormTaskItem extends React.PureComponent {
+export class FormTaskItem extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            /* TaskLists: this.props.stateTaskLists.TaskLists*/
-            openFormNewTaskItem: false,
             openFormTaskItemEdit: false,
-            openFormTaskItemNew: false
+            openFormTaskItemNew: false,
+            inputTaskItemNameRequired: true,
+            inputTaskItemTextRequired: true,
+        };
+        this.inputTaskItemName = React.createRef();
+        this.inputTaskItemText = React.createRef();
 
-        }
     }
 
-    UNSAFE_componentWillReceiveProps = (newProps) => {
+    UNSAFE_componentWillReceiveProps(newProps) {
         this.setState({ openFormTaskItemEdit: newProps.openFormTaskItemEdit });
         this.setState({ openFormTaskItemNew: newProps.openFormTaskItemNew });
 
     }
 
-    closeForm = () => {
-        this.props.dispatch({ type: OPEN_FORM_TASK_ITEM_EDIT, data: { active: false } });
-        this.props.dispatch({ type: OPEN_FORM_TASK_ITEM_NEW, data: { active: false } });
+    closeFormNew = () => {
+        let data = { active: false };
+        actioncloseFormNew(data, this.props.dispatch);
+    }
+
+
+    closeFormEdit = () => {
+        let data = { active: false };
+        actioncloseFormEdit(data, this.props.dispatch);
     }
 
     addNewTaskItem = () => {
-        let data = { keychapter: this.state.openFormTaskItemNew.keychapter, title: this.inputTaskItemName.value, text: this.inputTaskItemText.value };
-        api.setNewTaskItem(data, this.props.dispatch);
-
+        if (this.inputTaskItemName.current.value == "") {
+            this.setState({ inputTaskItemNameRequired: false });
+        }
+        else {
+            this.setState({ inputTaskItemNameRequired: true });
+        }
+        if (this.inputTaskItemText.current.value == "") {
+            this.setState({ inputTaskItemTextRequired: false });
+        }
+        else {
+            this.setState({ inputTaskItemTextRequired: true });
+        }
+        if (this.inputTaskItemName.current.value != "" && this.inputTaskItemText.current.value != "") {
+            let data = { keychapter: this.state.openFormTaskItemNew.keychapter, title: this.inputTaskItemName.current.value, text: this.inputTaskItemText.current.value };
+            actionsetNewTaskItem(data, this.props.dispatch);
+        }
     }
 
     editTaskItem = () => {
         let data = { title: this.inputTaskItemName.value, text: this.inputTaskItemText.value, keychapter: this.state.openFormTaskItemEdit.keychapter, keyitem: this.state.openFormTaskItemEdit.keyitem };
-        api.setTaskItem(data, this.props.dispatch);
-
+        setTaskItem(data, this.props.dispatch);
     }
 
     render() {
-        console.log("FormTaskCaption");
-        console.log(this.props);
-        console.log(this.state);
+        //  console.log("FormTaskItem", this.props);
+        // console.log("FormTaskItem", this.state);
         return (
             <React.Fragment >
                 {
@@ -49,11 +72,11 @@ class FormTaskItem extends React.PureComponent {
                         <div className="form-add-task-caption form">
                             <div className="form-inner">
                                 <p className="form-title">Add task item</p>
-                                <input type="text" className="task-item-name" name="title" placeholder="Enter task item name" required="" ref={c => this.inputTaskItemName = c} />
-                                <textarea type="text" className="task-item-text" name="text" cols="60" rows="5" placeholder="Enter task item text" required="" ref={c => this.inputTaskItemText = c} />
+                                <input type="text" className={`task-item-name ${this.state.inputTaskItemNameRequired == false ? "error" : ""}`} name="title" placeholder="Enter task item name" required="" ref={this.inputTaskItemName} />
+                                <textarea className={`task-item-text ${this.state.inputTaskItemTextRequired == false ? "error" : ""}`} name="text" cols="60" rows="5" placeholder="Enter task item text" required="" ref={this.inputTaskItemText} />
                             </div>
                             <div className="form-add-task-caption__footer">
-                                <button type="button" title="Cancel" className="form-cancel btn" onClick={this.closeForm}>Cancel</button>
+                                <button type="button" title="Cancel" className="form-cancel btn" onClick={this.closeFormNew}>Cancel</button>
                                 <button type="button" className="form-submit btn" onClick={this.addNewTaskItem} >Submit</button>
                             </div>
                         </div>
@@ -66,10 +89,10 @@ class FormTaskItem extends React.PureComponent {
                             <div className="form-inner">
                                 <p className="form-title">Edit task item</p>
                                 <input type="text" className="task-item-name" defaultValue={this.state.openFormTaskItemEdit.name} name="name" placeholder="Enter task item name" required="" ref={c => this.inputTaskItemName = c} />
-                                <textarea type="text" className="task-item-text" defaultValue={this.state.openFormTaskItemEdit.text} name="text" cols="60" rows="5" placeholder="Enter task item text" required="" ref={c => this.inputTaskItemText = c} />
+                                <textarea className="task-item-text" defaultValue={this.state.openFormTaskItemEdit.text} name="text" cols="60" rows="5" placeholder="Enter task item text" required="" ref={c => this.inputTaskItemText = c} />
                             </div>
                             <div className="form-add-task-caption__footer">
-                                <button type="button" title="Cancel" className="form-cancel btn" onClick={this.closeForm}>Cancel</button>
+                                <button type="button" title="Cancel" className="form-cancel btn" onClick={this.closeFormEdit}>Cancel</button>
                                 <button type="button" className="form-submit btn" onClick={this.editTaskItem} >Submit</button>
                             </div>
                         </div>

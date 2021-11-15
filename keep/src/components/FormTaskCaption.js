@@ -1,9 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import api from '../api/api.js';
-import { OPEN_FORM_NEW_TASK_CAPTION, OPEN_FORM_EDIT_TASK_CAPTION } from '../stores/const.js';
+import {
+    actioncloseFormNewTaskCaption,
+    actioncloseFormEditTaskCaption,
+    actionsetNewTaskCaption,
+    actioneditTaskCaption
+} from '../actions/FormTaskCaption.js';
 
-class FormTaskCaption extends React.PureComponent {
+
+
+export class FormTaskCaption extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
@@ -12,32 +18,36 @@ class FormTaskCaption extends React.PureComponent {
             openFormEditTaskCaption: false
         }
     }
-    UNSAFE_componentWillReceiveProps = (newProps) => {
+
+    UNSAFE_componentWillReceiveProps(newProps) {
         this.setState({ openFormNewTaskCaption: newProps.openFormNewTaskCaption });
         this.setState({ openFormEditTaskCaption: newProps.openFormEditTaskCaption });
     }
 
     closeFormNewTaskCaption = () => {
-        this.props.dispatch({ type: OPEN_FORM_NEW_TASK_CAPTION, data: false });
-        this.props.dispatch({ type: OPEN_FORM_EDIT_TASK_CAPTION, data: { active: false } });
+        let data = false;
+        actioncloseFormNewTaskCaption(data, this.props.dispatch)
+    }
+
+    closeFormEditTaskCaption = () => {
+        let data = { active: false };
+        actioncloseFormEditTaskCaption(data, this.props.dispatch);
     }
 
     addNewTaskCaption = () => {
         let data = { title: this.inputTaskListName.value };
-        api.setNewTaskCaption(data, this.props.dispatch);
-
+        actionsetNewTaskCaption(data, this.props.dispatch);
     }
+
     editTaskCaption = () => {
         let data = { title: this.inputTaskListName.value, keychapter: this.state.openFormEditTaskCaption.keychapter };
-        api.editTaskCaption(data, this.props.dispatch);
-
+        actioneditTaskCaption(data, this.props.dispatch);
     }
 
 
     render() {
-        console.log("FormTaskCaption");
-        console.log(this.props);
-        console.log(this.state);
+        // console.log("FormTaskCaption", this.props);
+
         return (
             <React.Fragment>
                 {this.state.openFormEditTaskCaption.active === true && <React.Fragment>
@@ -47,7 +57,7 @@ class FormTaskCaption extends React.PureComponent {
                             <input type="text" className="task-list-name" name="title" defaultValue={this.state.openFormEditTaskCaption.name} placeholder="Enter task list name" required="" ref={c => this.inputTaskListName = c} />
                         </div>
                         <div className="form-add-task-caption__footer">
-                            <button type="button" title="Cancel" className="form-cancel btn" onClick={this.closeFormNewTaskCaption}>Cancel</button>
+                            <button type="button" title="Cancel" className="form-cancel btn" onClick={this.closeFormEditTaskCaption}>Cancel</button>
                             <button type="button" className="form-submit btn" onClick={this.editTaskCaption} >Submit</button>
                         </div>
                     </div>

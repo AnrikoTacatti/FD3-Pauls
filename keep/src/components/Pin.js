@@ -10,7 +10,6 @@ class Pin extends React.PureComponent {
 
     forTaskListschild = () => {
         let tasklistitem = [];
-        var i = 0;
         let listtask = [];
         if (this.props.TaskListsItemsSort.length) listtask = this.props.TaskListsItemsSort;
 
@@ -34,7 +33,7 @@ class Pin extends React.PureComponent {
     }
 
     render() {
-        console.log("render Pin", this.props);
+        // console.log("render Pin", this.props);
         return (
             <React.Fragment>
                 <div className="task-chapter" >

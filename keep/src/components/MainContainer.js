@@ -5,6 +5,7 @@ import { withRouter } from "react-router";
 import FormTaskItem from './FormTaskItem.js';
 import Main from './Main.js';
 import api from '../api/api.js';
+import { actionsaveBook } from '../actions/Main.js';
 
 class MainContainer extends React.PureComponent {
     constructor(props) {
@@ -25,8 +26,7 @@ class MainContainer extends React.PureComponent {
 
     saveBook = () => {
         let data = { text: this.bookText.value };
-        api.saveBook(data, this.props.dispatch);
-
+        actionsaveBook(data, this.props.dispatch);
     }
     setNewTextRef = (ref) => {
         this.bookText = ref;

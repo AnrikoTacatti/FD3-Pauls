@@ -1,0 +1,159 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TaskItem-test Snapshot TaskItem-test Snapshot 1`] = `
+<div
+  className="task-item all  "
+  data-key="-Mnu6P7dMJTeVv8VESLh"
+  data-keychapter="all"
+  key="-Mnu6P7dMJTeVv8VESLh"
+  onAnimationEnd={[MockFunction]}
+  style={
+    Object {
+      "animationDelay": "0.05s",
+    }
+  }
+>
+  <div
+    className="task-item__title"
+  >
+    Мои заметки № 1
+  </div>
+  <div
+    className="task-item__text"
+  >
+    Мои заметки № 1
+  </div>
+  <div
+    className="task-item__footer"
+  >
+    <div
+      className="task-item__tools"
+    >
+      <span
+        className="task-item__tools_Pin "
+        onClick={[MockFunction]}
+      >
+        <svg
+          aria-hidden="true"
+          data-icon="thumbtack"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          viewBox="0 0 384 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M298.028 214.267L285.793 96H328c13.255 0 24-10.745 24-24V24c0-13.255-10.745-24-24-24H56C42.745 0 32 10.745 32 24v48c0 13.255 10.745 24 24 24h42.207L85.972 214.267C37.465 236.82 0 277.261 0 328c0 13.255 10.745 24 24 24h136v104.007c0 1.242.289 2.467.845 3.578l24 48c2.941 5.882 11.364 5.893 14.311 0l24-48a8.008 8.008 0 0 0 .845-3.578V352h136c13.255 0 24-10.745 24-24-.001-51.183-37.983-91.42-85.973-113.733z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+      <span
+        className="task-item__tools_Edit"
+        onClick={[MockFunction]}
+      >
+        <svg
+          aria-hidden="true"
+          className="ico-edit"
+          data-icon="pen"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          viewBox="0 0 512 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+      <span
+        className="task-item__tools_Trash"
+        onClick={[MockFunction]}
+      >
+        <svg
+          aria-hidden="true"
+          className="ico-trash"
+          data-icon="trash"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          viewBox="0 0 448 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+      <span
+        className="task-item__tools_Color"
+      >
+        <span
+          className="task-item__tools_Color-list"
+        >
+          <span
+            className="color"
+            onClick={[Function]}
+            style={
+              Object {
+                "backgroundColor": "#fff4ba",
+                "border": "1px solid #fbe67b",
+              }
+            }
+          />
+          <span
+            className="color"
+            onClick={[Function]}
+            style={
+              Object {
+                "backgroundColor": "#e8fafc",
+                "border": "1px solid #b2d9ec",
+              }
+            }
+          />
+          <span
+            className="color"
+            onClick={[Function]}
+            style={
+              Object {
+                "backgroundColor": "#ffecf1",
+                "border": "1px solid #f9c8ca",
+              }
+            }
+          />
+          <span
+            className="color dark"
+            onClick={[Function]}
+            style={
+              Object {
+                "backgroundColor": "#3c3f43",
+                "border": "1px solid #5f6368",
+              }
+            }
+          />
+        </span>
+        <svg
+          aria-hidden="true"
+          data-icon="palette"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          viewBox="0 0 512 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M204.3 5C104.9 24.4 24.8 104.3 5.2 203.4c-37 187 131.7 326.4 258.8 306.7 41.2-6.4 61.4-54.6 42.5-91.7-23.1-45.4 9.9-98.4 60.9-98.4h79.7c35.8 0 64.8-29.6 64.9-65.3C511.5 97.1 368.1-26.9 204.3 5zM96 320c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm32-128c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm128-64c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm128 64c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+      <span
+        className="task-item__date"
+      />
+    </div>
+  </div>
+</div>
+`;

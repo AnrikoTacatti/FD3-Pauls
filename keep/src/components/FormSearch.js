@@ -5,10 +5,6 @@ import { withRouter } from "react-router";
 class FormSearch extends React.PureComponent {
     constructor(props) {
         super(props);
-        this.state = {
-            /* TaskLists: this.props.stateTaskLists.TaskLists*/
-
-        }
     }
     Sarch = () => {
 

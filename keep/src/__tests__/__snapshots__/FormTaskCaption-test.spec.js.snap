@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormTaskItem Edit ormTaskCaption Edit Snapshot 1`] = `
+<Fragment>
+  <div
+    className="form-add-task-caption form"
+  >
+    <div
+      className="form-inner"
+    >
+      <p
+        className="form-title"
+      >
+        Edit task list
+      </p>
+      <input
+        className="task-list-name"
+        defaultValue="Заметки учеба"
+        name="title"
+        placeholder="Enter task list name"
+        required=""
+        type="text"
+      />
+    </div>
+    <div
+      className="form-add-task-caption__footer"
+    >
+      <button
+        className="form-cancel btn"
+        onClick={[Function]}
+        title="Cancel"
+        type="button"
+      >
+        Cancel
+      </button>
+      <button
+        className="form-submit btn"
+        onClick={[Function]}
+        type="button"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+  <div
+    className="form-bg"
+  />
+</Fragment>
+`;
+
+exports[`FormTaskItem New ormTaskCaption New Snapshot 1`] = `
+<Fragment>
+  <div
+    className="form-add-task-caption form"
+  >
+    <div
+      className="form-inner"
+    >
+      <p
+        className="form-title"
+      >
+        Add task list
+      </p>
+      <input
+        className="task-list-name"
+        name="phone"
+        placeholder="Enter task list name"
+        required=""
+        type="text"
+      />
+    </div>
+    <div
+      className="form-add-task-caption__footer"
+    >
+      <button
+        className="form-cancel btn"
+        onClick={[Function]}
+        title="Cancel"
+        type="button"
+      >
+        Cancel
+      </button>
+      <button
+        className="form-submit btn"
+        onClick={[Function]}
+        type="button"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+  <div
+    className="form-bg"
+  />
+</Fragment>
+`;

@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search-test Search Snapshot 1`] = `
+<Fragment>
+  <div
+    className="task-chapter"
+  >
+    <style>
+       .task-item{ -webkit-animation-name: none;
+                                animation-name: none;} 
+                            .search { 
+                                -webkit-animation-name: slideInUp;
+                                animation-name: slideInUp;
+                                opacity: 0; }
+                            
+    </style>
+    <div
+      className="task-chapter__header"
+    >
+      <div
+        className="task-chapter__title"
+      >
+        Результат поиска
+      </div>
+    </div>
+    <div
+      className="task-item-list"
+    >
+      <Connect(TaskItemContainer)
+        attrdata="search"
+        data={
+          Object {
+            "key": "-Mnu6lwJvGFmsBIjhPBh",
+            "keychapter": "1",
+            "name": "Заметки работа №1",
+            "text": "Заметки работа №1",
+            "time": 1636283916422,
+          }
+        }
+        index={1}
+        key="-Mnu6lwJvGFmsBIjhPBh"
+        keychapter="1"
+        keyitem="-Mnu6lwJvGFmsBIjhPBh"
+      />
+    </div>
+  </div>
+</Fragment>
+`;

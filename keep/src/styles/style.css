@@ -19,6 +19,9 @@ input:not([type="submit"]){
     width: 100%;
     font-size: 16px;
 }
+input.error:not([type="submit"]){
+    border: 1px solid red;
+}
 
 input::-webkit-input-placeholder {
     font-size: inherit;
@@ -68,6 +71,10 @@ textarea {
     padding: 10px 12px;
     max-width: 100%;
     resize: none;
+}
+
+textarea.error{
+    border: 1px solid red;
 }
 textarea::-webkit-input-placeholder {
     font-size: inherit;
@@ -355,6 +362,7 @@ textarea:-ms-input-placeholder {
 .task-item__tools span{
     padding-top: 5px;
 }
+
 .task-item__tools svg {
     width: 12px;
     margin-right: 15px;
@@ -377,7 +385,9 @@ textarea:-ms-input-placeholder {
         color: black;   
         transition: color .2s;
     }
-
+.task-item__tools_Pin.active svg,.styled .task-item__tools_Pin.active svg{
+        color:#ffcb2b;
+    }
 span.task-item__tools_Color {
     position: relative;
 }
@@ -569,7 +579,7 @@ p.form-title {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.54);
-    background: rgb(185 184 182 / 90%);
+    background: rgb(185 184 182 / 80%);
     -webkit-filter: initial;
             filter: initial;
     top: 0;

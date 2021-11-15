@@ -19,9 +19,6 @@ class TaskMain extends React.PureComponent {
         }
     }
 
-
-
-
     loadTaskLists = () => {
         api.getTask(this.props.dispatch);
 

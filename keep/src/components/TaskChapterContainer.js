@@ -4,11 +4,12 @@ import { connect } from 'react-redux';
 import { withRouter } from "react-router";
 
 import FormTaskItem from './FormTaskItem.js';
-import { OPEN_FORM_TASK_ITEM_NEW } from '../stores/const.js';
 import TaskChapter from '../components/TaskChapter';
+import {
+    actionopenFormNewItemNew
+} from '../actions/TaskChapter.js';
 
-
-class TaskChapterContainer extends React.PureComponent {
+export class TaskChapterContainer extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
@@ -37,7 +38,8 @@ class TaskChapterContainer extends React.PureComponent {
 
     openFormNewItemNew = () => {
         let key = this.findkey();
-        this.props.dispatch({ type: OPEN_FORM_TASK_ITEM_NEW, data: { activ: true, keychapter: key } });
+        let data = { activ: true, keychapter: key };
+        actionopenFormNewItemNew(data, this.props.dispatch);
     }
 
     findName = () => {
@@ -45,6 +47,7 @@ class TaskChapterContainer extends React.PureComponent {
             if (this.state.TaskLists[tasklistskey].url == this.state.locationPathname) { return this.state.TaskLists[tasklistskey].name; }
         }
     }
+
     findkey = () => {
         for (let tasklistskey in this.state.TaskLists) {
             if (this.state.TaskLists[tasklistskey].url == this.state.locationPathname) { return tasklistskey; }
@@ -52,17 +55,14 @@ class TaskChapterContainer extends React.PureComponent {
     }
 
     render() {
-        console.log("render TaskChapterContainer", this.state, this.props);
+        //console.log("render TaskChapterContainer", this.state, this.props);
         return (
             <React.Fragment>
                 <TaskChapter {...this.state} cbopenFormNewItemNew={this.openFormNewItemNew} cbfindName={this.findName} cbfindkey={this.findkey} />
                 <FormTaskItem />
             </React.Fragment>
-
         );
     }
-
-
 }
 
 const mapStateToProps = function (state) {

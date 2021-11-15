@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search-test Search Snapshot 1`] = `
+<ul
+  className="pagination"
+>
+  <li
+    className=""
+    key="1"
+  >
+    <NavLink
+      onClick={[Function]}
+      to="/?page_1"
+    >
+      1
+    </NavLink>
+  </li>
+  <li
+    className=""
+    key="2"
+  >
+    <NavLink
+      onClick={[Function]}
+      to="/?page_2"
+    >
+      2
+    </NavLink>
+  </li>
+  <li
+    className=""
+    key="3"
+  >
+    <NavLink
+      onClick={[Function]}
+      to="/?page_3"
+    >
+      3
+    </NavLink>
+  </li>
+  <li
+    className=""
+    key="4"
+  >
+    <NavLink
+      onClick={[Function]}
+      to="/?page_4"
+    >
+      4
+    </NavLink>
+  </li>
+  <li
+    className="active"
+  >
+    <NavLink
+      onClick={[Function]}
+      to="/"
+    >
+      Все
+    </NavLink>
+  </li>
+</ul>
+`;

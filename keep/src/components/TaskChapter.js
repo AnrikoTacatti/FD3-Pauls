@@ -18,14 +18,12 @@ class TaskChapter extends React.PureComponent {
                 i++;
                 let keyitem = this.props.TaskLists[key].itemlist[tasklistskeychild].key;
                 tasklistitem.push(
-                    <TaskItemContainer data={this.props.TaskLists[key].itemlist[tasklistskeychild]} keychapter={key} keyitem={keyitem} key={keyitem} index={i}
+                    <TaskItemContainer data={this.props.TaskLists[key].itemlist[tasklistskeychild]} keychapter={key} keyitem={keyitem} index={i} key={keyitem}
                         attrdata={this.props.locationPathname === undefined ? "all" : this.props.locationPathname} />
-
                 )
 
             }
         }
-
         return tasklistitem;
     }
 
@@ -46,7 +44,7 @@ class TaskChapter extends React.PureComponent {
             let keyitem = listtask[i].key;
             let keychapter = listtask[i].keychapter;
             tasklistitem.push(
-                <TaskItemContainer data={listtask[i]} keychapter={keychapter} keyitem={keyitem} key={keyitem} index={i}
+                <TaskItemContainer data={listtask[i]} keychapter={keychapter} keyitem={keyitem} index={i} key={keyitem}
                     attrdata={this.props.locationPathname === undefined ? "all" : this.props.locationPathname}
                 />
             )
@@ -55,7 +53,7 @@ class TaskChapter extends React.PureComponent {
     }
 
     render() {
-        console.log("render TaskChapter", this.props);
+        /* console.log("render TaskChapter", this.props);*/
         return (
             <React.Fragment>
                 <div className="task-chapter" id={this.props.locationPathname === undefined ? "all" : this.props.locationPathname}>
@@ -79,7 +77,7 @@ class TaskChapter extends React.PureComponent {
 
                         </div>
                         <div className="task-chapter__tools">
-                            {Object.keys(this.props.TaskLists).length > 0 && (this.props.locationPathname !== undefined && <span className="task-chapter__tools__trash" onClick={this.openFormNewItemNew} >{icoPlus()} </span>)}
+                            {Object.keys(this.props.TaskLists).length > 0 && (this.props.locationPathname !== undefined && <span className="task-chapter__tools__Plus" onClick={this.props.cbopenFormNewItemNew} >{icoPlus()} </span>)}
 
                         </div>
                     </div>

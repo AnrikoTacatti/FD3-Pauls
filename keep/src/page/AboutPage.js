@@ -10,7 +10,7 @@ export default class AboutPage extends React.PureComponent {
         return (
             <div className='AboutPage'>
                 <h2> Almost Tasks </h2>
-                <p>This application is written based on Tasks API using Material Design concepts.</p>
+                <p>This application is written based on Firebase Realtime Database.</p>
                 <p>It is a final result of ReactJS.</p>
             </div >
         )

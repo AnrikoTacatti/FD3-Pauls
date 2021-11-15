@@ -3,8 +3,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router";
 
-import FormTaskItem from './FormTaskItem.js';
-import TaskItemContainer from './TaskItemContainer.js';
 import Pin from './Pin.js';
 
 class PinContainer extends React.PureComponent {

@@ -7,16 +7,11 @@ class Search extends React.PureComponent {
         super(props);
     }
 
-
     forTaskListschild = () => {
         let tasklistitem = [];
         var i = 0;
-        let listtask = [];
+        let listtask = this.props.TaskLists;
         if (this.props.searchText !== null) {
-            for (let tasklistskey in this.props.TaskLists) {
-                listtask = [...listtask, ...this.props.TaskLists[tasklistskey].itemlist];
-            }
-            listtask = listtask.sort((a, b) => b.time - a.time);
             let index = 0;
             for (let i = 0; i < listtask.length; i++) {
                 let keyitem = listtask[i].key;
@@ -38,7 +33,7 @@ class Search extends React.PureComponent {
     }
 
     render() {
-        console.log("render Search", this.props);
+        // console.log("render Search", this.props);
         return (
             <React.Fragment>
                 <div className="task-chapter">

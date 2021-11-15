@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TaskChapter-test TaskChapter Snapshot zametki-ucheba 1`] = `
+<Fragment>
+  <div
+    className="task-chapter"
+    id="zametki-ucheba"
+  >
+    <style>
+       .task-item{ -webkit-animation-name: none;
+                                animation-name: none;} 
+                            .all{ 
+                                -webkit-animation-name: slideInUpAll;
+                                 animation-name: slideInUpAll;
+                             }
+                            
+      .zametki-ucheba { 
+                        -webkit-animation-name: slideInUp;
+                        animation-name: slideInUp;
+                        opacity: 0; }
+    </style>
+    <div
+      className="task-chapter__header"
+    >
+      <div
+        className="task-chapter__title"
+      >
+        Заметки учеба
+      </div>
+      <div
+        className="task-chapter__tools"
+      >
+        <span
+          className="task-chapter__tools__Plus"
+          onClick={[MockFunction]}
+        >
+          <svg
+            aria-hidden="true"
+            data-icon="plus"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            viewBox="0 0 448 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+              fill="currentColor"
+            />
+          </svg>
+           
+        </span>
+      </div>
+    </div>
+    <div />
+    <div
+      className="task-item-list"
+    >
+      <Connect(TaskItemContainer)
+        attrdata="zametki-ucheba"
+        data={
+          Object {
+            "key": "-Mnu71_BYp5YokQlvrg4",
+            "name": "Заметки учеба №111",
+            "pin": true,
+            "style": Object {
+              "backgroundColor": "#ffecf1",
+              "border": "1px solid #f9c8ca",
+            },
+            "text": "Заметки учеба №1",
+            "time": 1636466420836,
+          }
+        }
+        index={1}
+        key="-Mnu71_BYp5YokQlvrg4"
+        keychapter="-MnosmgmdFWwUg_Qyj5o"
+        keyitem="-Mnu71_BYp5YokQlvrg4"
+      />
+      <Connect(TaskItemContainer)
+        attrdata="zametki-ucheba"
+        data={
+          Object {
+            "key": "-Mnu736Ol-_bA2P_gxQg",
+            "name": "Заметки учеба №2",
+            "text": "Заметки учеба №2",
+            "time": 1636283990848,
+          }
+        }
+        index={2}
+        key="-Mnu736Ol-_bA2P_gxQg"
+        keychapter="-MnosmgmdFWwUg_Qyj5o"
+        keyitem="-Mnu736Ol-_bA2P_gxQg"
+      />
+      <Connect(TaskItemContainer)
+        attrdata="zametki-ucheba"
+        data={
+          Object {
+            "key": "-Mnu74Jhfq6DAtIDT796",
+            "name": "Заметки учеба №3",
+            "text": "",
+            "time": 1636465260116,
+          }
+        }
+        index={3}
+        key="-Mnu74Jhfq6DAtIDT796"
+        keychapter="-MnosmgmdFWwUg_Qyj5o"
+        keyitem="-Mnu74Jhfq6DAtIDT796"
+      />
+    </div>
+  </div>
+</Fragment>
+`;

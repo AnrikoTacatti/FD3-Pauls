@@ -9,7 +9,7 @@ class SearchContainer extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            TaskLists: this.props.stateTaskLists,
+            TaskLists: this.props.taskListsItemsSort,
             locationPathname: this.props.match.params.chapter,
             searchText: this.props.searchText,
         }
@@ -22,8 +22,7 @@ class SearchContainer extends React.PureComponent {
     }
 
     render() {
-        console.log("render SearchContainer");
-        console.log(this.props);
+        console.log("render SearchContainer", this.props);
         return (
             <React.Fragment>
                 <Search locationPathname={this.state.locationPathname} searchText={this.state.searchText} TaskLists={this.state.TaskLists} />
@@ -37,7 +36,7 @@ const mapStateToProps = function (state) {
     return {
         // весь раздел Redux state под именем counters будет доступен
         // данному компоненту как this.props.counters
-        stateTaskLists: state.stateTaskLists.TaskLists,
+        taskListsItemsSort: state.stateTaskLists.TaskListsItemsSort,
         searchText: state.stateTaskLists.searchText
     };
 };

@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormTaskItem Edit FormTaskItem Edit Snapshot 1`] = `
+<Fragment>
+  <div
+    className="form-add-task-caption form"
+  >
+    <div
+      className="form-inner"
+    >
+      <p
+        className="form-title"
+      >
+        Edit task item
+      </p>
+      <input
+        className="task-item-name"
+        defaultValue="Мои заметки № 1"
+        name="name"
+        placeholder="Enter task item name"
+        required=""
+        type="text"
+      />
+      <textarea
+        className="task-item-text"
+        cols="60"
+        defaultValue="Мои заметки № 1"
+        name="text"
+        placeholder="Enter task item text"
+        required=""
+        rows="5"
+      />
+    </div>
+    <div
+      className="form-add-task-caption__footer"
+    >
+      <button
+        className="form-cancel btn"
+        onClick={[Function]}
+        title="Cancel"
+        type="button"
+      >
+        Cancel
+      </button>
+      <button
+        className="form-submit btn"
+        onClick={[Function]}
+        type="button"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+  <div
+    className="form-bg"
+  />
+</Fragment>
+`;
+
+exports[`FormTaskItem New FormTaskItem New Snapshot 1`] = `
+<Fragment>
+  <div
+    className="form-add-task-caption form"
+  >
+    <div
+      className="form-inner"
+    >
+      <p
+        className="form-title"
+      >
+        Add task item
+      </p>
+      <input
+        className="task-item-name "
+        name="title"
+        placeholder="Enter task item name"
+        required=""
+        type="text"
+      />
+      <textarea
+        className="task-item-text "
+        cols="60"
+        name="text"
+        placeholder="Enter task item text"
+        required=""
+        rows="5"
+      />
+    </div>
+    <div
+      className="form-add-task-caption__footer"
+    >
+      <button
+        className="form-cancel btn"
+        onClick={[Function]}
+        title="Cancel"
+        type="button"
+      >
+        Cancel
+      </button>
+      <button
+        className="form-submit btn"
+        onClick={[Function]}
+        type="button"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+  <div
+    className="form-bg"
+  />
+</Fragment>
+`;

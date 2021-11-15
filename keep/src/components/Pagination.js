@@ -1,9 +1,9 @@
 "use strict";
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { actionPageNumber } from '../actions/Pagination.js';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router";
+import { actionPageNumber } from '../actions/Pagination.js';
 
 export class Pagination extends React.Component {
     constructor(props) {
@@ -18,7 +18,7 @@ export class Pagination extends React.Component {
     }
 
     render() {
-        console.log("Pagination", this.props);
+        //  console.log("Pagination", this.props);
         const pageNumber = []
         for (let i = 1; i <= Math.ceil(this.props.total / this.props.perpage); i++) {
             pageNumber.push(i);

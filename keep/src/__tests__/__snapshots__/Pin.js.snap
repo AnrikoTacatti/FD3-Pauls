@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pin-test Pin Snapshot 1`] = `
+<Fragment>
+  <div
+    className="task-chapter"
+  >
+    <style>
+       .task-item{ -webkit-animation-name: none;
+                                animation-name: none;} 
+                            .pin { 
+                                -webkit-animation-name: slideInUp;
+                                animation-name: slideInUp;
+                                opacity: 0; }
+                            
+    </style>
+    <div
+      className="task-chapter__header"
+    >
+      <div
+        className="task-chapter__title"
+      >
+        Закрепленные
+      </div>
+    </div>
+    <div
+      className="task-item-list"
+    >
+      <Connect(TaskItemContainer)
+        attrdata="pin"
+        data={
+          Object {
+            "key": "-Mnu71_BYp5YokQlvrg4",
+            "keychapter": "-MnosmgmdFWwUg_Qyj5o",
+            "name": "Заметки учеба №111",
+            "pin": true,
+            "style": Object {
+              "backgroundColor": "#ffecf1",
+              "border": "1px solid #f9c8ca",
+            },
+            "text": "Заметки учеба №1",
+            "time": 1636466420836,
+          }
+        }
+        index={1}
+        key="-Mnu71_BYp5YokQlvrg4"
+        keychapter="-MnosmgmdFWwUg_Qyj5o"
+        keyitem="-Mnu71_BYp5YokQlvrg4"
+      />
+      <Connect(TaskItemContainer)
+        attrdata="pin"
+        data={
+          Object {
+            "key": "-Mnu6n_j_6Szfb5fRtuR",
+            "keychapter": "1",
+            "name": "Заметки работа №2",
+            "pin": true,
+            "text": "Заметки работа №2",
+            "time": 1636283923175,
+          }
+        }
+        index={2}
+        key="-Mnu6n_j_6Szfb5fRtuR"
+        keychapter="1"
+        keyitem="-Mnu6n_j_6Szfb5fRtuR"
+      />
+      <Connect(TaskItemContainer)
+        attrdata="pin"
+        data={
+          Object {
+            "key": "-Mnu6lwJvGFmsBIjhPBh",
+            "keychapter": "1",
+            "name": "Заметки работа №1",
+            "pin": true,
+            "text": "Заметки работа №1",
+            "time": 1636283916422,
+          }
+        }
+        index={3}
+        key="-Mnu6lwJvGFmsBIjhPBh"
+        keychapter="1"
+        keyitem="-Mnu6lwJvGFmsBIjhPBh"
+      />
+    </div>
+  </div>
+  <Connect(FormTaskItem) />
+</Fragment>
+`;

@@ -1,34 +1,41 @@
 import React from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { OPEN_FORM_NEW_TASK_CAPTION, OPEN_FORM_EDIT_TASK_CAPTION } from '../stores/const.js';
-import api from '../api/api.js';
 import { icoTrash, icoEdit, icoPin, icoFolder, icoPlus } from '../ico/ico.js';
+import {
+    actionopenFormNewTaskCaption,
+    actionopenFormEditTaskCaption,
+    actiondeleteChapter
 
-class MenuTask extends React.Component {
+} from '../actions/MenuTask.js';
+
+
+
+export class MenuTask extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            TaskLists: this.props.stateTaskLists.TaskLists
+            TaskLists: this.props.stateTaskLists
         }
     }
     openFormNewTaskCaption = () => {
-        this.props.dispatch({ type: OPEN_FORM_NEW_TASK_CAPTION, data: true });
+        actionopenFormNewTaskCaption(true, this.props.dispatch);
+
     }
     openFormEditTaskCaption = (keychapter, name, e) => {
-        console.log("openFormEditTaskCaption");
-        this.props.dispatch({ type: OPEN_FORM_EDIT_TASK_CAPTION, data: { active: true, keychapter: keychapter, name: name } });
+        let data = { active: true, keychapter: keychapter, name: name };
+        actionopenFormEditTaskCaption(data, this.props.dispatch);
     }
 
-    UNSAFE_componentWillReceiveProps = (newProps) => {
-        this.setState({ TaskLists: newProps.stateTaskLists.TaskLists });
+    UNSAFE_componentWillReceiveProps(newProps) {
+        this.setState({ TaskLists: newProps.stateTaskLists });
     }
 
     deleteChapter = (keychapter, e) => {
         let isDelete = window.confirm("Вы действительно хотите удалить?");
         if (isDelete) {
             let data = { keychapter: keychapter };
-            api.removeTaskCaption(data, this.props.dispatch);
+            actiondeleteChapter(data, this.props.dispatch)
         }
     }
     forTaskLists = () => {
@@ -39,8 +46,8 @@ class MenuTask extends React.Component {
                     <NavLink to={"/chapter/" + this.state.TaskLists[tasklistskey].url} exact className="PageLink" activeClassName="ActivePageLink" key={tasklistskey}>
                         {icoFolder()}  {this.state.TaskLists[tasklistskey].name}
                     </NavLink>
-                    <span onClick={this.openFormEditTaskCaption.bind(null, tasklistskey, this.state.TaskLists[tasklistskey].name)}>{icoEdit()}</span>
-                    <span onClick={this.deleteChapter.bind(null, tasklistskey)}>{icoTrash()}</span>
+                    <span className="openFormEditTaskCaption" onClick={this.openFormEditTaskCaption.bind(null, tasklistskey, this.state.TaskLists[tasklistskey].name)}>{icoEdit()}</span>
+                    <span className="deleteChapter" onClick={this.deleteChapter.bind(null, tasklistskey)}>{icoTrash()}</span>
                 </li>
             )
 
@@ -49,14 +56,14 @@ class MenuTask extends React.Component {
     }
 
     render() {
-        console.log("MenuTask ");
+        // console.log("MenuTask ");
         return (
             <React.Fragment>
                 {<li><NavLink to="/chapter" exact className="PageLink" activeClassName="ActivePageLink" > {icoFolder()} Все </NavLink></li>}
                 {<li><NavLink to="/pin" exact className="PageLink" activeClassName="ActivePageLink" > {icoPin()} Закрепленные </NavLink></li>}
                 {Object.keys(this.state.TaskLists).length > 0 && this.forTaskLists()}
                 {
-                    <li><span onClick={this.openFormNewTaskCaption}>{icoPlus()} Create new list</span></li>
+                    <li><span className="openFormNewTaskCaption" onClick={this.openFormNewTaskCaption}>{icoPlus()} Create new list</span></li>
 
                 }
             </React.Fragment >
@@ -67,7 +74,7 @@ const mapStateToProps = function (state) {
     return {
         // весь раздел Redux state под именем counters будет доступен
         // данному компоненту как this.props.counters
-        stateTaskLists: state.stateTaskLists,
+        stateTaskLists: state.stateTaskLists.TaskLists
     };
 };
 export default connect(mapStateToProps)(MenuTask);
