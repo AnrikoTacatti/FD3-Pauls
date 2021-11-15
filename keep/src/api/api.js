@@ -31,6 +31,8 @@ onChildChanged(ref(database, "keeps/sectionlist/"), (data) => {
   console.log(data);
   /*setCommentValues(postElement, data.key, data.val().text, data.val().author);*/
 });
+
+
 function appGet(dispatch) {
   console.log("appGet");
   get(child(dbRef, "keeps/sectionlist/")).then((snapshot) => {
