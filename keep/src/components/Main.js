@@ -11,7 +11,6 @@ class Main extends React.PureComponent {
 
     forTaskListschild = () => {
         let tasklistitem = [];
-        var i = 0;
         let listtask = this.props.TaskListsItemsSort;
         let length = 0;
 
@@ -22,11 +21,11 @@ class Main extends React.PureComponent {
             case listtask.length >= 1: length = 1; break;
         }
 
-        for (let i = 1; i <= length; i++) {
-            let keyitem = listtask[listtask.length - i].key;
-            let keychapter = listtask[listtask.length - i].keychapter;
+        for (let i = 0; i < length; i++) {
+            let keyitem = listtask[i].key;
+            let keychapter = listtask[i].keychapter;
             tasklistitem.push(
-                <TaskItemContainer data={listtask[listtask.length - i]} keychapter={keychapter} keyitem={keyitem} key={keyitem} index={i}
+                <TaskItemContainer data={listtask[i]} keychapter={keychapter} keyitem={keyitem} key={keyitem} index={i + 1}
                     attrdata={this.props.locationPathname !== undefined ? this.props.locationPathname : "all"}
                 />
             )
@@ -48,11 +47,11 @@ class Main extends React.PureComponent {
             case listtask.length >= 1: length = 1; break;
         }
 
-        for (let i = 1; i <= length; i++) {
-            let keyitem = listtask[listtask.length - i].key;
-            let keychapter = listtask[listtask.length - i].keychapter;
+        for (let i = 0; i < length; i++) {
+            let keyitem = listtask[i].key;
+            let keychapter = listtask[i].keychapter;
             tasklistitem.push(
-                <TaskItemContainer data={listtask[listtask.length - i]} keychapter={keychapter} keyitem={keyitem} key={keyitem} index={i}
+                <TaskItemContainer data={listtask[i]} keychapter={keychapter} keyitem={keyitem} key={keyitem} index={i + 1}
                     attrdata={this.props.locationPathname !== undefined ? this.props.locationPathname : "all"}
                 />
             )
