@@ -2,6 +2,7 @@
 
 ## Перед стартом проекта необходимо:
 
+> Посмотреть можно тут http://genrich.ru/keep/serch/
 > node -v
 > git clone https://github.com/AnrikoTacatti/FD3-Pauls.git
 > Запустить команду npm install в терминале.Данная команда установит все пакеты,которые указаны в файле

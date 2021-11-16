@@ -10,7 +10,7 @@ class FormSearch extends React.PureComponent {
 
         let data = { text: this.inputSarch.value };
         this.props.dispatch({ type: SEARH_TEXT, data });
-        this.props.history.push("/FD3-Pauls/keep/public/serch/");
+        this.props.history.push("/serch/");
 
     }
     render() {

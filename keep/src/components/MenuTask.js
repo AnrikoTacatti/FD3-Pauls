@@ -43,7 +43,7 @@ export class MenuTask extends React.Component {
         for (let tasklistskey in this.state.TaskLists) {
             menulist.push(
                 <li key={tasklistskey}>
-                    <NavLink to={"/FD3-Pauls/keep/public/chapter/" + this.state.TaskLists[tasklistskey].url} exact className="PageLink" activeClassName="ActivePageLink" key={tasklistskey}>
+                    <NavLink to={"/chapter/" + this.state.TaskLists[tasklistskey].url} exact className="PageLink" activeClassName="ActivePageLink" key={tasklistskey}>
                         {icoFolder()}  {this.state.TaskLists[tasklistskey].name}
                     </NavLink>
                     <span className="openFormEditTaskCaption" onClick={this.openFormEditTaskCaption.bind(null, tasklistskey, this.state.TaskLists[tasklistskey].name)}>{icoEdit()}</span>
@@ -59,8 +59,8 @@ export class MenuTask extends React.Component {
         // console.log("MenuTask ");
         return (
             <React.Fragment>
-                {<li><NavLink to="/FD3-Pauls/keep/public/chapter" exact className="PageLink" activeClassName="ActivePageLink" > {icoFolder()} Все </NavLink></li>}
-                {<li><NavLink to="/FD3-Pauls/keep/public/pin" exact className="PageLink" activeClassName="ActivePageLink" > {icoPin()} Закрепленные </NavLink></li>}
+                {<li><NavLink to="/chapter" exact className="PageLink" activeClassName="ActivePageLink" > {icoFolder()} Все </NavLink></li>}
+                {<li><NavLink to="/pin" exact className="PageLink" activeClassName="ActivePageLink" > {icoPin()} Закрепленные </NavLink></li>}
                 {Object.keys(this.state.TaskLists).length > 0 && this.forTaskLists()}
                 {
                     <li><span className="openFormNewTaskCaption" onClick={this.openFormNewTaskCaption}>{icoPlus()} Create new list</span></li>
